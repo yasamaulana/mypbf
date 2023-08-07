@@ -44,6 +44,9 @@ Route::get('/obat-dan-barang', function () {
 Route::get('/satuan', function () {
     return view('pages.master.produk.satuan');
 });
+Route::get('/set-harga-jual', function () {
+    return view('pages.master.produk.set-harga');
+});
 Route::get('/golongan', function () {
     return view('pages.master.produk.golongan');
 });

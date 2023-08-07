@@ -14,6 +14,7 @@
     <title>Dashboard - Rubick - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
+    @vite('resources/css/app.css')
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->

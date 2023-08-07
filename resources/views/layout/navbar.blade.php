@@ -122,7 +122,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/set-harga-jual" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Set Harga Jual</div>
                                 </a>
