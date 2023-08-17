@@ -12,6 +12,7 @@ module.exports = {
         "./node_modules/@left4code/tw-starter/**/*.js",
         // ".//*.html",
     ],
+    plugins: [require("daisyui")],
     darkMode: "class",
     theme: {
         extend: {
@@ -69,6 +70,7 @@ module.exports = {
             },
         },
     },
+    plugins: [require("@tailwindcss/forms")],
     variants: {
         extend: {
             boxShadow: ["dark"],

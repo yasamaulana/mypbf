@@ -52,6 +52,33 @@ Route::get('/set-user', function () {
     ]);
 });
 
+
+Route::get('/area-rayon', function () {
+    return view('pages.perusahaan.marketing.area-rayon', [
+        'title' => "perusahaan"
+    ]);
+});
+Route::get('/sub-rayon', function () {
+    return view('pages.perusahaan.marketing.sub-rayon', [
+        'title' => "perusahaan"
+    ]);
+});
+Route::get('/sales', function () {
+    return view('pages.perusahaan.marketing.sales', [
+        'title' => "perusahaan"
+    ]);
+});
+Route::get('/target-spv', function () {
+    return view('pages.perusahaan.marketing.target-spv', [
+        'title' => "perusahaan"
+    ]);
+});
+Route::get('/target-sales', function () {
+    return view('pages.perusahaan.marketing.target-sales', [
+        'title' => "perusahaan"
+    ]);
+});
+
 //master
 Route::get('/obat-dan-barang', function () {
     return view('pages.master.produk.obat-barang', [
@@ -96,6 +123,17 @@ Route::get('/rak', function () {
 });
 Route::get('/sub-rak', function () {
     return view('pages.master.gudang.sub-rak', [
+        'title' => 'master'
+    ]);
+});
+
+Route::get('/kelompok', function () {
+    return view('pages.master.customer.kelompok', [
+        'title' => 'master'
+    ]);
+});
+Route::get('/pelanggan', function () {
+    return view('pages.master.customer.pelanggan', [
         'title' => 'master'
     ]);
 });

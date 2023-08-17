@@ -228,13 +228,13 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/kelompok" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Kelompok</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/pelanggan" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Pelanggan</div>
                                 </a>
@@ -249,13 +249,13 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/produsen" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Produsen</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/suplier" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Suplier</div>
                                 </a>
