@@ -2,7 +2,7 @@
     <nav class="top-nav">
         <ul>
             <li>
-                <a href="javascript:;.html" class="top-menu top-menu--active">
+                <a href="javascript:;.html" class="top-menu {{ $title == 'dashboard' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="home"></i> </div>
                     <div class="top-menu__title"> Dashboard <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
                     </div>
@@ -47,7 +47,7 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="top-menu">
+                <a href="javascript:;" class="top-menu {{ $title == 'perusahaan' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="briefcase"></i> </div>
                     <div class="top-menu__title"> Perusahaan <i data-feather="chevron-down"
                             class="top-menu__sub-icon"></i>
@@ -92,9 +92,48 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" class="top-menu">
+                                <a href="/set-user" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Set User</div>
+                                    <div class="top-menu__title">User</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Marketing <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/area-rayon" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Area Rayon</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/sub-rayon" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Sub Rayon</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/sales" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Sales</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/target-spv" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Target SPV</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/target-sales" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Target Sales</div>
                                 </a>
                             </li>
                         </ul>
@@ -104,7 +143,8 @@
             <li>
                 <a href="javascript:;" class="top-menu">
                     <div class="top-menu__icon"> <i data-feather="layout"></i> </div>
-                    <div class="top-menu__title"> Master <i data-feather="chevron-down" class="top-menu__sub-icon"></i>
+                    <div class="top-menu__title"> Master <i data-feather="chevron-down"
+                            class="top-menu__sub-icon"></i>
                     </div>
                 </a>
                 <ul class="">
@@ -204,7 +244,7 @@
                     <li>
                         <a href="javascript:;" class="top-menu">
                             <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Pabrik dan Suplier <i data-feather="chevron-down"
+                            <div class="top-menu__title"> Produsen & Suplier <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
                         <ul class="">
@@ -222,6 +262,21 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Akuntansi <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/akun-akuntansi" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Akun Akuntansi</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -232,25 +287,28 @@
                 </a>
                 <ul class="">
                     <li>
-                        <a href="javascript:;" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Table <i data-feather="chevron-down"
-                                    class="top-menu__sub-icon"></i> </div>
+                        <a href="/hutang-awal" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Hutang Awal</div>
                         </a>
-                        <ul class="">
-                            <li>
-                                <a href="top-menu-light-regular-table.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Regular Table</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="top-menu-light-tabulator.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Tabulator</div>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a href="/piutang-awal" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Piutang Awal</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/stok-awal" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Stok Awal</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/saldo-awal" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Saldo Awal</div>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -262,85 +320,22 @@
                 </a>
                 <ul class="">
                     <li>
-                        <a href="javascript:;" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Table <i data-feather="chevron-down"
-                                    class="top-menu__sub-icon"></i> </div>
+                        <a href="/histori-stok" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Histori Stok</div>
                         </a>
-                        <ul class="">
-                            <li>
-                                <a href="top-menu-light-regular-table.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Regular Table</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="top-menu-light-tabulator.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Tabulator</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;" class="top-menu">
-                    <div class="top-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="top-menu__title"> Transaksi <i data-feather="chevron-down"
-                            class="top-menu__sub-icon"></i> </div>
-                </a>
-                <ul class="">
                     <li>
-                        <a href="javascript:;" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Table <i data-feather="chevron-down"
-                                    class="top-menu__sub-icon"></i> </div>
+                        <a href="/stok-opname" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Stok Opname</div>
                         </a>
-                        <ul class="">
-                            <li>
-                                <a href="top-menu-light-regular-table.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Regular Table</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="top-menu-light-tabulator.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Tabulator</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;" class="top-menu">
-                    <div class="top-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="top-menu__title"> Akutansi & Pajak <i data-feather="chevron-down"
-                            class="top-menu__sub-icon"></i> </div>
-                </a>
-                <ul class="">
                     <li>
-                        <a href="javascript:;" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Table <i data-feather="chevron-down"
-                                    class="top-menu__sub-icon"></i> </div>
+                        <a href="/mutasi-stok" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                            <div class="top-menu__title">Mutasi Stok</div>
                         </a>
-                        <ul class="">
-                            <li>
-                                <a href="top-menu-light-regular-table.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Regular Table</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="top-menu-light-tabulator.html" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Tabulator</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </li>

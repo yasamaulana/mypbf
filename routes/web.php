@@ -14,55 +14,88 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
-Route::get('/tes', function () {
-    return view('tes');
+    return view('home', [
+        'title' => 'dashboard'
+    ]);
 });
 
 //perusahaan
 Route::get('/profil-perusahaan', function () {
-    return view('pages.perusahaan.profil');
+    return view('pages.perusahaan.profil', [
+        'title' => "perusahaan"
+    ]);
 });
+
 Route::get('/pajak-perusahaan', function () {
-    return view('pages.perusahaan.pajak');
+    return view('pages.perusahaan.pajak', [
+        'title' => "perusahaan"
+    ]);
 });
 Route::get('/jabatan', function () {
-    return view('pages.perusahaan.pegawai.jabatan');
+    return view('pages.perusahaan.pegawai.jabatan', [
+        'title' => "perusahaan"
+    ]);
 });
 Route::get('/nama-pegawai', function () {
-    return view('pages.perusahaan.pegawai.nama-pegawai');
+    return view('pages.perusahaan.pegawai.nama-pegawai', [
+        'title' => "perusahaan"
+    ]);
 });
 Route::get('/set-akses', function () {
-    return view('pages.perusahaan.pegawai.set-akses');
+    return view('pages.perusahaan.pegawai.set-akses', [
+        'title' => "perusahaan"
+    ]);
+});
+Route::get('/set-user', function () {
+    return view('pages.perusahaan.pegawai.set-user', [
+        'title' => "perusahaan"
+    ]);
 });
 
 //master
 Route::get('/obat-dan-barang', function () {
-    return view('pages.master.produk.obat-barang');
+    return view('pages.master.produk.obat-barang', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/satuan', function () {
-    return view('pages.master.produk.satuan');
+    return view('pages.master.produk.satuan', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/set-harga-jual', function () {
-    return view('pages.master.produk.set-harga');
+    return view('pages.master.produk.set-harga', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/golongan', function () {
-    return view('pages.master.produk.golongan');
+    return view('pages.master.produk.golongan', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/sub-golongan', function () {
-    return view('pages.master.produk.sub-golongan');
+    return view('pages.master.produk.sub-golongan', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/jenis-obat-barang', function () {
-    return view('pages.master.produk.jenis-obat-barang');
+    return view('pages.master.produk.jenis-obat-barang', [
+        'title' => 'master'
+    ]);
 });
 
 Route::get('/nama-gudang', function () {
-    return view('pages.master.gudang.nama-gudang');
+    return view('pages.master.gudang.nama-gudang', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/rak', function () {
-    return view('pages.master.gudang.rak');
+    return view('pages.master.gudang.rak', [
+        'title' => 'master'
+    ]);
 });
 Route::get('/sub-rak', function () {
-    return view('pages.master.gudang.sub-rak');
+    return view('pages.master.gudang.sub-rak', [
+        'title' => 'master'
+    ]);
 });
