@@ -141,7 +141,7 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="top-menu">
+                <a href="javascript:;" class="top-menu  {{ $title == 'master' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="layout"></i> </div>
                     <div class="top-menu__title"> Master <i data-feather="chevron-down"
                             class="top-menu__sub-icon"></i>
@@ -280,7 +280,7 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="top-menu">
+                <a href="javascript:;" class="top-menu {{ $title == 'setting awal' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="top-menu__title"> Set Awal <i data-feather="chevron-down"
                             class="top-menu__sub-icon"></i> </div>
@@ -313,7 +313,7 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="top-menu">
+                <a href="javascript:;" class="top-menu  {{ $title == 'persediaan' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="top-menu__title"> Persediaan <i data-feather="chevron-down"
                             class="top-menu__sub-icon"></i> </div>

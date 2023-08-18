@@ -137,3 +137,54 @@ Route::get('/pelanggan', function () {
         'title' => 'master'
     ]);
 });
+
+Route::get('/produsen', function () {
+    return view('pages.master.produsen.produsen', [
+        'title' => 'master'
+    ]);
+});
+Route::get('/suplier', function () {
+    return view('pages.master.produsen.suplier', [
+        'title' => 'master'
+    ]);
+});
+
+Route::get('/akun-akuntansi', function () {
+    return view('pages.master.akuntansi.akun-akuntansi', [
+        'title' => 'master'
+    ]);
+});
+
+//set awal
+Route::get('/hutang-awal', function () {
+    return view('pages.set-awal.hutang-awal', [
+        'title' => 'setting awal'
+    ]);
+});
+Route::get('/piutang-awal', function () {
+    return view('pages.set-awal.piutang-awal', [
+        'title' => 'setting awal'
+    ]);
+});
+Route::get('/stok-awal', function () {
+    return view('pages.set-awal.stok-awal', [
+        'title' => 'setting awal'
+    ]);
+});
+Route::get('/saldo-awal', function () {
+    return view('pages.set-awal.saldo-awal.saldo-awal', [
+        'title' => 'setting awal'
+    ]);
+});
+Route::get('/tambah-saldo-awal', function () {
+    return view('pages.set-awal.saldo-awal.tambah-saldo-awal', [
+        'title' => 'setting awal'
+    ]);
+});
+
+//persediaan
+Route::get('/histori-stok', function () {
+    return view('pages.persediaan.histori-stok', [
+        'title' => 'persediaan'
+    ]);
+});

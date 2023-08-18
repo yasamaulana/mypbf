@@ -12,16 +12,188 @@
                 Kelompok</button>
             <!-- BEGIN: Modal Content -->
             <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-body p-10">
                             <div class="preview">
-                                <div>
-                                    <label for="vertical-form-1" class="form-label">Kelompok</label>
-                                    <input id="vertical-form-1" type="text" class="form-control" placeholder="">
+                                <div data-tw-merge class="block sm:flex items-center">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Kode
+                                    </label>
+                                    <div class="flex gap-3 w-full">
+                                        <input data-tw-merge id="horizontal-form-1" type="text" placeholder="Auto"
+                                            class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                        <input data-tw-merge id="horizontal-form-1" type="text"
+                                            placeholder="Kode e-Report"
+                                            class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                    </div>
                                 </div>
-                                <button class="btn btn-primary mt-5">Simpan</button>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Nama
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Alamat
+                                    </label>
+                                    <textarea name="" id="" rows="2" class="form-control"></textarea>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Kab/Kota
+                                    </label>
+                                    <select data-placeholder="Select your favorite actors" class="tom-select w-full">
+                                        <option value="1">Jepara</option>
+                                        <option value="2">Semarang</option>
+                                        <option value="3">Banjarnegara</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Provinsi
+                                    </label>
+                                    <select data-placeholder="Select your favorite actors" class="tom-select w-full">
+                                        <option value="1">Jawa Tengah</option>
+                                        <option value="2">Jawa Barat</option>
+                                        <option value="3">Jawa Timur</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Nomor
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="number"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        NPWP
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Batas Piutang
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text" value="Rp. "
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Batas JT
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Apoteker
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        No SIPA
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        EXP Date SIPA
+                                    </label>
+                                    <div class="flex gap-3 w-full">
+                                        <input data-tw-merge id="horizontal-form-1" type="date"
+                                            class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                        <div data-tw-merge class="flex items-center"><input data-tw-merge type="checkbox"
+                                                class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&amp;[type=&#039;radio&#039;]]:checked:bg-primary [&amp;[type=&#039;radio&#039;]]:checked:border-primary [&amp;[type=&#039;radio&#039;]]:checked:border-opacity-10 [&amp;[type=&#039;checkbox&#039;]]:checked:bg-primary [&amp;[type=&#039;checkbox&#039;]]:checked:border-primary [&amp;[type=&#039;checkbox&#039;]]:checked:border-opacity-10 [&amp;:disabled:not(:checked)]:bg-slate-100 [&amp;:disabled:not(:checked)]:cursor-not-allowed [&amp;:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&amp;:disabled:checked]:opacity-70 [&amp;:disabled:checked]:cursor-not-allowed [&amp;:disabled:checked]:dark:bg-darkmode-800/50 w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white"
+                                                data-tw-merge="data-tw-merge" id="checkbox-switch-7" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        No SIA
+                                    </label>
+                                    <input data-tw-merge id="horizontal-form-1" type="text"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        EXP Date SIA
+                                    </label>
+                                    <div class="flex gap-3 w-full">
+                                        <input data-tw-merge id="horizontal-form-1" type="date"
+                                            class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                        <div data-tw-merge class="flex items-center"><input data-tw-merge type="checkbox"
+                                                class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&amp;[type=&#039;radio&#039;]]:checked:bg-primary [&amp;[type=&#039;radio&#039;]]:checked:border-primary [&amp;[type=&#039;radio&#039;]]:checked:border-opacity-10 [&amp;[type=&#039;checkbox&#039;]]:checked:bg-primary [&amp;[type=&#039;checkbox&#039;]]:checked:border-primary [&amp;[type=&#039;checkbox&#039;]]:checked:border-opacity-10 [&amp;:disabled:not(:checked)]:bg-slate-100 [&amp;:disabled:not(:checked)]:cursor-not-allowed [&amp;:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&amp;:disabled:checked]:opacity-70 [&amp;:disabled:checked]:cursor-not-allowed [&amp;:disabled:checked]:dark:bg-darkmode-800/50 w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white"
+                                                data-tw-merge="data-tw-merge" id="checkbox-switch-7" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Hari Tagih
+                                    </label>
+                                    <select data-tw-merge aria-label="Default select example"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                        <option>Hari 1</option>
+                                        <option>Hari 2</option>
+                                        <option>Hari 3</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Kelompok
+                                    </label>
+                                    <select data-tw-merge aria-label="Default select example"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                        <option>Kelompok 1</option>
+                                        <option>Kelompok 2</option>
+                                        <option>Kelompok 3</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Supervisor
+                                    </label>
+                                    <select data-tw-merge aria-label="Default select example"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                        <option>Ahmad</option>
+                                        <option>Sulaiman</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Sales
+                                    </label>
+                                    <select data-tw-merge aria-label="Default select example"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                        <option>Ahmad</option>
+                                        <option>Sulaiman</option>
+                                    </select>
+                                </div>
+                                <div data-tw-merge class="block sm:flex items-center mt-3">
+                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                                        Kolektor
+                                    </label>
+                                    <select data-tw-merge aria-label="Default select example"
+                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                        <option>Ahmad</option>
+                                        <option>Sulaiman</option>
+                                    </select>
+                                </div>
+
                             </div>
+                        </div>
+                        {{-- footer --}}
+                        <div class="modal-footer">
+                            <button class="btn btn-primary mt-5">Simpan</button>
                         </div>
                     </div>
                 </div>
