@@ -188,3 +188,23 @@ Route::get('/histori-stok', function () {
         'title' => 'persediaan'
     ]);
 });
+Route::get('/stok-opname', function () {
+    return view('pages.persediaan.stok-opname.opname', [
+        'title' => 'persediaan'
+    ]);
+});
+Route::get('/tambah-stok-opname', function () {
+    return view('pages.persediaan.stok-opname.tambah-stok', [
+        'title' => 'persediaan'
+    ]);
+});
+Route::get('/mutasi-stok', function () {
+    return view('pages.persediaan.mutasi-stok.mutasi', [
+        'title' => 'persediaan'
+    ]);
+});
+Route::get('/tambah-mutasi-stok', function () {
+    return view('pages.persediaan.mutasi-stok.tambah-mutasi', [
+        'title' => 'persediaan'
+    ]);
+});
