@@ -208,3 +208,59 @@ Route::get('/tambah-mutasi-stok', function () {
         'title' => 'persediaan'
     ]);
 });
+
+//transaksi
+//rencana pengadaan
+Route::get('/analisis-pareto-abc', function () {
+    return view('pages.transaksi.pengadaan.analisis-pareto', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/analisis-order', function () {
+    return view('pages.transaksi.pengadaan.analisis-order', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/defecta', function () {
+    return view('pages.transaksi.pengadaan.defecta.data-defecta', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/histori-pembelian', function () {
+    return view('pages.transaksi.pengadaan.defecta.histori-pembelian', [
+        'title' => 'transaksi'
+    ]);
+});
+
+Route::get('/pembuatan-sp', function () {
+    return view('pages.transaksi.pengadaan.sp.surat-pesanan', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/cek-rencana-order', function () {
+    return view('pages.transaksi.pengadaan.sp.rencana-order', [
+        'title' => 'transaksi'
+    ]);
+});
+
+//pembelian
+Route::get('/pembelian', function () {
+    return view('pages.transaksi.pembelian.pembelian.data-pembelian', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-pembelian', function () {
+    return view('pages.transaksi.pembelian.pembelian.tambah-pembelian', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/terima-barang', function () {
+    return view('pages.transaksi.pembelian.terima-barang.terima-barang', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-terima-barang', function () {
+    return view('pages.transaksi.pembelian.terima-barang.tambah-terima-barang', [
+        'title' => 'transaksi'
+    ]);
+});
