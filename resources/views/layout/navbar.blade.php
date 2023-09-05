@@ -1,6 +1,6 @@
     <!-- BEGIN: Top Menu -->
     <nav class="top-nav">
-        <ul>
+        <ul class="">
             <li>
                 <a href="javascript:;.html" class="top-menu {{ $title == 'dashboard' ? 'top-menu--active' : '' }}">
                     <div class="top-menu__icon"> <i data-feather="home"></i> </div>
@@ -399,11 +399,229 @@
                                     <div class="top-menu__title">Terima Barang</div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="/retur-pembelian" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Retur Pembelian</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Penjualan <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/sp-penjualan " class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">SP Penjualan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/cek-sp-penjualan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Cek SP Penjualan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/penjualan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Penjualan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/retur-penjualan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Retur Penjualan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/surat-jalan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Surat Jalan</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li>
+                <a href="javascript:;"
+                    class="top-menu  {{ $title == 'keuangan & akuntansi' ? 'top-menu--active' : '' }}">
+                    <div class="top-menu__icon"> <i data-feather="layout"></i> </div>
+                    <div class="top-menu__title"> Keuangan & Akuntansi <i data-feather="chevron-down"
+                            class="top-menu__sub-icon"></i>
+                    </div>
+                </a>
+                <ul class="">
+                    <li class="">
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Keuangan <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/kontrabon" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Kontrabon</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tagihan-pelanggan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Tagihan Pelanggan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pembayaran-hutang" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Pembayaran Hutang</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pembayaran-piutang" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Pembayaran Piutang</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/mutasi-saldo" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Mutasi Saldo</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Akuntansi <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/jurnal-umum " class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Jurnal Umum</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/buku-besar" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Buku Besar</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/neraca-lajur" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Neraca Lajur</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/neraca" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Neraca</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/laba-rugi" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Laba/Rugi</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;" class="top-menu  {{ $title == 'utilities' ? 'top-menu--active' : '' }}">
+                    <div class="top-menu__icon"> <i data-feather="layout"></i> </div>
+                    <div class="top-menu__title"> Utilities <i data-feather="chevron-down"
+                            class="top-menu__sub-icon"></i>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Pajak <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/pajak-masukan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Pajak Masukan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/retur-pajak-masukan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Retur Pajak Masukan</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pajak-keluaran" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Pajak Keluaran</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/retur-pajak-keluaran" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title"> Retur Pajak Keluaran</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Database <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/backup " class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Backup</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/restore" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Restore</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Laporan <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/lap-list-produk " class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Lap List Produk</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/lap-pricelist-produk" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Lap Pricelist Produk</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
     <!-- END: Top Menu -->

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DarkModeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -262,5 +263,86 @@ Route::get('/terima-barang', function () {
 Route::get('/tambah-terima-barang', function () {
     return view('pages.transaksi.pembelian.terima-barang.tambah-terima-barang', [
         'title' => 'transaksi'
+    ]);
+});
+Route::get('/retur-pembelian', function () {
+    return view('pages.transaksi.pembelian.retur-pembelian.data-retur', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-retur-pembelian', function () {
+    return view('pages.transaksi.pembelian.retur-pembelian.tambah-retur', [
+        'title' => 'transaksi'
+    ]);
+});
+
+//penjualan
+//sp penjualan
+Route::get('/sp-penjualan', function () {
+    return view('pages.transaksi.penjualan.sp-penjualan.daftar-sp', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/detail-sp-penjualan', function () {
+    return view('pages.transaksi.penjualan.sp-penjualan.detail-sp-penjualan', [
+        'title' => 'transaksi'
+    ]);
+});
+//cek pesanan penjualan
+Route::get('/cek-sp-penjualan', function () {
+    return view('pages.transaksi.penjualan.cek-pesanan.cek-pesanan', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/edit-pesanan-penjualan', function () {
+    return view('pages.transaksi.penjualan.cek-pesanan.pesanan-penjualan', [
+        'title' => 'transaksi'
+    ]);
+});
+//penjualan
+Route::get('/penjualan', function () {
+    return view('pages.transaksi.penjualan.penjualan.data-penjualan', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-penjualan', function () {
+    return view('pages.transaksi.penjualan.penjualan.tambah-penjualan', [
+        'title' => 'transaksi'
+    ]);
+});
+//retur penjualan
+Route::get('/retur-penjualan', function () {
+    return view('pages.transaksi.penjualan.retur.retur-penjualan', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-retur-penjualan', function () {
+    return view('pages.transaksi.penjualan.retur.tambah-retur', [
+        'title' => 'transaksi'
+    ]);
+});
+//surat jalan
+Route::get('/surat-jalan', function () {
+    return view('pages.transaksi.penjualan.surat-jalan.surat', [
+        'title' => 'transaksi'
+    ]);
+});
+Route::get('/tambah-surat-jalan', function () {
+    return view('pages.transaksi.penjualan.surat-jalan.tambah-surat', [
+        'title' => 'transaksi'
+    ]);
+});
+
+//keuangan dan akuntansi
+//->keuangan
+//-->kontrabon
+Route::get('/kontrabon', function () {
+    return view('pages.keuangan-akuntansi.keuangan.kontrabon.kontrabon', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+Route::get('/tambah-kontrabon', function () {
+    return view('pages.keuangan-akuntansi.keuangan.kontrabon.tambah-kontrabon', [
+        'title' => 'keuangan & akuntansi'
     ]);
 });
