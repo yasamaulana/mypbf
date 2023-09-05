@@ -9,12 +9,12 @@
         </div>
         <ul class="border-t border-white/[0.08] py-5 hidden">
             <li>
-                <a href="javascript:;.html" class="menu {{ $title == 'dashboard' ? 'menu--active' : '' }}">
+                <a href="javascript:;.html" class="menu">
                     <div class="menu__icon"> <i data-feather="home"></i> </div>
                     <div class="menu__title"> Dashboard <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="menu__sub-open">
+                <ul class="{{ $title == 'dashboard' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="/" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -54,12 +54,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu {{ $title == 'perusahaan' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="briefcase"></i> </div>
                     <div class="menu__title"> Perusahaan <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'perusahaan' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="/profil-perusahaan" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -147,12 +147,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu  {{ $title == 'master' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="layout"></i> </div>
                     <div class="menu__title"> Master <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'master' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="javascript:;" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -285,12 +285,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu {{ $title == 'setting awal' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="menu__title"> Set Awal <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'setting awal' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="/hutang-awal" class="menu">
                             <div class="menu__icon"> <i data-feather="zap"></i> </div>
@@ -318,12 +318,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu  {{ $title == 'persediaan' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="menu__title"> Persediaan <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'persediaan' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="/histori-stok" class="menu">
                             <div class="menu__icon"> <i data-feather="zap"></i> </div>
@@ -345,12 +345,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu  {{ $title == 'transaksi' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="layout"></i> </div>
                     <div class="menu__title"> Transaksi <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'transaksi' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="javascript:;" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -453,13 +453,13 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu  {{ $title == 'keuangan & akuntansi' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu ">
                     <div class="menu__icon"> <i data-feather="layout"></i> </div>
                     <div class="menu__title"> Keuangan & Akuntansi <i data-feather="chevron-down"
                             class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'keuangan & akuntansi' ? 'menu__sub-open' : '' }}">
                     <li class="">
                         <a href="javascript:;" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -495,6 +495,12 @@
                                 <a href="/mutasi-saldo" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="menu__title">Mutasi Saldo</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/jurnal-akun" class="menu">
+                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="menu__title">Jurnal Akun</div>
                                 </a>
                             </li>
                         </ul>
@@ -541,12 +547,12 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" class="menu  {{ $title == 'utilities' ? 'menu--active' : '' }}">
+                <a href="javascript:;" class="menu">
                     <div class="menu__icon"> <i data-feather="layout"></i> </div>
                     <div class="menu__title"> Utilities <i data-feather="chevron-down" class="menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="{{ $title == 'utilities' ? 'menu__sub-open' : '' }}">
                     <li>
                         <a href="javascript:;" class="menu">
                             <div class="menu__icon"> <i data-feather="activity"></i> </div>

@@ -3,7 +3,7 @@
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Daftar Kontrabon
+            Daftar Tagihan
         </h2>
     </div>
 
@@ -12,7 +12,7 @@
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <div class="sm:flex gap-3 justify-between">
                 <div class="mr-auto">
-                    <a href="/tambah-kontrabon"><button class="btn btn-primary">Tambah +</button></a>
+                    <a href="/tambah-tagihan-pelanggan"><button class="btn btn-primary">Tambah +</button></a>
                 </div>
                 <div data-tw-merge class="block flex gap-2 items-center">
                     <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-32">
@@ -32,9 +32,9 @@
                     <tr>
                         <th class="whitespace-nowrap">Tanggal</th>
                         <th class="whitespace-nowrap">No. Reff</th>
-                        <th class="whitespace-nowrap">Pelanggan</th>
-                        <th class="whitespace-nowrap">Petugas</th>
-                        <th class="whitespace-nowrap">Total</th>
+                        <th class="whitespace-nowrap">Kolektor</th>
+                        <th class="whitespace-nowrap">Area Rayon</th>
+                        <th class="whitespace-nowrap">Total Piutang</th>
                         <th class="whitespace-nowrap">Keterangan</th>
                         <th class="whitespace-nowrap">Aksi</th>
                     </tr>
@@ -52,6 +52,11 @@
                             <button class="btn btn-danger">Hapus</button>
                             <button class="btn btn-warning">Cetak</button>
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-slate-600 font-bold text-center" colspan="5">Total</td>
+                        <td class="border border-slate-600 font-bold "></td>
+                        <td class="border border-slate-600 font-bold "></td>
                     </tr>
                 </tbody>
             </table>

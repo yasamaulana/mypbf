@@ -494,6 +494,12 @@
                                     <div class="top-menu__title">Mutasi Saldo</div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="/jurnal-akun" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Jurnal Akun</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li>

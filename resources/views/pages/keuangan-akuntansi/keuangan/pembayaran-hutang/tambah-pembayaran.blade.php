@@ -3,7 +3,7 @@
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Detail Kontrabon
+            Detail Pembayaran Hutang
         </h2>
     </div>
 
@@ -26,7 +26,7 @@
                 </div>
                 <div data-tw-merge class="block sm:flex items-center mt-3">
                     <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-60">
-                        Pelanggan
+                        Suplier
                     </label>
                     <div class="flex gap-2 w-full">
                         <select data-tw-merge aria-label="Default select example" class="form-control">
@@ -34,19 +34,20 @@
                             <option>Supri</option>
                             <option>Ahmad</option>
                         </select>
-                        <button data-tw-toggle="modal" data-tw-target="#cari-pelanggan"
-                            class="btn btn-warning">Cari</button>
+                        <button data-tw-toggle="modal" data-tw-target="#cari-rayon" class="btn btn-warning">Cari</button>
                     </div>
                 </div>
                 <div data-tw-merge class="block sm:flex items-center mt-3">
                     <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-60">
-                        Petugas
+                        Akun Bayar
                     </label>
-                    <select data-tw-merge aria-label="Default select example" class="form-control">
-                        <option>- Pilih -</option>
-                        <option>Supri</option>
-                        <option>Ahmad</option>
-                    </select>
+                    <div class="flex gap-2 w-full">
+                        <select data-tw-merge aria-label="Default select example" class="form-control">
+                            <option>- Pilih -</option>
+                            <option>Supri</option>
+                            <option>Ahmad</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div data-tw-merge class="block mt-2 items-center">
@@ -61,60 +62,39 @@
         </div>
     </div>
 
-    {{-- Modal cari-pelanggan --}}
-    <div id="cari-pelanggan" class="modal" tabindex="-1" aria-hidden="true">
+    {{-- Modal cari-rayon --}}
+    <div id="cari-rayon" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header text-lg font-bold  bg-primary flex align-center justify-center text-white">
-                    Data Tagihan Pelanggan (Nama Pelanggan)
+                    Data Hutang (xxxxxx)
                 </div>
                 <div class="modal-body p-5">
                     <div class="overflow-auto">
-                        <div class="flex gap-3">
-                            <div data-tw-merge class="block flex gap-2 items-center mt-3 mb-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-32">
-                                    Hari Tagih
-                                </label>
-                                <select data-tw-merge aria-label="Default select example" class="form-control">
-                                    <option>- Pilih -</option>
-                                    <option>Box</option>
-                                    <option>Botol</option>
-                                </select>
-                            </div>
-                            <div data-tw-merge class="block flex gap-2 items-center mt-3 mb-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-32">
-                                    Tgl JT
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="date" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div class="form-check form-switch w-full sm:w-auto sm:ml-auto sm:mt-0">
-                                <div class="w-56 relative text-slate-500 ">
-                                    <input type="text" class="form-control w-56 pr-10" placeholder="Search...">
-                                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-                                </div>
-                            </div>
+                        <div data-tw-merge class="block flex gap-2 items-center mt-3 mb-3">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-32">
+                                Filter
+                            </label>
+                            <select data-tw-merge aria-label="Default select example" class="form-control">
+                                <option>- Pilih -</option>
+                                <option>Box</option>
+                                <option>Botol</option>
+                            </select>
                         </div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th class="border border-slate-600">No</th>
                                     <th class="border border-slate-600">Tgl. Faktur</th>
+                                    <th class="border border-slate-600">Tgl. Input</th>
                                     <th class="border border-slate-600">No. Faktur</th>
-                                    <th class="border border-slate-600">Pelanggan</th>
-                                    <th class="border border-slate-600">Jatuh Tempo</th>
-                                    <th class="border border-slate-600">Total</th>
-                                    <th class="border border-slate-600">Sales</th>
-                                    <th class="border border-slate-600">Kolektor</th>
-                                    <th class="border border-slate-600">Hari Tagih</th>
+                                    <th class="border border-slate-600">Tgl. Jatuh Tempo</th>
+                                    <th class="border border-slate-600">Total Hutang</th>
                                     <th class="border border-slate-600">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="border border-slate-600">Contoh Data</td>
-                                    <td class="border border-slate-600">Contoh Data</td>
-                                    <td class="border border-slate-600">Contoh Data</td>
                                     <td class="border border-slate-600">Contoh Data</td>
                                     <td class="border border-slate-600">Contoh Data</td>
                                     <td class="border border-slate-600">Contoh Data</td>
@@ -128,10 +108,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="5" class="border border-slate-600 text-center font-bold">Total</td>
-                                    <td class="border border-slate-600 text-center font-bold"></td>
-                                    <td class="border border-slate-600 text-center font-bold"></td>
-                                    <td class="border border-slate-600 text-center font-bold"></td>
+                                    <td colspan="6" class="border border-slate-600 text-center font-bold">Total</td>
                                     <td class="border border-slate-600 text-center font-bold"></td>
                                     <td class="border border-slate-600 text-center font-bold"></td>
                                 </tr>
@@ -154,10 +131,10 @@
                 <thead class="text-center font-bold">
                     <tr>
                         <th class="border border-slate-600">No</th>
-                        <th class="border border-slate-600">Tgl. Faktur</th>
                         <th class="border border-slate-600">No. Faktur</th>
-                        <th class="border border-slate-600">Jatuh Tempo</th>
-                        <th class="border border-slate-600">Total</th>
+                        <th class="border border-slate-600">Total Hutang</th>
+                        <th class="border border-slate-600">Bayar</th>
+                        <th class="border border-slate-600">Sisa</th>
                         <th class="border border-slate-600">Aksi</th>
                     </tr>
                 </thead>
@@ -172,6 +149,13 @@
                             <button class="btn btn-danger">Hapus</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2" class="border border-slate-600 text-center font-bold">Total</td>
+                        <td class="border border-slate-600 text-center font-bold"></td>
+                        <td class="border border-slate-600 text-center font-bold"></td>
+                        <td class="border border-slate-600 text-center font-bold"></td>
+                        <td class="border border-slate-600 text-center font-bold"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -179,6 +163,6 @@
     <div class="flex gap-3 mt-5 justify-center">
         <button class="btn btn-primary px-10">Simpan</button>
         <button class="btn btn-warning px-10">Cetak</button>
-        <a href="/kontrabon"><button class="btn btn-danger">Batal</button></a>
+        <a href="/pembayaran-hutang"><button class="btn btn-danger">Batal</button></a>
     </div>
 @endsection

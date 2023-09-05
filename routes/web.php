@@ -346,3 +346,112 @@ Route::get('/tambah-kontrabon', function () {
         'title' => 'keuangan & akuntansi'
     ]);
 });
+//-->tagihan pelanggan
+Route::get('/tagihan-pelanggan', function () {
+    return view('pages.keuangan-akuntansi.keuangan.tagihan.daftar-tagihan', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+Route::get('/tambah-tagihan-pelanggan', function () {
+    return view('pages.keuangan-akuntansi.keuangan.tagihan.tambah-tagihan', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->pembayaran hutang
+Route::get('/pembayaran-hutang', function () {
+    return view('pages.keuangan-akuntansi.keuangan.pembayaran-hutang.pembayaran-hutang', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+Route::get('/tambah-pembayaran-hutang', function () {
+    return view('pages.keuangan-akuntansi.keuangan.pembayaran-hutang.tambah-pembayaran', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--pembayaran piutang
+Route::get('/pembayaran-piutang', function () {
+    return view('pages.keuangan-akuntansi.keuangan.pembayaran-piutang.pembayaran-piutang', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+Route::get('/tambah-pembayaran-piutang', function () {
+    return view('pages.keuangan-akuntansi.keuangan.pembayaran-piutang.tambah-pembayaran-piutang', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->mutasi saldo
+Route::get('/mutasi-saldo', function () {
+    return view('pages.keuangan-akuntansi.keuangan.mutasi-saldo', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->jurnal akun
+Route::get('/jurnal-akun', function () {
+    return view('pages.keuangan-akuntansi.keuangan.jurnal-akun.jurnal-akun', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+Route::get('/tambah-jurnal-akun', function () {
+    return view('pages.keuangan-akuntansi.keuangan.jurnal-akun.tambah-jurnal-akun', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+
+//-->akuntansi
+//--->jurnal umum
+Route::get('/jurnal-umum', function () {
+    return view('pages.keuangan-akuntansi.akuntansi.jurnal-umum', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->buku besar
+Route::get('/buku-besar', function () {
+    return view('pages.keuangan-akuntansi.akuntansi.buku-besar', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->neraca lajur
+Route::get('/neraca-lajur', function () {
+    return view('pages.keuangan-akuntansi.akuntansi.neraca-lajur', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->Neraca
+Route::get('/neraca', function () {
+    return view('pages.keuangan-akuntansi.akuntansi.neraca', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+//--->laba/rugi
+Route::get('/laba-rugi', function () {
+    return view('pages.keuangan-akuntansi.akuntansi.laba-rugi', [
+        'title' => 'keuangan & akuntansi'
+    ]);
+});
+
+//->utilities
+//-->pajak
+//--->pajak masukan
+Route::get('/pajak-masukan', function () {
+    return view('pages.utilities.pajak.pajak-masukan', [
+        'title' => 'utilities'
+    ]);
+});
+//---> retur pajak masukan
+Route::get('/retur-pajak-masukan', function () {
+    return view('pages.utilities.pajak.retur-pajak-masukan', [
+        'title' => 'utilities'
+    ]);
+});
+//---> pajak keluaran
+Route::get('/pajak-keluaran', function () {
+    return view('pages.utilities.pajak.pajak-keluaran', [
+        'title' => 'utilities'
+    ]);
+});
+//---> retur pajak keluaran
+Route::get('/retur-pajak-keluaran', function () {
+    return view('pages.utilities.pajak.retur-pajak-keluaran', [
+        'title' => 'utilities'
+    ]);
+});
