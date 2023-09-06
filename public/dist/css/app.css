@@ -10224,7 +10224,10 @@ html body {
   background-color: rgb(var(--color-darkmode-500) / 0.7);
 }
 .top-nav > ul li:hover > ul {
-  display: block;
+    display: block;
+}
+.top-nav > ul li:hover > ul.left-side {
+  left: -100%;
 }
 .top-nav > ul li .top-menu {
                 height: 55px;
@@ -10234,8 +10237,8 @@ html body {
                 margin-right: 0.25rem;
                 display: flex;
                 align-items: center;
-                padding-left: 1.25rem;
-                padding-right: 1.25rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
                 --tw-text-opacity: 1;
                 color: rgb(255 255 255 / var(--tw-text-opacity));
             }

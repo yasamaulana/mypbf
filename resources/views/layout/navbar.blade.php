@@ -463,7 +463,7 @@
                             <div class="top-menu__title"> Keuangan <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
-                        <ul class="">
+                        <ul class="left-side">
                             <li>
                                 <a href="/kontrabon" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
@@ -508,7 +508,7 @@
                             <div class="top-menu__title"> Akuntansi <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
-                        <ul class="">
+                        <ul class="left-side">
                             <li>
                                 <a href="/jurnal-umum " class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
@@ -550,14 +550,14 @@
                             class="top-menu__sub-icon"></i>
                     </div>
                 </a>
-                <ul class="">
+                <ul class="left-side">
                     <li>
                         <a href="javascript:;" class="top-menu">
                             <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
                             <div class="top-menu__title"> Pajak <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
-                        <ul class="">
+                        <ul class="left-side">
                             <li>
                                 <a href="/pajak-masukan" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
@@ -590,7 +590,7 @@
                             <div class="top-menu__title"> Database <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
-                        <ul class="">
+                        <ul class="left-side">
                             <li>
                                 <a href="/backup " class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
@@ -611,7 +611,7 @@
                             <div class="top-menu__title"> Laporan <i data-feather="chevron-down"
                                     class="top-menu__sub-icon"></i> </div>
                         </a>
-                        <ul class="">
+                        <ul class="left-side">
                             <li>
                                 <a href="/lap-list-produk " class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
