@@ -33,8 +33,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
                 <a href="" class="-intro-x flex items-center pt-5">
-                    <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
-                    <span class="text-white text-lg ml-3"> MyPBF </span>
+                    <img alt="Rubick Tailwind HTML Admin Template" class="w-32" src="dist/full-logo.png">
+                    {{-- <span class="text-white text-lg ml-3"> MyPBF </span> --}}
                 </a>
                 <div class="my-auto">
                     <img alt="Rubick Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16"

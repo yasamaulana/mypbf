@@ -1,10 +1,9 @@
     <!-- BEGIN: Top Bar -->
     <div class="border-b border-white/[0.08] -mt-10 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">
-        <div class="top-bar-boxed flex items-center">
+        <div class="top-bar-boxed flex items-center mt-2">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg">
-                <span class="text-white text-lg ml-3"> Rubick </span>
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="{{ asset('dist/full-logo.png') }}">
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->
@@ -237,27 +236,19 @@
                     <ul
                         class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                         <li class="p-2">
-                            <div class="font-medium">Johnny Depp</div>
+                            <div class="font-medium">{{ Auth::user()->name }}</div>
                             <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">DevOps Engineer</div>
                         </li>
                         <li>
                             <hr class="dropdown-divider border-white/[0.08]">
                         </li>
                         <li>
-                            <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="user"
-                                    class="w-4 h-4 mr-2"></i> Profile </a>
+                            <a href="/profile-perusahaan" class="dropdown-item hover:bg-white/5"> <i
+                                    data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="edit"
+                            <a href="/set-user" class="dropdown-item hover:bg-white/5"> <i data-feather="edit"
                                     class="w-4 h-4 mr-2"></i> Add Account </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="lock"
-                                    class="w-4 h-4 mr-2"></i> Reset Password </a>
-                        </li>
-                        <li>
-                            <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="help-circle"
-                                    class="w-4 h-4 mr-2"></i> Help </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider border-white/[0.08]">

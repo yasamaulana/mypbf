@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/logo.svg" rel="shortcut icon">
+    <link href="dist/logo.png" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Rubick admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
@@ -14,7 +14,7 @@
     <title>MYPbf - {{ Str::title($title) }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="{{ url('dist/css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- END: CSS Assets-->
 </head>

@@ -16,6 +16,8 @@
                 <div class="ml-5">
                     <input id="regular-form-1" type="text" class="form-control" placeholder="Nama Perusahaan">
                     <input id="regular-form-1" type="text" class="form-control mt-2" placeholder="Alamat Perusahaan">
+                    <input id="regular-form-1" type="text" class="form-control mt-2" placeholder="Nomor Ijin PBF">
+                    <input id="regular-form-1" type="text" class="form-control mt-2" placeholder="Nomor Ijin DAK">
                 </div>
             </div>
             <div
@@ -73,32 +75,24 @@
                 <div class="intro-y box px-5 pt-5 mt-5">
                     <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
                         <div
-                            class="lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
-                            <div class="font-medium text-center lg:text-left">Logo Perusahaan</div>
+                            class="grid justify-center grid justify-center lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                            <div class="font-medium text-center">TTD APT</div>
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative mt-5">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
                                     src="dist/images/profile-4.jpg">
                             </div>
                         </div>
                         <div
-                            class="lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
-                            <div class="font-medium text-center lg:text-left">TTD APT</div>
+                            class="grid justify-center lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                            <div class="font-medium text-center">TTD Pj Alkes</div>
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative mt-5">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
                                     src="dist/images/profile-4.jpg">
                             </div>
                         </div>
                         <div
-                            class="lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
-                            <div class="font-medium text-center lg:text-left">TTD Pj Alkes</div>
-                            <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative mt-5">
-                                <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
-                                    src="dist/images/profile-4.jpg">
-                            </div>
-                        </div>
-                        <div
-                            class="lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
-                            <div class="font-medium text-center lg:text-left">Stempel</div>
+                            class="grid justify-center lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                            <div class="font-medium text-center">Stempel</div>
                             <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative mt-5">
                                 <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
                                     src="dist/images/profile-4.jpg">

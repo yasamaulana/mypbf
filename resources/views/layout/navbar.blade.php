@@ -275,6 +275,33 @@
                                     <div class="top-menu__title">Akun Akuntansi</div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="/setting-akuntansi" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Setting Akuntansi</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="top-menu">
+                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="top-menu__title"> Barcode <i data-feather="chevron-down"
+                                    class="top-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="/produk" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Produk</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pelanggan" class="top-menu">
+                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="top-menu__title">Pelanggan</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
