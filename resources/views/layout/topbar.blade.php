@@ -263,8 +263,11 @@
                             <hr class="dropdown-divider border-white/[0.08]">
                         </li>
                         <li>
-                            <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="toggle-right"
-                                    class="w-4 h-4 mr-2"></i> Logout </a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item hover:bg-white/5"> <i
+                                        data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </button>
+                            </form>
                         </li>
                     </ul>
                 </div>

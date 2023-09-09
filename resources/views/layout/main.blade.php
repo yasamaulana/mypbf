@@ -14,8 +14,8 @@
     <title>MYPbf - {{ Str::title($title) }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="dist/css/app.css" />
-    {{-- @vite('resources/css/app.css') --}}
+    <link rel="stylesheet" href="{{ url('dist/css/app.css') }}" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->

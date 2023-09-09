@@ -1,4 +1,6 @@
-const colors = require("tailwindcss/colors");
+import colors from "./resources/js/colors";
+// const colors = require("tailwindcss/colors");
+// import colors from "tailwindcss/colors";
 const {
     toRGB,
     withOpacityValue,
