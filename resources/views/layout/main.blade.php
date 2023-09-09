@@ -15,7 +15,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
