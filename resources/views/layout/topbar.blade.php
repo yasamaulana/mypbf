@@ -230,7 +230,8 @@
             <div class="intro-x dropdown w-8 h-8">
                 <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
                     role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                    <img alt="Rubick Tailwind HTML Admin Template" src="dist/images/profile-2.jpg">
+                    <img alt="Profile"
+                        src="@if ($profile->logo_perusahaan) {{ url('storage/logo_perusahaan/' . $profile->logo_perusahaan) }}@else {{ url('dist/images/belum_tersedia.jpg') }} @endif">
                 </div>
                 <div class="dropdown-menu w-56">
                     <ul
