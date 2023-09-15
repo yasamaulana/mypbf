@@ -6,6 +6,9 @@
             Area Rayon
         </h2>
     </div>
+    @if (session('success'))
+        @include('components.alert')
+    @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
@@ -16,12 +19,15 @@
                     <div class="modal-content">
                         <div class="modal-body p-10">
                             <div class="preview">
-                                <div>
-                                    <label for="vertical-form-1" class="form-label">Area Rayon</label>
-                                    <input id="vertical-form-1" type="text" class="form-control"
-                                        placeholder="Masukan Area Rayon">
-                                </div>
-                                <button class="btn btn-primary mt-5">Simpan</button>
+                                <form action="{{ route('tambah.area_rayon') }}" method="POST">
+                                    @csrf
+                                    <div>
+                                        <label for="vertical-form-1" class="form-label">Area Rayon</label>
+                                        <input id="vertical-form-1" type="text" class="form-control"
+                                            placeholder="Masukan Area Rayon" name="area_rayon">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-5">Simpan</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -45,44 +51,61 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="intro-x">
-                        <td class="w-40">1</td>
-                        <td class="">Area 31</td>
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"
-                                        class="w-4 h-4 mr-1"></i> Edit </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
-                                        class="w-4 h-4 mr-1"></i> Delete </a>
-                                <!-- BEGIN: Delete Confirmation Modal -->
-                                <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-body p-0">
-                                                <div class="p-5 text-center">
-                                                    <i data-feather="x-circle"
-                                                        class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                                                    <div class="text-3xl mt-5">Are you sure?</div>
-                                                    <div class="text-slate-500 mt-2">
-                                                        Do you really want to delete these records?
-                                                        <br>
-                                                        This process cannot be undone.
+                    @if (!$rayons->isNotEmpty())
+                        <tr class="intro-x">
+                            <td class="text-center font-bold" colspan="3">Belum ada data tersedia</td>
+                        </tr>
+                    @endif
+                    @foreach ($rayons as $rayon)
+                        <tr class="intro-x">
+                            <td class="w-40">{{ $loop->iteration }}</td>
+                            <td class="">{{ $rayon->area_rayon }}</td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
+                                        data-tw-target="#edit-rayon{{ $rayon->id }}"> <i data-feather="check-square"
+                                            class="w-4 h-4 mr-1"></i> Edit </a>
+                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                                        data-tw-target="#delete-confirmation-modal{{ $rayon->id }}"> <i
+                                            data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                    <!-- BEGIN: Delete Confirmation Modal -->
+                                    @include('components.modal-delete', [
+                                        'id_modal' => 'delete-confirmation-modal',
+                                        'id' => $rayon->id,
+                                        'route' => 'delete.area_rayon',
+                                    ])
+                                    <!-- END: Delete Confirmation Modal -->
+
+                                    <!-- BEGIN: edit Content -->
+                                    <div id="edit-rayon{{ $rayon->id }}" class="modal" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-10">
+                                                    <div class="preview">
+                                                        <form action="{{ route('edit.area_rayon', ['id' => $rayon->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <div>
+                                                                <label for="vertical-form-1" class="form-label">Area
+                                                                    Rayon</label>
+                                                                <input id="vertical-form-1" type="text"
+                                                                    class="form-control" placeholder="Masukan Area Rayon"
+                                                                    name="area_rayon" value="{{ $rayon->area_rayon }}">
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-primary mt-5">Simpan</button>
+                                                        </form>
                                                     </div>
-                                                </div>
-                                                <div class="px-5 pb-8 text-center">
-                                                    <button type="button" data-tw-dismiss="modal"
-                                                        class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                                    <button type="button" class="btn btn-danger w-24">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- END: Modal Content -->
                                 </div>
-                                <!-- END: Delete Confirmation Modal -->
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

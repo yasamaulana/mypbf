@@ -3,7 +3,7 @@
         <div class="top-bar-boxed flex items-center mt-2">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="{{ asset('dist/full-logo.png') }}">
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="{{ asset('dist/pbflogo.png') }}">
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->

@@ -1,6 +1,12 @@
 <?php
 
-use App\Http\Controllers\DarkModeController;
+use App\Http\Controllers\AreaRayonController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PajakController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SubRayonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,36 +26,55 @@ Route::get('/', function () {
     ]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__ . '/auth.php';
 
-//perusahaan
-Route::get('/profil-perusahaan', function () {
-    return view('pages.perusahaan.profil', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
 
-Route::get('/pajak-perusahaan', function () {
-    return view('pages.perusahaan.pajak', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/jabatan', function () {
-    return view('pages.perusahaan.pegawai.jabatan', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/nama-pegawai', function () {
-    return view('pages.perusahaan.pegawai.nama-pegawai', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
+// Route::middleware('auth')->group(function () {
+// });
+
+Route::middleware(['auth'])->group(function () {
+    //profile
+    Route::get('/profil-perusahaan', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/update-profil-perusahaan', [ProfileController::class, 'updateProfile'])->name('update.profile');
+    Route::post('/get-cities/{province_id}', [ProfileController::class, 'getCities'])->name('getCities');
+
+    //pajak
+    Route::get('/pajak-perusahaan', [PajakController::class, 'index'])->name('pajak');
+    Route::post('/update-pajak-perusahaan', [PajakController::class, 'updatePajak'])->name('update.pajak');
+    Route::post('/delete-pajak-perusahaan/{id}', [PajakController::class, 'deletePajak'])->name('delete.pajak');
+
+    //jabatan
+    Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+    Route::post('/tambah-jabatan', [JabatanController::class, 'createJabatan'])->name('create.jabatan');
+    Route::post('/edit-jabatan/{id}', [JabatanController::class, 'editJabatan'])->name('edit.jabatan');
+    Route::post('/delete-jabatan/{id}', [JabatanController::class, 'deleteJabatan'])->name('delete.jabatan');
+
+    //nama pegawai
+    Route::get('/nama-pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    Route::post('/tambah-nama-pegawai', [PegawaiController::class, 'createPegawai'])->name('create.pegawai');
+    Route::post('/edit-nama-pegawai/{id}', [PegawaiController::class, 'editPegawai'])->name('edit.pegawai');
+    Route::post('/delete-nama-pegawai/{id}', [PegawaiController::class, 'deletePegawai'])->name('delete.pegawai');
+
+    //area rayon
+    Route::get('/area-rayon', [AreaRayonController::class, 'index'])->name('area_rayon');
+    Route::post('/tambah-area-rayon', [AreaRayonController::class, 'tambahAreaRayon'])->name('tambah.area_rayon');
+    Route::post('/edit-area-rayon/{id}', [AreaRayonController::class, 'editAreaRayon'])->name('edit.area_rayon');
+    Route::post('/delete-area-rayon/{id}', [AreaRayonController::class, 'deleteAreaRayon'])->name('delete.area_rayon');
+
+    //area sub rayon
+    Route::get('/sub-rayon', [SubRayonController::class, 'index'])->name('sub_rayon');
+    Route::post('/tambah-sub-rayon', [SubRayonController::class, 'tambahSubRayon'])->name('tambah.sub_rayon');
+    Route::post('/edit-sub-rayon/{id}', [SubRayonController::class, 'editSubRayon'])->name('edit.sub_rayon');
+    Route::post('/delete-sub-rayon/{id}', [SubRayonController::class, 'deleteSubRayon'])->name('delete.sub_rayon');
+
+    //sales
+    Route::get('/sales', [SalesController::class, 'index'])->name('sales');
+    Route::post('/tambah-sales', [SalesController::class, 'tambahSales'])->name('tambah.sales');
+    Route::post('/edit-sales/{id}', [SalesController::class, 'editSales'])->name('edit.sales');
+    Route::post('/delete-sales/{id}', [SalesController::class, 'deleteSales'])->name('delete.sales');
+});
+
+
 Route::get('/set-akses', function () {
     return view('pages.perusahaan.pegawai.set-akses', [
         'title' => "perusahaan"
@@ -62,21 +87,6 @@ Route::get('/set-user', function () {
 })->middleware(['auth']);
 
 
-Route::get('/area-rayon', function () {
-    return view('pages.perusahaan.marketing.area-rayon', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/sub-rayon', function () {
-    return view('pages.perusahaan.marketing.sub-rayon', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/sales', function () {
-    return view('pages.perusahaan.marketing.sales', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
 Route::get('/target-spv', function () {
     return view('pages.perusahaan.marketing.target-spv', [
         'title' => "perusahaan"

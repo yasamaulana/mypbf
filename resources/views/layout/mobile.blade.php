@@ -2,7 +2,7 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="" class="flex mr-auto">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="dist/full-logo.png">
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="dist/pbflogo.png">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
                     class="w-8 h-8 text-white transform -rotate-90"></i> </a>
@@ -140,6 +140,12 @@
                                 <a href="/target-sales" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="menu__title">Target Sales</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/target-produk" class="menu">
+                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="menu__title">Target Produk</div>
                                 </a>
                             </li>
                         </ul>

@@ -13,7 +13,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/logo.svg" rel="shortcut icon">
+    <link href="dist/pbflogo.png" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Rubick admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
@@ -33,7 +33,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
                 <a href="" class="-intro-x flex items-center pt-5">
-                    <img alt="Rubick Tailwind HTML Admin Template" class="w-32" src="dist/full-logo.png">
+                    <img alt="Rubick Tailwind HTML Admin Template" class="w-32" src="dist/pbflogo.png">
                     {{-- <span class="text-white text-lg ml-3"> MyPBF </span> --}}
                 </a>
                 <div class="my-auto">
@@ -98,13 +98,6 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END: Login Form -->
         </div>
     </div>
-    <!-- BEGIN: Dark Mode Switcher-->
-    <div data-url="login-dark-login.html"
-        class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
-        <div class="mr-4 text-slate-600 dark:text-slate-200">Dark Mode</div>
-        <div class="dark-mode-switcher__toggle border"></div>
-    </div>
-    <!-- END: Dark Mode Switcher-->
 
     <!-- BEGIN: JS Assets-->
     <script src="dist/js/app.js"></script>

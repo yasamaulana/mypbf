@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/logo.png" rel="shortcut icon">
+    <link href="dist/pbflogo.png" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Rubick admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
@@ -15,7 +15,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
@@ -34,6 +35,7 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="dist/js/app.js"></script>
+    @livewireScripts
     <!-- END: JS Assets-->
 </body>
 
