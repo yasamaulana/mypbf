@@ -23,7 +23,7 @@
             <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
                 <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
                     <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
-                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full"
+                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-full" id="previewImage"
                             src="@if ($profile->logo_perusahaan) {{ url('storage/logo_perusahaan/' . $profile->logo_perusahaan) }}@else {{ url('dist/images/belum_tersedia.jpg') }} @endif">
                         <div
                             class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-primary rounded-full p-2">
@@ -31,10 +31,11 @@
                                 <i class="w-4 h-4 text-white" data-feather="camera"></i>
                                 <input name="logo_perusahaan" type="file" id="fileInput" class="hidden" />
                                 <input type="hidden" value="{{ $profile->logo_perusahaan }}" name="old_logo_perusahaan"
-                                    id="">
+                                    id="oldLogoPerusahaan">
                             </label>
                         </div>
                     </div>
+
                     <div class="ml-5">
                         <div data-tw-merge class="block sm:flex items-center mt-3">
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
@@ -197,7 +198,7 @@
                                 class="grid justify-center grid justify-center lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
                                 <div class="font-medium text-center">TTD APT</div>
                                 <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 relative mt-5">
-                                    <img alt="Rubick Tailwind HTML Admin Template" class="w-full"
+                                    <img alt="Rubick Tailwind HTML Admin Template" class="w-full" id="previewImageTtdApt"
                                         src="@if ($profile->ttd_apt) {{ url('storage/ttd_apt/' . $profile->ttd_apt) }}@else {{ url('dist/images/belum_tersedia.jpg') }} @endif">
                                     <div
                                         class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-primary rounded-full p-2">
@@ -215,6 +216,7 @@
                                 <div class="font-medium text-center">TTD Pj Alkes</div>
                                 <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 relative mt-5">
                                     <img alt="Rubick Tailwind HTML Admin Template" class=""
+                                        id="previewImageTtdPjAlkes"
                                         src="@if ($profile->ttd_pj_alkes) {{ url('storage/ttd_pj_alkes/' . $profile->ttd_pj_alkes) }}@else {{ url('dist/images/belum_tersedia.jpg') }} @endif">
                                     <div
                                         class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-primary rounded-full p-2">
@@ -233,6 +235,7 @@
                                 <div class="font-medium text-center">Stempel</div>
                                 <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 relative mt-5">
                                     <img alt="Rubick Tailwind HTML Admin Template" class=""
+                                        id="previewImageStempel"
                                         src="@if ($profile->stempel) {{ url('storage/stempel/' . $profile->stempel) }}@else {{ url('dist/images/belum_tersedia.jpg') }} @endif">
                                     <div
                                         class="absolute mb-1 mr-1 flex items-center justify-center bottom-0 right-0 bg-primary rounded-full p-2">
@@ -257,4 +260,35 @@
             </div>
         </div>
     </form>
+    <script>
+        function setupImageUpload(inputId, previewId, oldInputId) {
+            const fileInput = document.getElementById(inputId);
+            const previewImage = document.getElementById(previewId);
+            const oldInput = document.getElementById(oldInputId);
+
+            fileInput.addEventListener('change', function() {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+
+                // Update hidden input (if you want to track the uploaded file on the server)
+                if (oldInput) {
+                    oldInput.value = file ? file.name : '';
+                }
+            });
+        }
+
+        // Call the function for each image upload section
+        setupImageUpload('fileInput', 'previewImage', 'oldLogoPerusahaan');
+        setupImageUpload('fileInputTtdApt', 'previewImageTtdApt', 'oldTtdApt');
+        setupImageUpload('fileInputTtdPjAlkes', 'previewImageTtdPjAlkes', 'oldTtdPjAlkes');
+        setupImageUpload('fileInputStempel', 'previewImageStempel', 'oldStempel');
+    </script>
 @endsection
