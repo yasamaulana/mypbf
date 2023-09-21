@@ -45,8 +45,8 @@
                     <div class="preview">
                         <label class="form-label">Nomor Seri Pajak</label>
                         <div class="flex">
-                            <input name="no_seri_pajak" id="horizontal-form-1" type="text" class="form-control"
-                                style="width: 90%;" placeholder="">
+                            <input name="no_seri_pajak" type="text" class="form-control" style="width: 90%;"
+                                id="formattedInput" placeholder="000.14.12345678">
                             <p class="mx-3 mt-2">s/d</p>
                             <input name="kali" id="horizontal-form-2" type="text" class="form-control"
                                 style="width: 10%;" required placeholder="">
@@ -85,35 +85,11 @@
                                     data-tw-target="#delete-confirmation-modal{{ $pajak->id }}"> <i
                                         data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                 <!-- BEGIN: Delete Confirmation Modal -->
-                                <div id="delete-confirmation-modal{{ $pajak->id }}" class="modal" tabindex="-1"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-body p-0">
-                                                <div class="p-5 text-center">
-                                                    <i data-feather="x-circle"
-                                                        class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                                                    <div class="text-3xl mt-5">Are you sure?</div>
-                                                    <div class="text-slate-500 mt-2">
-                                                        Do you really want to delete these records?
-                                                        <br>
-                                                        This process cannot be undone.
-                                                    </div>
-                                                </div>
-                                                <div class="px-5 pb-8 text-center">
-                                                    <form
-                                                        action="{{ route('delete.pajak', ['id' => $pajak->id]) }}                                                        "
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="button" data-tw-dismiss="modal"
-                                                            class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                                        <button type="submit" class="btn btn-danger w-24">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('components.modal-delete', [
+                                    'id_modal' => 'delete-confirmation-modal',
+                                    'id' => $pajak->id,
+                                    'route' => 'delete.pajak',
+                                ])
                             </div>
                         </td>
                     </tr>
@@ -121,4 +97,19 @@
             </tbody>
         </table>
     </div>
+    <script>
+        const inputElement = document.getElementById('formattedInput');
+
+        function formatNumber() {
+            let value = inputElement.value.replace(/\D/g, '');
+            if (value.length > 13) {
+                value = value.slice(0, 13);
+            }
+
+            value = value.replace(/^(\d{3})(\d{2})/, "$1.$2.");
+
+            inputElement.value = value;
+        }
+        inputElement.addEventListener('input', formatNumber);
+    </script>
 @endsection

@@ -34,18 +34,24 @@ class PajakController extends Controller
         $noSeriPajak = $request->no_seri_pajak;
         $kali = $request->kali;
 
-        // dd($kali);
-
-        $angkaTerakhir = intval(substr($noSeriPajak, -1));
+        // Pisahkan bagian depan dan belakang
+        $parts = explode('.', $noSeriPajak);
+        $bagianDepan = $parts[0] . '.' . $parts[1] . '.';
+        $bagianBelakang = intval($parts[2]);
 
         for ($i = 0; $i < $kali; $i++) {
-            $nomorBaru = $noSeriPajak - $angkaTerakhir + $angkaTerakhir + $i;
+            // Tambahkan nomor pada bagian belakang
+            $bagianBelakangBaru = $bagianBelakang + $i;
+
+            // Gabungkan kembali dengan bagian depan
+            $nomorBaru = $bagianDepan . $bagianBelakangBaru;
 
             $pajak = new Pajak();
             $pajak->pajak = $nomorBaru;
             $pajak->id_perusahaan = Auth::user()->id_perusahaan;
             $pajak->save();
         }
+
 
         return back()->with('success', 'Pajak updated successfully');
     }
