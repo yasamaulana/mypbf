@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:akses pegawai']);
+        $this->middleware(['permission:tambah pegawai'])->only('createPegawai');
+        $this->middleware(['permission:edit pegawai'])->only('editPegawai');
+        $this->middleware(['permission:delete pegawai'])->only('deletePegawai');
+    }
+
     public function index()
     {
         return view('pages.perusahaan.pegawai.nama-pegawai', [

@@ -15,8 +15,10 @@
     @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
-                Pegawai</button>
+            @can('tambah nama pegawai')
+                <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
+                    Pegawai</button>
+            @endcan
             <!-- BEGIN: Modal Content -->
             <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -167,13 +169,17 @@
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
-                                        <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
-                                            data-tw-target="#edit-modal{{ $pegawai->id }}"> <i
-                                                data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                        <a class="flex items-center text-danger" href="javascript:;"
-                                            data-tw-toggle="modal"
-                                            data-tw-target="#delete-confirmation-modal{{ $pegawai->id }}"> <i
-                                                data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                        @can('edit nama pegawai')
+                                            <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
+                                                data-tw-target="#edit-modal{{ $pegawai->id }}"> <i
+                                                    data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                        @endcan
+                                        @can('delete nama pegawai')
+                                            <a class="flex items-center text-danger" href="javascript:;"
+                                                data-tw-toggle="modal"
+                                                data-tw-target="#delete-confirmation-modal{{ $pegawai->id }}"> <i
+                                                    data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                        @endcan
 
                                         @include('components.pegawai.edit', [
                                             'modal_id' => 'edit-modal',

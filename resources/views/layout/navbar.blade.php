@@ -54,51 +54,65 @@
                     </div>
                 </a>
                 <ul class="">
-                    <li>
-                        <a href="/profil-perusahaan" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Profil Perusahaan </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/pajak-perusahaan" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Pajak Perusahaan </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="top-menu">
-                            <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
-                            <div class="top-menu__title"> Pegawai <i data-feather="chevron-down"
-                                    class="top-menu__sub-icon"></i> </div>
-                        </a>
-                        <ul class="">
-                            <li>
-                                <a href="/jabatan" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Jabatan</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/nama-pegawai" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Nama Pegawai</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/set-akses" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Set Akses</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/set-user" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">User</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @can('akses profil perusahaan')
+                        <li>
+                            <a href="/profil-perusahaan" class="top-menu">
+                                <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="top-menu__title"> Profil Perusahaan </div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('akses pajak')
+                        <li>
+                            <a href="/pajak-perusahaan" class="top-menu">
+                                <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="top-menu__title"> Pajak Perusahaan </div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('akses pegawai')
+                        <li>
+                            <a href="javascript:;" class="top-menu">
+                                <div class="top-menu__icon"> <i data-feather="activity"></i> </div>
+                                <div class="top-menu__title"> Pegawai <i data-feather="chevron-down"
+                                        class="top-menu__sub-icon"></i> </div>
+                            </a>
+                            <ul class="">
+                                @can('akses jabatan')
+                                    <li>
+                                        <a href="/jabatan" class="top-menu">
+                                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                            <div class="top-menu__title">Jabatan</div>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('akses nama pegawai')
+                                    <li>
+                                        <a href="/nama-pegawai" class="top-menu">
+                                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                            <div class="top-menu__title">Nama Pegawai</div>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('akses set akses')
+                                    <li>
+                                        <a href="/set-akses" class="top-menu">
+                                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                            <div class="top-menu__title">Set Akses</div>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('akses set user')
+                                    <li>
+                                        <a href="/set-user" class="top-menu">
+                                            <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
+                                            <div class="top-menu__title">User</div>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcan
                     <li>
                         <a href="javascript:;" class="top-menu">
                             <div class="top-menu__icon"> <i data-feather="activity"></i> </div>

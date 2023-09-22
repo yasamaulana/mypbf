@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PajakController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:akses pajak']);
+        $this->middleware(['permission:tambah pajak'])->only('updatePajak');
+        $this->middleware(['permission:edit pajak'])->only('updatePajak');
+        $this->middleware(['permission:delete pajak'])->only('deletePajak');
+    }
     public function index()
     {
         return view('pages.perusahaan.pajak', [

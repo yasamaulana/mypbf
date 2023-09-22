@@ -6,6 +6,8 @@ use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SetAksesController;
+use App\Http\Controllers\SetUserController;
 use App\Http\Controllers\SubRayonController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,19 +74,21 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-sales', [SalesController::class, 'tambahSales'])->name('tambah.sales');
     Route::post('/edit-sales/{id}', [SalesController::class, 'editSales'])->name('edit.sales');
     Route::post('/delete-sales/{id}', [SalesController::class, 'deleteSales'])->name('delete.sales');
+
+    //set akses
+    Route::get('/set-akses', [SetAksesController::class, 'index'])->name('set_akses');
+    Route::post('/tambah-set-akses', [SetAksesController::class, 'tambahSetAkses'])->name('tambah.set_akses');
+    Route::post('/edit-set-akses/{id}', [SetAksesController::class, 'editSetAkses'])->name('edit.set_akses');
+    Route::post('/delete-set-akses/{id}', [SetAksesController::class, 'deleteSetAkses'])->name('delete.set_akses');
+
+    //set user
+    Route::get('/set-user', [SetUserController::class, 'index'])->name('set_user');
+    Route::post('/tambah-set-user', [SetUserController::class, 'tambahUser'])->name('tambah.set_user');
+    Route::post('/edit-set-user/{id}', [SetUserController::class, 'editUser'])->name('edit.set_user');
+    Route::post('/delete-set-user/{id}', [SetUserController::class, 'deleteUser'])->name('delete.set_user');
 });
 
 
-Route::get('/set-akses', function () {
-    return view('pages.perusahaan.pegawai.set-akses', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/set-user', function () {
-    return view('pages.perusahaan.pegawai.set-user', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
 
 
 Route::get('/target-spv', function () {

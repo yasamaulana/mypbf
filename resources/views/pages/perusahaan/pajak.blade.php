@@ -55,8 +55,10 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary mt-5"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
-            Simpan Perubahan </button>
+        @can('edit pajak')
+            <button class="btn btn-primary mt-5"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                Simpan Perubahan </button>
+        @endcan
     </form>
     <div class="intro-y col-span-12 overflow-auto mt-5 lg:overflow-visible">
         <table class="table table-report -mt-2">
@@ -81,9 +83,11 @@
                             <div class="flex justify-center items-center">
                                 {{-- <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"
                                         class="w-4 h-4 mr-1"></i> Edit </a> --}}
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal{{ $pajak->id }}"> <i
-                                        data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                @can('delete pajak')
+                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                                        data-tw-target="#delete-confirmation-modal{{ $pajak->id }}"> <i
+                                            data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                @endcan
                                 <!-- BEGIN: Delete Confirmation Modal -->
                                 @include('components.modal-delete', [
                                     'id_modal' => 'delete-confirmation-modal',

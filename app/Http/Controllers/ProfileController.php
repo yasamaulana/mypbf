@@ -11,11 +11,17 @@ use Laravolt\Indonesia\Models\Province;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:akses profil perusahaan']);
+        $this->middleware(['permission:edit profil perusahaan'])->only('updateProfile');
+    }
+
     public function index()
     {
         return view('pages.perusahaan.profil', [
             'title' => "perusahaan",
-            'profile' => Profile::where('id_user', Auth::user()->id)->first()
+            'profile' => Profile::where('id_user', Auth::user()->id_perusahaan)->first()
         ]);
     }
 
@@ -27,7 +33,9 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $profile = Profile::where('id_user', Auth::user()->id)->first();
+        $this->middleware(['permission:edit profil perusahaan']);
+
+        $profile = Profile::where('id_user', Auth::user()->id_perusahaan)->first();
         $profile->nama_perusahaan = $request->nama_perusahaan;
         $profile->alamat = $request->alamat;
         $profile->provinsi = $request->provinsi;

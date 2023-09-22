@@ -254,10 +254,12 @@
                 </div>
                 <!-- END: New Authors -->
             </div>
-            <div class="flex justify-center align-center mt-5">
-                <button class="btn btn-primary" type="submit"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
-                    Simpan Perubahan </button>
-            </div>
+            @can('edit profil perusahaan')
+                <div class="flex justify-center align-center mt-5">
+                    <button class="btn btn-primary" type="submit"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                        Simpan Perubahan </button>
+                </div>
+            @endcan
         </div>
     </form>
     <script>

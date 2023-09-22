@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:akses jabatan']);
+        $this->middleware(['permission:tambah jabatan'])->only('createJabatan');
+        $this->middleware(['permission:edit jabatan'])->only('editJabatan');
+        $this->middleware(['permission:delete jabatan'])->only('deleteJabatan');
+    }
+
     public function index()
     {
         return view('pages.perusahaan.pegawai.jabatan', [
