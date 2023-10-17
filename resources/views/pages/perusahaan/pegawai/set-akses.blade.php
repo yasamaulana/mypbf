@@ -16,7 +16,7 @@
                     Akses</button>
             @endcan
             <!-- BEGIN: Modal Content -->
-            @include('components.set-akses.akses-modal', [
+            @include('components.modal.akses-modal', [
                 'id_modal' => 'tambah-akses',
                 'role' => '',
                 'route' => 'tambah.set_akses',
@@ -66,7 +66,7 @@
                                     ])
 
                                     <!-- BEGIN: Akses Modal -->
-                                    @include('components.set-akses.akses-modal', [
+                                    @include('components.modal.akses-modal', [
                                         'id_modal' => 'akses-modal' . $role->id,
                                         'role' => $role,
                                         'route' => 'edit.set_akses',

@@ -1,14 +1,30 @@
 <?php
 
 use App\Http\Controllers\AreaRayonController;
+use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\GudangController;
 use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\JenisObatBarangController;
+use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RakController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SetAksesController;
+use App\Http\Controllers\SetHargaJualController;
 use App\Http\Controllers\SetUserController;
+use App\Http\Controllers\StokAwalController;
+use App\Http\Controllers\StokAwalControllre;
+use App\Http\Controllers\SubGolonganController;
+use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
+use App\Http\Controllers\TargetProdukController;
+use App\Http\Controllers\TargetSalesController;
+use App\Http\Controllers\TargetSPVController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,86 +102,108 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-set-user', [SetUserController::class, 'tambahUser'])->name('tambah.set_user');
     Route::post('/edit-set-user/{id}', [SetUserController::class, 'editUser'])->name('edit.set_user');
     Route::post('/delete-set-user/{id}', [SetUserController::class, 'deleteUser'])->name('delete.set_user');
+
+    //target spv
+    Route::get('/target-spv', [TargetSPVController::class, 'index'])->name('target_spv');
+    Route::post('/tambah-target-spv', [TargetSPVController::class, 'tambahTargetSpv'])->name('tambah.target_spv');
+    Route::post('/edit-target-spv/{id}', [TargetSPVController::class, 'editTargetSpv'])->name('edit.target_spv');
+    Route::post('/delete-target-spv/{id}', [TargetSPVController::class, 'deleteTargetSpv'])->name('delete.target_spv');
+
+    //target sales
+    Route::get('/target-sales', [TargetSalesController::class, 'index'])->name('target_sales');
+    Route::post('/tambah-target-sales', [TargetSalesController::class, 'tambahTargetSales'])->name('tambah.target_sales');
+    Route::post('/edit-target-sales/{id}', [TargetSalesController::class, 'editTargetSales'])->name('edit.target_sales');
+    Route::post('/delete-target-sales/{id}', [TargetSalesController::class, 'deleteTargetSales'])->name('delete.target_sales');
+
+    //target produk
+    Route::get('/target-produk', [TargetProdukController::class, 'index'])->name('target_produk');
+    Route::post('/tambah-target-produk', [TargetProdukController::class, 'tambahTargetProduk'])->name('tambah.target_produk');
+    Route::post('/edit-target-produk/{id}', [TargetProdukController::class, 'editTargetProduk'])->name('edit.target_produk');
+    Route::post('/delete-target-produk/{id}', [TargetProdukController::class, 'deleteTargetProduk'])->name('delete.target_produk');
+
+    //master
+    //obat dan barang
+    Route::get('/obat-dan-barang', [ObatBarangController::class, 'index'])->name('obat-barang');
+    Route::post('/tambah-obat-dan-barang', [ObatBarangController::class, 'tambahObat'])->name('tambah.obat-barang');
+    Route::post('/edit-obat-dan-barang/{id}', [ObatBarangController::class, 'editObat'])->name('edit.obat-barang');
+    Route::post('/delete-obat-dan-barang/{id}', [ObatBarangController::class, 'deleteObat'])->name('delete.obat-barang');
+    Route::get('/cari-produk-e-report', [ObatBarangController::class, 'ProdukEReport'])->name('e-report.obat-barang');
+    Route::get('/tampil-produk-e-report', [ObatBarangController::class, 'cariProdukEReport'])->name('cari.e-report');
+
+
+    Route::get('/set-harga-jual', [SetHargaJualController::class, 'index'])->name('setHarga');
+
+    //satuan
+    Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
+    Route::post('/tambah-satuan', [SatuanController::class, 'tambahSatuan'])->name('tambah.satuan');
+    Route::post('/edit-satuan/{id}', [SatuanController::class, 'editSatuan'])->name('edit.satuan');
+    Route::post('/delete-satuan/{id}', [SatuanController::class, 'deleteSatuan'])->name('delete.satuan');
+
+    //golongan
+    Route::get('/golongan', [GolonganController::class, 'index'])->name('golongan');
+    Route::post('/tambah-golongan', [GolonganController::class, 'tambahGolongan'])->name('tambah.golongan');
+    Route::post('/edit-golongan/{id}', [GolonganController::class, 'editGolongan'])->name('edit.golongan');
+    Route::post('/delete-golongan/{id}', [GolonganController::class, 'deleteGolongan'])->name('delete.golongan');
+
+    Route::get('/sub-golongan', [SubGolonganController::class, 'index'])->name('sub-golongan');
+    Route::post('/tambah-sub-golongan', [SubGolonganController::class, 'tambahSubGolongan'])->name('tambah.sub-golongan');
+    Route::post('/edit-sub-golongan/{id}', [SubGolonganController::class, 'editSubGolongan'])->name('edit.sub-golongan');
+    Route::post('/delete-sub-golongan/{id}', [SubGolonganController::class, 'deleteSubGolongan'])->name('delete.sub-golongan');
+
+    //jenis obat barang
+    Route::get('/jenis-obat-barang', [JenisObatBarangController::class, 'index'])->name('jenis-obat');
+    Route::post('/tambah-jenis-obat-barang', [JenisObatBarangController::class, 'tambahJenis'])->name('tambah.jenis-obat');
+    Route::post('/edit-jenis-obat-barang/{id}', [JenisObatBarangController::class, 'editJenis'])->name('edit.jenis-obat');
+    Route::post('/delete-jenis-obat-barang/{id}', [JenisObatBarangController::class, 'deleteJenis'])->name('delete.jenis-obat');
+
+    Route::get('/nama-gudang', [GudangController::class, 'index'])->name('gudang');
+    Route::post('/tambah-nama-gudang', [GudangController::class, 'tambahGudang'])->name('tambah.gudang');
+    Route::post('/edit-nama-gudang/{id}', [GudangController::class, 'editGudang'])->name('edit.gudang');
+    Route::post('/delete-nama-gudang/{id}', [GudangController::class, 'deleteGudang'])->name('delete.gudang');
+
+    //rak
+    Route::get('/rak', [RakController::class, 'index'])->name('rak');
+    Route::post('/tambah-rak', [RakController::class, 'tambahRak'])->name('tambah.rak');
+    Route::post('/edit-rak/{id}', [RakController::class, 'editRak'])->name('edit.rak');
+    Route::post('/delete-rak/{id}', [RakController::class, 'deleteRak'])->name('delete.rak');
+
+    //sub rak 
+    Route::get('/sub-rak', [SubRakController::class, 'index'])->name('sub-rak');
+    Route::post('/tambah-sub-rak', [SubRakController::class, 'tambahSubRak'])->name('tambah.sub-rak');
+    Route::post('/edit-sub-rak/{id}', [SubRakController::class, 'editSubRak'])->name('edit.sub-rak');
+    Route::post('/delete-sub-rak/{id}', [SubRakController::class, 'deleteSubRak'])->name('delete.sub-rak');
+
+    //customer
+    //kelompok
+    Route::get('/kelompok', [KelompokController::class, 'index'])->name('kelompok');
+    Route::post('/tambah-kelompok', [KelompokController::class, 'tambahKelompok'])->name('tambah.kelompok');
+    Route::post('/edit-kelompok/{id}', [KelompokController::class, 'editKelompok'])->name('edit.kelompok');
+    Route::post('/delete-kelompok/{id}', [KelompokController::class, 'deleteKelompok'])->name('delete.kelompok');
+
+    //pelanggan
+    Route::get('/pelanggan', function () {
+        return view('pages.master.customer.pelanggan', [
+            'title' => 'master'
+        ]);
+    })->middleware(['auth']);
+
+    //produsen dan customer
+    //produsen
+    Route::get('/produsen', [ProdusenController::class, 'index'])->name('produsen');
+    Route::post('/tambah-produsen', [ProdusenController::class, 'tambahProdusen'])->name('tambah.produsen');
+    Route::post('/edit-produsen/{id}', [ProdusenController::class, 'editProdusen'])->name('edit.produsen');
+    Route::post('/delete-produsen/{id}', [ProdusenController::class, 'deleteProdusen'])->name('delete.produsen');
+
+    //stok awal
+    Route::get('/stok-awal', [StokAwalController::class, 'index'])->name('stok-awal');
+    Route::get('/get-nama-barang/{id}', [StokAwalController::class, 'getNamaBarang'])->name('get-barang');
+    Route::post('/tambah-stok-awal', [StokAwalController::class, 'tambahStok'])->name('tambah.stok-awal');
+    Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
+    Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
 });
 
 
 
-
-Route::get('/target-spv', function () {
-    return view('pages.perusahaan.marketing.target-spv', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-Route::get('/target-sales', function () {
-    return view('pages.perusahaan.marketing.target-sales', [
-        'title' => "perusahaan"
-    ]);
-})->middleware(['auth']);
-
-//master
-Route::get('/obat-dan-barang', function () {
-    return view('pages.master.produk.obat-barang', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/satuan', function () {
-    return view('pages.master.produk.satuan', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/set-harga-jual', function () {
-    return view('pages.master.produk.set-harga', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/golongan', function () {
-    return view('pages.master.produk.golongan', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/sub-golongan', function () {
-    return view('pages.master.produk.sub-golongan', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/jenis-obat-barang', function () {
-    return view('pages.master.produk.jenis-obat-barang', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-
-Route::get('/nama-gudang', function () {
-    return view('pages.master.gudang.nama-gudang', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/rak', function () {
-    return view('pages.master.gudang.rak', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/sub-rak', function () {
-    return view('pages.master.gudang.sub-rak', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-
-Route::get('/kelompok', function () {
-    return view('pages.master.customer.kelompok', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-Route::get('/pelanggan', function () {
-    return view('pages.master.customer.pelanggan', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
-
-Route::get('/produsen', function () {
-    return view('pages.master.produsen.produsen', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
 Route::get('/suplier', function () {
     return view('pages.master.produsen.suplier', [
         'title' => 'master'
@@ -189,11 +227,7 @@ Route::get('/piutang-awal', function () {
         'title' => 'setting awal'
     ]);
 })->middleware(['auth']);
-Route::get('/stok-awal', function () {
-    return view('pages.set-awal.stok-awal', [
-        'title' => 'setting awal'
-    ]);
-})->middleware(['auth']);
+
 Route::get('/saldo-awal', function () {
     return view('pages.set-awal.saldo-awal.saldo-awal', [
         'title' => 'setting awal'

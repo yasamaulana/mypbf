@@ -16,6 +16,16 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             UserSeeder::class,
             ProfileSeeder::class,
+            SatuanSeeder::class,
+            GolonganSeeder::class,
+            SubGolonganSeeder::class,
+            JenisObatBarangSeeder::class,
+            GudangSeeder::class,
+            RakSeeder::class,
+            KelompokSeeder::class,
+            SubRakSeeder::class,
+            ProdusenSeeder::class,
+            DaftarObatSeeder::class,
         ]);
     }
 }

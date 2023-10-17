@@ -44,12 +44,19 @@
                 <div id="inline-form" class="p-5">
                     <div class="preview">
                         <label class="form-label">Nomor Seri Pajak</label>
-                        <div class="flex">
-                            <input name="no_seri_pajak" type="text" class="form-control" style="width: 90%;"
-                                id="formattedInput" placeholder="000.14.12345678">
-                            <p class="mx-3 mt-2">s/d</p>
-                            <input name="kali" id="horizontal-form-2" type="text" class="form-control"
-                                style="width: 10%;" required placeholder="">
+                        <div class="sm:flex gap-3">
+                            <div class="flex">
+                                <input name="no_seri_pajak" type="text" class="form-control" style="width: 80%;"
+                                    id="formattedInput" placeholder="000.14.12345678">
+                                <p class="mx-3 mt-2">s/d</p>
+                                <input name="kali" id="horizontal-form-2" type="text" class="form-control"
+                                    style="width: 20%;" required placeholder="">
+                            </div>
+                            <div class="flex sm:mt-0 mt-4">
+                                <label class="form-label w-40 mt-2 ">Tgl Expired</label>
+                                <input name="tanggal_exp" id="horizontal-form-2" type="date" class="form-control"
+                                    style="width: 100%;" required placeholder="" required>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,6 +73,7 @@
                 <tr>
                     <th class="whitespace-nowrap">Nomor</th>
                     <th class="whitespace-nowrap">Nomor Seri Pajak</th>
+                    <th class="whitespace-nowrap">Tanggal Expired</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -79,6 +87,7 @@
                     <tr class="intro-x">
                         <td class="w-40">{{ $loop->iteration }}</td>
                         <td class="">{{ $pajak->pajak }}</td>
+                        <td class="">{{ $pajak->tanggal_exp }}</td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 {{-- <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"

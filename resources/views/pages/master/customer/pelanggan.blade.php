@@ -9,7 +9,7 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
-                Kelompok</button>
+                Pelanggan</button>
             <!-- BEGIN: Modal Content -->
             <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-xl">

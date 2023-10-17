@@ -181,7 +181,7 @@
                                                     data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                         @endcan
 
-                                        @include('components.pegawai.edit', [
+                                        @include('components.modal.edit-pegawai', [
                                             'modal_id' => 'edit-modal',
                                             'id' => $pegawai->id,
                                             'route' => 'edit.pegawai',

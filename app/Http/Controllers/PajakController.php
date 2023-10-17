@@ -54,6 +54,7 @@ class PajakController extends Controller
             $nomorBaru = $bagianDepan . $bagianBelakangBaru;
 
             $pajak = new Pajak();
+            $pajak->tanggal_exp = $request->tanggal_exp;
             $pajak->pajak = $nomorBaru;
             $pajak->id_perusahaan = Auth::user()->id_perusahaan;
             $pajak->save();
