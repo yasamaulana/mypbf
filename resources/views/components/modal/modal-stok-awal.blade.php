@@ -40,8 +40,11 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
                                 Isi
                             </label>
-                            <input data-tw-merge id="isi{{ $id_dropdown }}" type="number" placeholder="Auto"
-                                class="form-control" disabled />
+                            <div class="flex w-full gap-3">
+                                <input data-tw-merge id="isi{{ $id_dropdown }}" type="number" placeholder="Auto"
+                                    class="form-control" disabled />
+                                <p id="satuan_terkecil{{ $id_dropdown }}" class="mt-2"></p>
+                            </div>
                         </div>
                         <div data-tw-merge class="block sm:flex items-center mt-3">
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
@@ -136,6 +139,7 @@
                 success: function(data) {
                     $("#satuan" + id_dropdown).val(data.satuan);
                     $("#isi" + id_dropdown).val(data.isi);
+                    $("#satuan_terkecil" + id_dropdown).text(data.satuan_terkecil);
                 },
                 error: function(err) {
                     console.error('Error:', err);

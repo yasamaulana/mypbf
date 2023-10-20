@@ -183,7 +183,7 @@
                             <li>
                                 <a href="/obat-dan-barang" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="menu__title">Obat/Barang</div>
+                                    <div class="menu__title">Produk</div>
                                 </a>
                             </li>
                             <li>
@@ -201,19 +201,19 @@
                             <li>
                                 <a href="/golongan" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="menu__title">Golongan</div>
+                                    <div class="menu__title">Kategori</div>
                                 </a>
                             </li>
                             <li>
                                 <a href="/sub-golongan" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="menu__title">Sub Golongan</div>
+                                    <div class="menu__title">Golongan</div>
                                 </a>
                             </li>
                             <li>
                                 <a href="/jenis-obat-barang" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="menu__title">Jenis Obat/Barang</div>
+                                    <div class="menu__title">Jenis produk</div>
                                 </a>
                             </li>
                         </ul>

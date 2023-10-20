@@ -3,7 +3,7 @@
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Golongan
+            Kategori
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">Nomor</th>
-                        <th class="whitespace-nowrap">Nama Golongan</th>
+                        <th class="whitespace-nowrap">Nama Kategori</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>

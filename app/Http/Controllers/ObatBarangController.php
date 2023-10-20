@@ -34,7 +34,6 @@ class ObatBarangController extends Controller
 
     public function tambahObat(Request $request)
     {
-
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
         $request->merge(['exp_date' => $request->has('exp_date') ? 1 : 0]);
         $request->merge(['status' => $request->has('status') ? 1 : 0]);
@@ -62,7 +61,7 @@ class ObatBarangController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Obat/Barang added successfully');
+        return redirect()->route('obat-barang')->with('success', 'Produk added successfully');
     }
 
     public function editObat(Request $request, $id)
@@ -72,7 +71,7 @@ class ObatBarangController extends Controller
         $request->merge(['status' => $request->has('status') ? 1 : 0]);
 
         if (!$obatBarang) {
-            return back()->with('error', 'Obat/Barang not found');
+            return back()->with('error', 'Produk not found');
         }
 
         // Update the existing record with the new data
@@ -102,8 +101,7 @@ class ObatBarangController extends Controller
                 'disc_2' => $kelompok['disc_2'],
             ]);
         }
-
-        return back()->with('success', 'Obat/Barang updated successfully');
+        return redirect()->route('obat-barang')->with('success', 'Produk updated successfully');
     }
 
 
@@ -112,7 +110,7 @@ class ObatBarangController extends Controller
         $barang = ObatBarang::find($id);
 
         if (!$barang) {
-            return back()->with('error', 'Obat/Barang not found');
+            return back()->with('error', 'Produk not found');
         }
 
         if ($barang->gambar) {
@@ -125,7 +123,7 @@ class ObatBarangController extends Controller
 
         $barang->delete();
 
-        return back()->with('success', 'Obat/Barang delete successfully');
+        return back()->with('success', 'Produk delete successfully');
     }
 
     public function ProdukEReport()

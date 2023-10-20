@@ -3,7 +3,7 @@
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Jenis Obat/Barang
+            Jenis Produk
         </h2>
     </div>
     @include('components.alert')
@@ -31,7 +31,7 @@
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">Nomor</th>
-                        <th class="whitespace-nowrap">Nama Jenis Obat/Barang</th>
+                        <th class="whitespace-nowrap">Nama Jenis Produk</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>

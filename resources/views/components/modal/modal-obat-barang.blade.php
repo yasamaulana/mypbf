@@ -18,8 +18,9 @@
                                 <label for="input-wizard-3" class="form-label">Nama Obat/barang</label>
                                 <div class="flex gap-3">
                                     <input id="input-wizard-3" type="text" class="form-control"
-                                        placeholder="Nama Obat/barang" required name="nama_obat_barang"
-                                        value="{{ $barang ? $barang->nama_obat_barang : '' }}{{ app('request')->input('nama_obat_barang') }}">
+                                        placeholder="Nama Obat/barang" name="nama_obat_barang" required
+                                        {{ app('request')->input('nama_obat_barang') ? 'readonly' : '' }}
+                                        value="{{ $barang ? $barang->nama_obat_barang : app('request')->input('nama_obat_barang') }}">
                                     <a href="/cari-produk-e-report" class="btn btn-primary btn-sm w-40">
                                         Cari Produk<br>E-Report
                                     </a>
@@ -31,6 +32,7 @@
                                     <input id="input-wizard-3" type="text" class="form-control" min="10000000000"
                                         max="99999999999" placeholder="Otomatis" required name="kode_obat_barang"
                                         type="text" class="form-control" name="kode_obat_barang"
+                                        {{ app('request')->input('kode_obat_barang') ? 'readonly' : '' }}
                                         value="{{ $barang ? $barang->kode_obat_barang : (app('request')->input('kode_obat_barang') ? app('request')->input('kode_obat_barang') : rand(pow(10, 10), pow(10, 11) - 1)) }}">
                                 </div>
                                 <div class="">
@@ -97,7 +99,7 @@
                                 <label for="input-wizard-3" class="form-label">Kemasan</label>
                                 <input id="input-wizard-3" type="text" class="form-control" placeholder=""
                                     required name="kemasan"
-                                    value="{{ $barang ? $barang->kemasan : '' }}{{ app('request')->input('kemasan') }}">
+                                    value="{{ $barang ? $barang->kemasan : app('request')->input('kemasan') }}">
                             </div>
                             <div class="intro-y col-span-12 sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Golongan</label>

@@ -9,6 +9,7 @@ use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\StokAwalControllre;
 use App\Http\Controllers\SubGolonganController;
 use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
+use App\Http\Controllers\SuplierController;
 use App\Http\Controllers\TargetProdukController;
 use App\Http\Controllers\TargetSalesController;
 use App\Http\Controllers\TargetSPVController;
@@ -181,11 +183,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/delete-kelompok/{id}', [KelompokController::class, 'deleteKelompok'])->name('delete.kelompok');
 
     //pelanggan
-    Route::get('/pelanggan', function () {
-        return view('pages.master.customer.pelanggan', [
-            'title' => 'master'
-        ]);
-    })->middleware(['auth']);
+    Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan');
+    Route::post('/tambah-pelanggan', [PelangganController::class, 'tambahPelanggan'])->name('tambah.pelanggan');
+    Route::post('/edit-pelanggan/{id}', [PelangganController::class, 'editPelanggan'])->name('edit.pelanggan');
+    Route::post('/delete-pelanggan/{id}', [PelangganController::class, 'deletePelanggan'])->name('delete.pelanggan');
 
     //produsen dan customer
     //produsen
@@ -194,6 +195,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/edit-produsen/{id}', [ProdusenController::class, 'editProdusen'])->name('edit.produsen');
     Route::post('/delete-produsen/{id}', [ProdusenController::class, 'deleteProdusen'])->name('delete.produsen');
 
+    //suplier
+    Route::get('/suplier', [SuplierController::class, 'index'])->name('suplier');
+    Route::post('/tambah-suplier', [SuplierController::class, 'tambahSuplier'])->name('tambah.suplier');
+    Route::post('/edit-suplier/{id}', [SuplierController::class, 'editSuplier'])->name('edit.suplier');
+    Route::post('/delete-suplier/{id}', [SuplierController::class, 'deleteSuplier'])->name('delete.suplier');
+
+    //set awal
     //stok awal
     Route::get('/stok-awal', [StokAwalController::class, 'index'])->name('stok-awal');
     Route::get('/get-nama-barang/{id}', [StokAwalController::class, 'getNamaBarang'])->name('get-barang');
@@ -201,14 +209,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
     Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
 });
-
-
-
-Route::get('/suplier', function () {
-    return view('pages.master.produsen.suplier', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
 
 Route::get('/akun-akuntansi', function () {
     return view('pages.master.akuntansi.akun-akuntansi', [

@@ -3,7 +3,7 @@
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Obat / Barang
+            Produk
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -33,7 +33,7 @@
                     <tr>
                         <th class="">Kode obat</th>
                         <th class="">Barcode PBOm</th>
-                        <th class="">Nama Obat/Barang</th>
+                        <th class="">Nama Produk</th>
                         <th class="">Golongan</th>
                         <th class="">Sub Golongan</th>
                         <th class="">Produsen</th>
