@@ -3,6 +3,7 @@
 use App\Http\Controllers\AreaRayonController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GudangController;
+use App\Http\Controllers\HutangAwalController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisObatBarangController;
 use App\Http\Controllers\KelompokController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\TargetProdukController;
 use App\Http\Controllers\TargetSalesController;
 use App\Http\Controllers\TargetSPVController;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -216,12 +218,14 @@ Route::get('/akun-akuntansi', function () {
     ]);
 })->middleware(['auth']);
 
+
 //set awal
-Route::get('/hutang-awal', function () {
-    return view('pages.set-awal.hutang-awal', [
-        'title' => 'setting awal'
-    ]);
-})->middleware(['auth']);
+Route::get('/hutang-awal', [HutangAwalController::class, 'index'])->name("hutang-awal");
+Route::post('/tambah-hutang-awal', [HutangAwalController::class, 'create'])->name('tambah.hutang-awal');
+Route::post('/edit-hutang-awal/{id}', [HutangAwalController::class, 'edit'])->name('edit.hutang-awal');
+Route::post('/hapus-hutang-awal/{id}', [HutangAwalController::class, 'destroy'])->name('delete.hutang-awal');
+
+
 Route::get('/piutang-awal', function () {
     return view('pages.set-awal.piutang-awal', [
         'title' => 'setting awal'
