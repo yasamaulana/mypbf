@@ -40,8 +40,9 @@
                             <select data-tw-merge aria-label="Default select example" class="form-control"
                                 name="supplier">
                                 <option>- Pilih -</option>
-                                <option >Supri</option>
-                                <option>Ahmad</option>
+                               @foreach ($suppliers as $supplier)
+                                   <option value="{{ $supplier->nama_supplier }}">{{ $supplier->nama_supplier }}</option>
+                               @endforeach
                             </select>
                         </div>
                         <div data-tw-merge class="block sm:flex items-center mt-3">
@@ -67,7 +68,8 @@
                             <select data-tw-merge aria-label="Default select example" class="form-control"
                                 name="jns_hutang">
                                 <option>- Pilih -</option>
-                                <option>Pinjol</option>
+                                <option value="">Hutang Dagang</option>
+                                <option value="">Hutang Kongsinyasi</option>
                             </select>
                         </div>
                     </div>

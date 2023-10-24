@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HutangAwal;
+use App\Models\Suplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,8 @@ class HutangAwalController extends Controller
     {
         return view('pages.set-awal.hutang-awal', [
             'title' => 'setting awal',
-            'hutangAwals' => HutangAwal::all(),
+            'hutangAwals' => HutangAwal::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'suppliers' => Suplier::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'numberRandom' => strval(rand(1, 99999999999)),
             'totalHutang' => DB::table('hutang_awals')->get()->sum('jmlh_hutang')
         ]);
@@ -21,35 +23,16 @@ class HutangAwalController extends Controller
 
     public function create(Request $request)
     {
+        $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
 
-        $hutangAwal = new HutangAwal();
-        $hutangAwal->id_perusahaan = Auth::user()->id_perusahaan;
-        $hutangAwal->no_reff = $request->no_reff;
-        $hutangAwal->no_faktur = $request->no_faktur;
-        $hutangAwal->tgl_faktur = $request->tgl_faktur;
-        $hutangAwal->supplier = $request->supplier;
-        $hutangAwal->tgl_jth_tempo = $request->tgl_jth_tempo;
-        $hutangAwal->jmlh_hutang = $request->jmlh_hutang;
-        $hutangAwal->jns_hutang = $request->jns_hutang;
-        // save
-        $hutangAwal->save();
+        HutangAwal::create($request->all());
         return back()->with('success', 'Hutang Awal added successfully');
     }
 
     public function edit(Request $request, $id)
     {
         $hutangAwal = HutangAwal::find($id);
-        $hutangAwal->id_perusahaan = Auth::user()->id_perusahaan;
-        $hutangAwal->no_reff = $request->no_reff;
-        $hutangAwal->no_faktur = $request->no_faktur;
-        $hutangAwal->tgl_faktur = $request->tgl_faktur;
-        $hutangAwal->supplier = $request->supplier;
-        $hutangAwal->tgl_jth_tempo = $request->tgl_jth_tempo;
-        $hutangAwal->jmlh_hutang = $request->jmlh_hutang;
-        $hutangAwal->jns_hutang = $request->jns_hutang;
-
-        // save
-        $hutangAwal->save();
+        $hutangAwal->update($request->all());
         return back()->with('success', 'Hutang Awal Update successfully');
     }
 
