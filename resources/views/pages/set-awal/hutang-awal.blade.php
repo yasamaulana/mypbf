@@ -31,17 +31,18 @@
                 <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 font-bold mt-2 sm:w-20">
                     Jenis
                 </label>
-                <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                <select data-tw-merge aria-label="Default select example" class="form-control" name="selectedOption"
+                    id="filterSelect" onchange="selectOption()">
+                    <option value="">- Pilih -</option>
+                    <option value="Hutang Dagang">Hutang Dagang</option>
+                    <option value="Hutang Kongsinyasi">Hutang Kongsinyasi</option>
                 </select>
             </div>
         </div>
     </div>
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible mt-5">
-        <table class="table table-report -mt-2">
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible mt-5" id="filterResults">
+        <table class="table table-report -mt-2" id="tableHutang">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
@@ -56,8 +57,6 @@
                 </tr>
             </thead>
             <tbody>
-
-
                 @forelse ($hutangAwals as $hutangAwal)
                     <tr class="intro-x">
                         <td class="w-30">{{ $loop->iteration }}</td>
@@ -66,7 +65,7 @@
                         <td class="">{{ $hutangAwal->tgl_faktur }}</td>
                         <td class="">{{ $hutangAwal->supplier }}</td>
                         <td class="">{{ $hutangAwal->tgl_jth_tempo }}</td>
-                        <td class="">{{ $hutangAwal->jmlh_hutang }}</td>
+                        <td class="">{{ 'Rp .' . number_format($hutangAwal->jmlh_hutang, 2, ',', '.') }}</td>
                         <td class="">{{ $hutangAwal->jns_hutang }}</td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
@@ -89,7 +88,7 @@
                                     'id_modal' => 'edit-hutang-awal',
                                     'route' => 'edit.hutang-awal',
                                     'id' => $hutangAwal->id,
-                                    'hutangAwal' => $hutangAwal
+                                    'hutangAwal' => $hutangAwal,
                                 ])
                             </div>
                         </td>
@@ -102,11 +101,33 @@
 
                 <tr>
                     <td colspan="5" class="text-center font-bold border border-slate-600">Jumlah</td>
-                    <td colspan="5" class=" font-bold border border-slate-600">Rp. {{ $totalHutang }}</td>
+                    <td colspan="5" class=" font-bold border border-slate-600">Rp.
+                        {{ number_format($totalHutang, 2, ',', '.') }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <!-- END: Data List -->
-    </div>
+    <script>
+        function selectOption() {
+            let filterSelect = document.getElementById("filterSelect").value;
+            let tableHutang = document.getElementById("tableHutang");
+            let tr = tableHutang.getElementsByTagName("tr");
+            var i, txtValue, td;
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[7];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase() === filterSelect
+                    .toUpperCase()) { // Perbandingan tanpa memperhatikan huruf besar/kecil
+                        tr[i].style.display = "";
+                    } else if (filterSelect == "") {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 @endsection

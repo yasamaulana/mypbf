@@ -11,6 +11,7 @@ use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PiutangAwalController;
 use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
@@ -216,18 +217,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-hutang-awal', [HutangAwalController::class, 'create'])->name('tambah.hutang-awal');
     Route::post('/edit-hutang-awal/{id}', [HutangAwalController::class, 'edit'])->name('edit.hutang-awal');
     Route::post('/hapus-hutang-awal/{id}', [HutangAwalController::class, 'destroy'])->name('delete.hutang-awal');
+    
+    //piutang awal
+    Route::get('/piutang-awal', [PiutangAwalController::class, 'index'])->name('piutang-awal');
+    Route::post('/tambah-piutang-awal', [PiutangAwalController::class, 'create'])->name('tambah.piutang-awal');
+    Route::post('/edit-piutang-awal/{id}', [PiutangAwalController::class, 'edit'])->name('edit.piutang-awal');
+    Route::post('/hapus-piutang-awal/{id}', [PiutangAwalController::class, 'destroy'])->name('delete.piutang-awal');
 });
 
 Route::get('/akun-akuntansi', function () {
     return view('pages.master.akuntansi.akun-akuntansi', [
         'title' => 'master'
-    ]);
-})->middleware(['auth']);
-
-
-Route::get('/piutang-awal', function () {
-    return view('pages.set-awal.piutang-awal', [
-        'title' => 'setting awal'
     ]);
 })->middleware(['auth']);
 

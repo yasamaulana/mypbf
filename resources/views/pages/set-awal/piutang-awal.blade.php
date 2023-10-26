@@ -6,75 +6,20 @@
             Piutang Awal
         </h2>
     </div>
+    @if (session('success'))
+        @include('components.alert')
+    @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
+            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#tambah-piutang-awal">Tambah
                 Piutang</button>
             <!-- BEGIN: Modal Content -->
-            <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-xl rounded-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary flex align-center justify-center text-white">
-                            <h2 class="text-lg font-bold">Piutang Awal</h2>
-                        </div>
-                        <div class="modal-body p-10">
-                            <div class="preview">
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        No. Reff
-                                    </label>
-                                    <input data-tw-merge id="horizontal-form-1" type="text" placeholder="Auto"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                </div>
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        Tgl. Faktur
-                                    </label>
-                                    <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Auto"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                </div>
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        Pelanggan
-                                    </label>
-                                    <select data-tw-merge aria-label="Default select example" class="form-control">
-                                        <option>- Pilih -</option>
-                                        <option>Supri</option>
-                                        <option>Ahmad</option>
-                                    </select>
-                                </div>
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        Tgl. Jatuh tempo
-                                    </label>
-                                    <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Auto"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                </div>
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        Jumlah Piutang
-                                    </label>
-                                    <input data-tw-merge id="horizontal-form-1" type="text"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                </div>
-                                <div data-tw-merge class="block sm:flex items-center mt-3">
-                                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
-                                        Jenis Piutang
-                                    </label>
-                                    <select data-tw-merge aria-label="Default select example" class="form-control">
-                                        <option>- Pilih -</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- footer --}}
-                        <div class="modal-footer">
-                            <button class="btn btn-secondari mt-5" data-tw-dismiss="modal">Batal</button>
-                            <button class="btn btn-primary mt-5">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('components.modal.modal-piutang-awal', [
+                'id_modal' => 'tambah-piutang-awal',
+                'route' => 'tambah.piutang-awal',
+                'id' => '',
+                'piutangAwal' => '',
+            ])
             <!-- END: Modal Content -->
 
             <div class="w-56 relative text-slate-500 ">
@@ -86,23 +31,25 @@
                 <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 font-bold mt-2 sm:w-20">
                     Jenis
                 </label>
-                <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                <select data-tw-merge aria-label="Default select example" id="filterSelect" class="form-control"
+                    onchange="selectOption()">
+                    <option value="">- Pilih -</option>
+                    <option value="Hutang Dagang">Hutang Dagang</option>
+                    <option value="Hutang Kongsinyasi">Hutang Kongsinyasi</option>
                 </select>
             </div>
         </div>
     </div>
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible mt-5">
-        <table class="table table-report -mt-2">
+        <table class="table table-report -mt-2" id="tableHutang">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
                     <th class="whitespace-nowrap">No. Reff</th>
+                    <th class="whitespace-nowrap">No. Faktur</th>
                     <th class="whitespace-nowrap">Tgl. Faktur</th>
-                    <th class="whitespace-nowrap">Suplier</th>
+                    <th class="whitespace-nowrap">Pelanggan</th>
                     <th class="whitespace-nowrap">Jatuh Tempo</th>
                     <th class="whitespace-nowrap">Jumlah Piutang</th>
                     <th class="whitespace-nowrap">Jenis Piutang</th>
@@ -110,55 +57,76 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="intro-x">
-                    <td class="w-40">1</td>
-                    <td class="">Contoh Data</td>
-                    <td class="">Contoh Data</td>
-                    <td class="">Contoh Data</td>
-                    <td class="">Contoh Data</td>
-                    <td class="">Contoh Data</td>
-                    <td class="">Contoh Data</td>
-                    <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center">
-                            <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"
-                                    class="w-4 h-4 mr-1"></i> Edit </a>
-                            <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
-                                    class="w-4 h-4 mr-1"></i> Delete </a>
-                            <!-- BEGIN: Delete Confirmation Modal -->
-                            <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body p-0">
-                                            <div class="p-5 text-center">
-                                                <i data-feather="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                                                <div class="text-3xl mt-5">Are you sure?</div>
-                                                <div class="text-slate-500 mt-2">
-                                                    Do you really want to delete these records?
-                                                    <br>
-                                                    This process cannot be undone.
-                                                </div>
-                                            </div>
-                                            <div class="px-5 pb-8 text-center">
-                                                <button type="button" data-tw-dismiss="modal"
-                                                    class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                                <button type="button" class="btn btn-danger w-24">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                @forelse ($piutangAwals as $piutangAwal)
+                    <tr class="intro-x">
+                        <td class="w-30">{{ $loop->iteration }}</td>
+                        <td class="">{{ $piutangAwal->no_reff }}</td>
+                        <td class="">{{ $piutangAwal->no_faktur }}</td>
+                        <td class="">{{ $piutangAwal->tgl_faktur }}</td>
+                        <td class="">{{ $piutangAwal->supplier }}</td>
+                        <td class="">{{ $piutangAwal->tgl_jth_tempo }}</td>
+                        <td class="">{{ 'Rp .' . number_format($piutangAwal->jmlh_piutang, 2, ',', '.') }}</td>
+                        <td class="">{{ $piutangAwal->jns_piutang }}</td>
+                        <td class="table-report__action w-56">
+                            <div class="flex justify-center items-center">
+                                <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
+                                    data-tw-target="#edit-piutang-awal{{ $piutangAwal->id }}"> <i
+                                        data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                                    data-tw-target="#delete-confirmation-modal{{ $piutangAwal->id }}"> <i
+                                        data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                <!-- BEGIN: Delete Confirmation Modal -->
+                                @include('components.modal-delete', [
+                                    'id_modal' => 'delete-confirmation-modal',
+                                    'id' => $piutangAwal->id,
+                                    'route' => 'delete.piutang-awal',
+                                ])
+                                <!-- END: Delete Confirmation Modal -->
+
+                                {{-- edit modal --}}
+                                @include('components.modal.modal-piutang-awal', [
+                                    'id_modal' => 'edit-piutang-awal',
+                                    'route' => 'edit.piutang-awal',
+                                    'id' => $piutangAwal->id,
+                                    'piutangAwal' => $piutangAwal,
+                                ])
                             </div>
-                            <!-- END: Delete Confirmation Modal -->
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                @empty
+                    <tr class="intro-x">
+                        <td colspan="13" class="text-center font-bold">Belum ada data tersedia</td>
+                    </tr>
+                @endforelse
                 <tr>
                     <td colspan="5" class="text-center font-bold border border-slate-600">Jumlah</td>
-                    <td colspan="5" class=" font-bold border border-slate-600">Rp.</td>
+                    <td colspan="5" class=" font-bold border border-slate-600">
+                        {{ 'Rp .' . number_format($totalPiutang, 2, ',', '.') }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <!-- END: Data List -->
-    </div>
+    <script>
+        function selectOption() {
+            let filterSelect = document.getElementById("filterSelect").value;
+            let tableHutang = document.getElementById("tableHutang");
+            let tr = tableHutang.getElementsByTagName("tr");
+            var i, txtValue, td;
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[7];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase() === filterSelect
+                        .toUpperCase()) { // Perbandingan tanpa memperhatikan huruf besar/kecil
+                        tr[i].style.display = "";
+                    } else if (filterSelect == "") {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 @endsection
