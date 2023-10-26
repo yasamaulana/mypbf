@@ -21,7 +21,6 @@ use App\Http\Controllers\SetAksesController;
 use App\Http\Controllers\SetHargaJualController;
 use App\Http\Controllers\SetUserController;
 use App\Http\Controllers\StokAwalController;
-use App\Http\Controllers\StokAwalControllre;
 use App\Http\Controllers\SubGolonganController;
 use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
@@ -217,7 +216,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-hutang-awal', [HutangAwalController::class, 'create'])->name('tambah.hutang-awal');
     Route::post('/edit-hutang-awal/{id}', [HutangAwalController::class, 'edit'])->name('edit.hutang-awal');
     Route::post('/hapus-hutang-awal/{id}', [HutangAwalController::class, 'destroy'])->name('delete.hutang-awal');
-    
+
     //piutang awal
     Route::get('/piutang-awal', [PiutangAwalController::class, 'index'])->name('piutang-awal');
     Route::post('/tambah-piutang-awal', [PiutangAwalController::class, 'create'])->name('tambah.piutang-awal');
@@ -230,6 +229,11 @@ Route::get('/akun-akuntansi', function () {
         'title' => 'master'
     ]);
 })->middleware(['auth']);
+
+// settings akuntansi
+Route::get('/setting-akuntansi', function () {
+    return view('');
+});
 
 Route::get('/saldo-awal', function () {
     return view('pages.set-awal.saldo-awal.saldo-awal', [

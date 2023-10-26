@@ -56,7 +56,7 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
                                 Jumlah Piutang
                             </label>
-                            <input data-tw-merge id="horizontal-form-1" type="text" name="jmlh_piutang" required
+                            <input data-tw-merge id="horizontal-form-1" type="text" name="jmlh_piutang" required oninput="autoFormatRupiah(this)"
                                 value="{{ $piutangAwal ? $piutangAwal->jmlh_piutang : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
@@ -82,3 +82,12 @@
         </form>
     </div>
 </div>
+<script>
+    function autoFormatRupiah(input) {
+        let value = input.value;
+        value = value.replace(/\D/g, '');
+        let number = parseInt(value, 10);
+        let formattedValue = number.toLocaleString('id-ID');
+        input.value = formattedValue;
+    }
+</script>

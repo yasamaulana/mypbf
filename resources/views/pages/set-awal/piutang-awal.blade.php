@@ -100,33 +100,51 @@
                 @endforelse
                 <tr>
                     <td colspan="5" class="text-center font-bold border border-slate-600">Jumlah</td>
-                    <td colspan="5" class=" font-bold border border-slate-600">
-                        {{ 'Rp .' . number_format($totalPiutang, 2, ',', '.') }}</td>
+                    <td colspan="5" class=" font-bold border border-slate-600" id="totalHutang">Rp. 
+                        {{ number_format($totalPiutang, 2, ',', '.') }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <!-- END: Data List -->
+
     <script>
+        function formatRupiah(angka) {
+            let numberString = angka.toFixed(2).toString();
+            let splitNumber = numberString.split('.');
+            let rupiah = splitNumber[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+            return "Rp. " + rupiah + "," + splitNumber[1];
+        }
+
         function selectOption() {
             let filterSelect = document.getElementById("filterSelect").value;
             let tableHutang = document.getElementById("tableHutang");
             let tr = tableHutang.getElementsByTagName("tr");
-            var i, txtValue, td;
+            var i, txtValue, td, hutang;
+            let totalHutang = document.getElementById("totalHutang");
+            let total = 0; // Inisialisasi total hutang
+
             for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[7];
+                hutang = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase() === filterSelect
-                        .toUpperCase()) { // Perbandingan tanpa memperhatikan huruf besar/kecil
+                    if (txtValue.toUpperCase() === filterSelect.toUpperCase() || filterSelect === "") {
                         tr[i].style.display = "";
-                    } else if (filterSelect == "") {
-                        tr[i].style.display = "";
+
+                        // Bersihkan nilai hutang dari karakter non-numerik dan ganti koma dengan titik
+                        let hutangText = hutang.textContent.replace(/[^\d,]/g, '').replace(',', '.');
+                        let hutangCleaned = parseFloat(hutangText);
+
+                        total += hutangCleaned;
                     } else {
                         tr[i].style.display = "none";
                     }
                 }
             }
+
+            // Setel total hutang setelah menghitung nilai dalam format yang diinginkan
+            totalHutang.textContent = formatRupiah(total);
         }
     </script>
 @endsection
