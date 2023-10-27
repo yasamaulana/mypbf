@@ -63,7 +63,7 @@
                         <td class="">{{ $piutangAwal->no_reff }}</td>
                         <td class="">{{ $piutangAwal->no_faktur }}</td>
                         <td class="">{{ $piutangAwal->tgl_faktur }}</td>
-                        <td class="">{{ $piutangAwal->supplier }}</td>
+                        <td class="">{{ $piutangAwal->pelanggan }}</td>
                         <td class="">{{ $piutangAwal->tgl_jth_tempo }}</td>
                         <td class="">{{ 'Rp .' . number_format($piutangAwal->jmlh_piutang, 2, ',', '.') }}</td>
                         <td class="">{{ $piutangAwal->jns_piutang }}</td>

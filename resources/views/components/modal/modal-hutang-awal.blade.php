@@ -38,11 +38,11 @@
                                 Supplier
                             </label>
                             <select data-tw-merge aria-label="Default select example" class="form-control"
-                                name="supplier">
-                                <option>- Pilih -</option>
+                                name="supplier" required>
+                                <option value="">- Pilih -</option>
                                 @foreach ($suppliers as $supplier)
                                     <option
-                                        value="{{ $supplier->nama_suplier }} @if ($supplier->nama_suplier == $supplier->id) selected @endif">
+                                        {{ $hutangAwal ? ($hutangAwal->supplier == $supplier->nama_suplier ? 'selected' : '') : '' }} >
                                         {{ $supplier->nama_suplier }}</option>
                                 @endforeach
                             </select>
@@ -51,7 +51,7 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
                                 Tgl. Jatuh tempo
                             </label>
-                            <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Auto"
+                            <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Auto" required
                                 name="tgl_jth_tempo" value="{{ $hutangAwal ? $hutangAwal->tgl_jth_tempo : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
@@ -68,12 +68,16 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-40">
                                 Jenis Hutang
                             </label>
-                            <select data-tw-merge aria-label="Default select example" class="form-control"
-                                name="jns_hutang">
-                                <option>- Pilih -</option>
-                                <option>Hutang Dagang</option>
-                                <option>Hutang Kongsinyasi</option>
+                            <select data-tw-merge aria-label="Default select example" class="form-control" name="jns_hutang" required>
+                                <option value="">- Pilih -</option>
+                                <option {{ $hutangAwal && $hutangAwal->jns_hutang == 'Hutang Dagang' ? 'selected' : '' }}>
+                                    Hutang Dagang
+                                </option>
+                                <option {{ $hutangAwal && $hutangAwal->jns_hutang == 'Hutang Kongsinyasi' ? 'selected' : '' }}>
+                                    Hutang Kongsinyasi
+                                </option>
                             </select>
+                            
                         </div>
                     </div>
                 </div>
@@ -92,8 +96,14 @@
         let value = input.value;
 
         value = value.replace(/\D/g, '');
-        let number = parseInt(value, 10);
-        let formattedValue = number.toLocaleString('id-ID');
-        input.value = formattedValue;
+
+        if (value === '') {
+            input.value = '';
+        } else {
+            let number = parseInt(value, 10);
+            let formattedValue = number.toLocaleString('id-ID');
+            input.value = formattedValue;
+        }
     }
 </script>
+

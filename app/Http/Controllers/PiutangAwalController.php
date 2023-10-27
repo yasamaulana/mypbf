@@ -24,19 +24,29 @@ class PiutangAwalController extends Controller
     public function edit(Request $request, $id)
     {
         $piutangAwal = PiutangAwal::find($id);
+        $request->validate([
+            'jns_piutang' => 'required',
+            'pelanggan' => 'required'
+        ]);
+        $request['jmlh_piutang'] = str_replace(".", "", $request->jmlh_piutang);
         $piutangAwal->update($request->all());
         return back()->with('success', 'Piutang Awal Update successfully');
     }
 
     public function create(Request $request)
     {
+        $request->validate([
+            'jns_piutang' => 'required',
+            'pelanggan' => 'required'
+        ]);
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
-        
+        $request['jmlh_piutang'] = str_replace(".", "", $request->jmlh_piutang);
         PiutangAwal::create($request->all());
         return back()->with('success', 'Piutang Awal added successfully');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $piutangAwal = PiutangAwal::find($id);
 
         $piutangAwal->delete();

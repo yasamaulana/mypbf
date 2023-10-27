@@ -23,8 +23,13 @@ class HutangAwalController extends Controller
 
     public function create(Request $request)
     {
+        $request->validate([
+            'jns_hutang' => 'required',
+            'supplier' => 'required'
+        ]);
+        
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
-
+        $request['jmlh_hutang'] = str_replace(".", "", $request->jmlh_hutang);
         HutangAwal::create($request->all());
         return back()->with('success', 'Hutang Awal added successfully');
     }
@@ -32,6 +37,7 @@ class HutangAwalController extends Controller
     public function edit(Request $request, $id)
     {
         $hutangAwal = HutangAwal::find($id);
+        $request['jmlh_hutang'] = str_replace(".", "", $request->jmlh_hutang);
         $hutangAwal->update($request->all());
         return back()->with('success', 'Hutang Awal Update successfully');
     }
