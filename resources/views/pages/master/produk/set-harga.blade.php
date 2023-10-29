@@ -1,59 +1,60 @@
+@php
+    use Livewire\Features\SupportFormObjects\Form;
+@endphp
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Setting Harga Jual
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
+            Setting Harga Jual {{ $produk->nama_obat_barang }}
         </h2>
     </div>
-    <div class="intro-y col-span-12 lg:col-span-6 mt-5">
+    <div class="col-span-12 mt-5 intro-y lg:col-span-6">
         <!-- BEGIN: Input -->
         <div class="intro-y box">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                <h2 class="font-medium text-base mr-auto">
+            <div class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="mr-auto text-base font-medium">
                     Setting Harga Jual
                 </h2>
             </div>
             <div class="p-5">
                 <div class="grid grid-cols-12 gap-4">
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-6" class="form-label">Stok Awal</label>
-                        <select id="input-wizard-6" class="form-select">
-                            @foreach ($stoks as $stok)
-                                <option>{{ $stok->no_reff }}</option>
-                            @endforeach
-                        </select>
+                        <input id="input-wizard-3" type="text" class="form-control" placeholder="" readonly
+                            value="{{ $stok ? $stok->produk->kode_obat_barang . ' | ' . $stok->gudang . ' | ' . $stok->rak . ' | ' . $stok->sub_rak : '' }}">
                     </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-3" class="form-label">HPP</label>
-                        <input id="input-wizard-3" type="text" class="form-control" placeholder="">
+                        <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                            value="{{ $produk->stokAwal ? $produk->stokAwal->hpp : '' }}">
                     </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-6" class="form-label">Pembelian</label>
-                        <select id="input-wizard-6" class="form-select">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
+                        <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                            value="Dari Pembelian" readonly>
                     </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-3" class="form-label">HPP Final</label>
-                        <input id="input-wizard-3" type="text" class="form-control" placeholder="">
+                        <input id="input-wizard-3" type="text" class="form-control" placeholder="" readonly
+                            value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->stokAwal->jumlah : '' }}">
                     </div>
                 </div>
-                <div class="flex gap-3 mt-6 justify-center w-full">
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                <div class="flex justify-center w-full gap-3 mt-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="satuan-dasar" class="form-label">Satuan Dasar</label>
-                        <input id="satuan-dasar" type="text" class="form-control" placeholder="">
+                        <input id="satuan-dasar" type="text" class="form-control" readonly placeholder=""
+                            value="{{ $produk->satuan_dasar_beli }}">
                     </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="isi" class="form-label">Isi</label>
-                        <input id="isi" type="text" class="form-control" placeholder="">
+                        <input id="isi" type="text" class="form-control" readonly placeholder=""
+                            value="{{ $produk->isi }}">
                     </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
+                    <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="satuan-jual-terkecil" class="form-label">Satuan Jual Terkecil</label>
-                        <input id="satuan-jual-terkecil" type="text" class="form-control" placeholder="">
+                        <input id="satuan-jual-terkecil" type="text" class="form-control" readonly placeholder=""
+                            value="{{ $produk->satuan_jual_terkecil }}">
                     </div>
                 </div>
             </div>
@@ -61,229 +62,492 @@
     </div>
 
     <!-- BEGIN: Input -->
-    @forelse ($kelompoks as $kelompok)
-        <div class="intro-y col-span-12 lg:col-span-6 mt-5">
-            <!-- BEGIN: Input -->
-            <div class="intro-y box">
-                <div class="flex p-5 gap-4">
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-6" class="form-label">Satuan Jual {{ $loop->iteration }}</label>
-                        <select id="input-wizard-6" class="form-select">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
-                    </div>
-                    <div class="intro-y col-span-12 sm:col-span-6">
-                        <label for="input-wizard-3" class="form-label">Isi</label>
-                        <input id="input-wizard-3" type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="intro-y col-span-12 ">
-                        <label for="input-wizard-3" class="form-label">HPP Final</label>
-                        <input id="input-wizard-3" type="text" class="form-control" placeholder="">
+    @forelse ($setHarga as $set)
+        <form action="{{ route('update.setHarga', ['id' => $set->id]) }}" method="POST">
+            @csrf
+            <div class="col-span-12 mt-5 intro-y lg:col-span-6">
+                <!-- BEGIN: Input -->
+                <div class="intro-y box">
+                    <div class="flex gap-4 p-5">
+                        <div class="col-span-12 intro-y sm:col-span-6">
+                            <label for="input-wizard-6" class="form-label">Satuan Jual {{ $loop->iteration }}</label>
+                            <input id="input-wizard-3" type="text" class="form-control" placeholder=""
+                                value="{{ $produk->satuan_dasar_beli }}" placeholder="Untuk satuan" readonly>
+                        </div>
+                        <div class="col-span-12 intro-y sm:col-span-6">
+                            <label for="input-wizard-3" class="form-label">Isi</label>
+                            <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                                value="{{ $produk->isi }}">
+                        </div>
+                        <div class="col-span-12 intro-y ">
+                            <label for="input-wizard-3" class="form-label">HPP Final</label>
+                            <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                                value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->stokAwal->jumlah : '' }}">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="intro-y col-span-12 lg:col-span-6">
-            <div class="intro-y box">
-                <div
-                    class="flex flex-col sm:flex-row items-center p-5 bg-primary text-white border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">
-                        Harga Jual {{ $kelompok->kelompok }}
-                    </h2>
-                </div>
-                <div class="p-5">
-                    <div class="overflow-auto">
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class=" mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control w-24 mx-2 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
+            <div class="col-span-12 intro-y lg:col-span-6">
+                <div class="intro-y box">
+                    <div
+                        class="flex flex-col items-center p-5 text-white border-b sm:flex-row bg-primary border-slate-200/60 dark:border-darkmode-400">
+                        <h2 class="mr-auto text-base font-medium">
+                            Harga Jual {{ $setHarga->kelompok($set->id_kelompok)->kelompok }}
+                        </h2>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex gap-3">
+                            <label>Inc PPN</label>
+                            <div class="form-check form-switch">
+                                <input id="checkbox-switch-7" class="form-check-input" type="checkbox"
+                                    name="inc_ppn{{ $loop->iteration }}">
                             </div>
                         </div>
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 2</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
+                        <div class="overflow-auto">
+                            <div class="flex mt-5">
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="mx-2 form-inline">
+                                    <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder=""
+                                        value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
                             </div>
-                            <div class=" mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
+                            <div class="flex mt-5">
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Jumlah 2</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="mx-2 form-inline">
+                                    <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder=""
+                                        value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
                             </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control w-24 mx-2 form-control-sm" placeholder="">
+                            <div class="flex mt-5">
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Jumlah 3</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="mx-2 form-inline">
+                                    <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder=""
+                                        value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
                             </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                        </div>
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 3</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class=" mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control w-24 mx-2 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                        </div>
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 4</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class=" mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text" class="form-control w-24 form-control-sm"
-                                    placeholder="">
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control w-24 mx-2 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="form-control mx-2 w-24 form-control-sm" placeholder="">
+                            <div class="flex mt-5">
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Jumlah 4</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="mx-2 form-inline">
+                                    <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 form-control form-control-sm" placeholder=""
+                                        value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                    <input id="horizontal-form-1" type="text"
+                                        class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div
-                    class="flex flex-col sm:flex-row items-center p-5 border border-slate-200/60 dark:border-darkmode-400">
-                    <div class="form-inline">
-                        <label for="horizontal-form-3" class="form-label">Satuan Harga Jual</label>
-                        <select class="form-select w-48" aria-label="Default select example">
-                            <option>123</option>
-                            <option>123</option>
-                            <option>123</option>
-                        </select>
-                    </div>
-                    <div class="form-inline">
-                        <label for="horizontal-form-1" class="form-label mx-4">Isi</label>
-                        <input id="horizontal-form-1" type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-inline">
-                        <label for="horizontal-form-1" class="form-label mx-4">HPP Final</label>
-                        <input id="horizontal-form-1" type="text" class="form-control" placeholder="">
+                    <div
+                        class="flex flex-col items-center p-5 border sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                        <div class="form-inline">
+                            <label for="horizontal-form-3" class="form-label">Satuan Harga Jual</label>
+                            <select class="w-48 form-select" aria-label="Default select example">
+                                @foreach ($satuans as $satuan)
+                                    <option>{{ $satuan->satuan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-inline">
+                            <label for="horizontal-form-1" class="mx-4 form-label">Isi</label>
+                            <input id="horizontal-form-1" type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-inline">
+                            <label for="horizontal-form-1" class="mx-4 form-label">HPP Final</label>
+                            <input id="horizontal-form-1" type="text" class="form-control" placeholder="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="flex justify-center gap-2 mt-5">
+                <button type="submit" class="px-6 btn btn-primary">Simpan</button>
+                <button class="btn btn-danger">Batal</button>
+            </div>
+        </form>
     @empty
-        <div class="card">
-            <div class="card-body text-center font-bold">
-                <h2>Belum ada data kelompok tersedia</h2>
+        @forelse ($kelompoks as $kelompok)
+            <form action="{{ route('create.setHarga') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id_produk" value="{{ $produk->id }}">
+                <div class="col-span-12 mt-5 intro-y lg:col-span-6">
+                    <!-- BEGIN: Input -->
+                    <div class="intro-y box">
+                        <div class="flex gap-4 p-5">
+                            <div class="col-span-12 intro-y sm:col-span-6">
+                                <label for="input-wizard-6" class="form-label">Satuan Jual {{ $loop->iteration }}</label>
+                                <input id="input-wizard-3" type="text" class="form-control" placeholder=""
+                                    value="{{ $produk->satuan_dasar_beli }}" placeholder="Untuk satuan" readonly>
+                            </div>
+                            <div class="col-span-12 intro-y sm:col-span-6">
+                                <label for="input-wizard-3" class="form-label">Isi</label>
+                                <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                                    value="{{ $produk->isi }}">
+                            </div>
+                            <div class="col-span-12 intro-y ">
+                                <label for="input-wizard-3" class="form-label">HPP Final</label>
+                                <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                                    value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->stokAwal->jumlah : '' }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 intro-y lg:col-span-6">
+                    <div class="intro-y box">
+                        <div
+                            class="flex flex-col items-center p-5 text-white border-b sm:flex-row bg-primary border-slate-200/60 dark:border-darkmode-400">
+                            <h2 class="mr-auto text-base font-medium">
+                                Harga Jual {{ $kelompok->kelompok }}
+                            </h2>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex gap-3">
+                                <label>Inc PPN</label>
+                                <div class="form-check form-switch">
+                                    <input id="checkbox-switch-7" class="form-check-input" type="checkbox"
+                                        name="status">
+                                </div>
+                            </div>
+                            <div class="overflow-auto">
+                                <div class="flex mt-5">
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
+                                        <input id="horizontal-form-1" type="text" name="jumlah1"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="mx-2 form-inline">
+                                        <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                        <input id="horizontal-form-1" type="text" name="sampai1"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                        <input id="horizontal-form-1" type="text"name="laba1"
+                                            class="w-24 form-control form-control-sm" placeholder=""
+                                            value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_1_1"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_2_1"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                        <input id="horizontal-form-1" type="text" name="harga_final1"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="flex mt-5">
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
+                                        <input id="horizontal-form-1" type="text" name="jumlah2"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="mx-2 form-inline">
+                                        <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                        <input id="horizontal-form-1" type="text" name="sampai2"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                        <input id="horizontal-form-1" type="text"name="laba2"
+                                            class="w-24 form-control form-control-sm" placeholder=""
+                                            value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_1_2"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_2_2"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                        <input id="horizontal-form-1" type="text" name="harga_final2"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="flex mt-5">
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
+                                        <input id="horizontal-form-1" type="text" name="jumlah3"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="mx-2 form-inline">
+                                        <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                        <input id="horizontal-form-1" type="text" name="sampai3"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                        <input id="horizontal-form-1" type="text"name="laba3"
+                                            class="w-24 form-control form-control-sm" placeholder=""
+                                            value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_1_3"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_2_3"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                        <input id="horizontal-form-1" type="text" name="harga_final3"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="flex mt-5">
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
+                                        <input id="horizontal-form-1" type="text" name="jumlah4"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="mx-2 form-inline">
+                                        <label for="horizontal-form-1" class="form-label form-">Sampai</label>
+                                        <input id="horizontal-form-1" type="text" name="sampai4"
+                                            class="w-24 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Laba %</label>
+                                        <input id="horizontal-form-1" type="text"name="laba4"
+                                            class="w-24 form-control form-control-sm" placeholder=""
+                                            value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 1</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_1_4"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_1 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Disc 2</label>
+                                        <input id="horizontal-form-1" type="text" name="disc_2_4"
+                                            value="{{ $kelompok->diskon($kelompok->id)->disc_2 }}"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Jual</label>
+                                        <input id="horizontal-form-1" type="text"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                    <div class="form-inline">
+                                        <label for="horizontal-form-1" class="form-label">Harga Final</label>
+                                        <input id="horizontal-form-1" type="text" name="harga_final4"
+                                            class="w-24 mx-2 form-control form-control-sm" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-5 border sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                            <div class="form-inline">
+                                <label for="horizontal-form-3" class="form-label">Satuan Harga Jual</label>
+                                <select class="w-48 form-select" aria-label="Default select example">
+                                    @foreach ($satuans as $satuan)
+                                        <option>{{ $satuan->satuan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-inline">
+                                <label for="horizontal-form-1" class="mx-4 form-label">Isi</label>
+                                <input id="horizontal-form-1" type="text" class="form-control" placeholder=""
+                                    required>
+                            </div>
+                            <div class="form-inline">
+                                <label for="horizontal-form-1" class="mx-4 form-label">HPP Final</label>
+                                <input id="horizontal-form-1" type="text" class="form-control" placeholder=""
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center gap-2 mt-5">
+                    <button type="submit" class="px-6 btn btn-primary">Simpan</button>
+                    <button class="btn btn-danger">Batal</button>
+                </div>
+            </form>
+        @empty
+            <div class="card">
+                <div class="font-bold text-center card-body">
+                    <h2>Belum ada data kelompok tersedia</h2>
+                </div>
             </div>
-        </div>
+        @endforelse
     @endforelse
-    <div class="flex justify-center mt-5 gap-2">
-        <button class="btn btn-primary px-6">Simpan</button>
-        <button class="btn btn-danger">Batal</button>
-    </div>
 @endsection

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_perusahaan');
             $table->string('no_reff');
+            $table->string('no_batch');
             $table->string('id_obat_barang');
             $table->string('jumlah');
             $table->string('exp_date')->nullable();
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('gudang');
             $table->string('rak');
             $table->string('sub_rak');
-            $table->string('jenis');
+            $table->string('tipe');
             $table->timestamps();
         });
     }

@@ -5,8 +5,8 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Pajak Perusahaan
         </h2>
     </div>
@@ -15,11 +15,11 @@
     @endif
     <form action="{{ route('update.pajak') }}" method="POST">
         @csrf
-        <div class="sm:flex gap-5">
-            <div class="intro-y w-full box mt-5">
+        <div class="gap-5 sm:flex">
+            <div class="w-full mt-5 intro-y box">
                 <div
-                    class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">
+                    class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                    <h2 class="mr-auto text-base font-medium">
                         PPN
                     </h2>
                 </div>
@@ -34,17 +34,17 @@
                     </div>
                 </div>
             </div>
-            <div class="intro-y w-full box mt-5">
+            <div class="w-full mt-5 intro-y box">
                 <div
-                    class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">
+                    class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                    <h2 class="mr-auto text-base font-medium">
                         Nomor Faktur Seri Pajak
                     </h2>
                 </div>
                 <div id="inline-form" class="p-5">
                     <div class="preview">
                         <label class="form-label">Nomor Seri Pajak</label>
-                        <div class="sm:flex gap-3">
+                        <div class="gap-3 sm:flex">
                             <div class="flex">
                                 <input name="no_seri_pajak" type="text" class="form-control" style="width: 80%;"
                                     id="formattedInput" placeholder="000.14.12345678">
@@ -52,8 +52,8 @@
                                 <input name="kali" id="horizontal-form-2" type="text" class="form-control"
                                     style="width: 20%;" required placeholder="">
                             </div>
-                            <div class="flex sm:mt-0 mt-4">
-                                <label class="form-label w-40 mt-2 ">Tgl Expired</label>
+                            <div class="flex mt-4 sm:mt-0">
+                                <label class="w-40 mt-2 form-label ">Tgl Expired</label>
                                 <input name="tanggal_exp" id="horizontal-form-2" type="date" class="form-control"
                                     style="width: 100%;" required placeholder="" required>
                             </div>
@@ -63,12 +63,12 @@
             </div>
         </div>
         @can('edit pajak')
-            <button class="btn btn-primary mt-5"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
+            <button class="mt-5 btn btn-primary"> <i data-feather="download" class="w-4 h-4 mr-2"></i>
                 Simpan Perubahan </button>
         @endcan
     </form>
-    <div class="intro-y col-span-12 overflow-auto mt-5 lg:overflow-visible">
-        <table class="table table-report -mt-2">
+    <div class="col-span-12 mt-5 overflow-auto intro-y lg:overflow-visible">
+        <table class="table -mt-2 table-report">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">Nomor</th>
@@ -80,7 +80,7 @@
             <tbody>
                 @if (!Pajak::where('id_perusahaan', Auth::user()->id_perusahaan)->get()->isNotEmpty())
                     <tr class="intro-x">
-                        <td colspan="3" class="text-center font-bold">Data belum tersedia</td>
+                        <td colspan="4" class="font-bold text-center">Data belum tersedia</td>
                     </tr>
                 @endif
                 @foreach (Pajak::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pajak)
@@ -88,8 +88,8 @@
                         <td class="w-40">{{ $loop->iteration }}</td>
                         <td class="">{{ $pajak->pajak }}</td>
                         <td class="">{{ $pajak->tanggal_exp }}</td>
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
+                        <td class="w-56 table-report__action">
+                            <div class="flex items-center justify-center">
                                 {{-- <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"
                                         class="w-4 h-4 mr-1"></i> Edit </a> --}}
                                 @can('delete pajak')

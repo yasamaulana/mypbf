@@ -16,8 +16,8 @@ class GolonganSeeder extends Seeder
     {
         $userId = Auth::id() ?: 1;
 
-        Golongan::create(['golongan' => 'Golongan A', 'id_perusahaan' => $userId]);
-        Golongan::create(['golongan' => 'Golongan B', 'id_perusahaan' => $userId]);
-        Golongan::create(['golongan' => 'Golongan C', 'id_perusahaan' => $userId]);
+        Golongan::create(['golongan' => 'Kelompok A', 'id_perusahaan' => $userId]);
+        Golongan::create(['golongan' => 'Kelompok B', 'id_perusahaan' => $userId]);
+        Golongan::create(['golongan' => 'Kelompok C', 'id_perusahaan' => $userId]);
     }
 }

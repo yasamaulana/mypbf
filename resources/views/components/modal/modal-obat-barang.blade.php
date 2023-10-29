@@ -5,28 +5,28 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="font-medium text-base mr-auto">
+                <h2 class="mr-auto text-base font-medium">
                     Data Produk
                 </h2>
             </div>
             <form action="{{ route($route, ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-body px-10">
+                <div class="px-10 modal-body">
                     <div class="preview">
                         <div class="grid grid-cols-12 gap-4">
-                            <div class="intro-y col-span-12 sm:col-span-6">
-                                <label for="input-wizard-3" class="form-label">Nama Obat/barang</label>
+                            <div class="col-span-12 intro-y sm:col-span-6">
+                                <label for="input-wizard-3" class="form-label">Nama Produk</label>
                                 <div class="flex gap-3">
                                     <input id="input-wizard-3" type="text" class="form-control"
                                         placeholder="Nama Obat/barang" name="nama_obat_barang" required
                                         {{ app('request')->input('nama_obat_barang') ? 'readonly' : '' }}
                                         value="{{ $barang ? $barang->nama_obat_barang : app('request')->input('nama_obat_barang') }}">
-                                    <a href="/cari-produk-e-report" class="btn btn-primary btn-sm w-40">
+                                    <a href="/cari-produk-e-report" class="w-40 btn btn-primary btn-sm">
                                         Cari Produk<br>E-Report
                                     </a>
                                 </div>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6 flex gap-3">
+                            <div class="flex col-span-12 gap-3 intro-y sm:col-span-6">
                                 <div class="">
                                     <label for="input-wizard-3" class="form-label">E-Report</label>
                                     <input id="input-wizard-3" type="text" class="form-control" min="10000000000"
@@ -37,12 +37,12 @@
                                 </div>
                                 <div class="">
                                     <label for="input-wizard-3" class="form-label">Kode Obat BPOM</label>
-                                    <input id="input-wizard-3" type="number" class="form-control"
+                                    <input id="input-wizard-3" type="text" class="form-control"
                                         placeholder="Kode Obat BPOM" required name="kode_obat_bpom"
                                         value="{{ $barang ? $barang->kode_obat_bpom : '' }}">
                                 </div>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Satuan Dasar/Beli</label>
                                 <select id="input-wizard-6" class="form-select" required name="satuan_dasar_beli">
                                     @if ($satuans->isNotEmpty())
@@ -57,26 +57,26 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6 flex gap-3">
+                            <div class="flex col-span-12 gap-3 intro-y sm:col-span-6">
                                 <div class="">
                                     <label for="input-wizard-3" class="form-label">Barcode QR Produk</label>
-                                    <input id="input-wizard-3" type="number" class="form-control"
+                                    <input id="input-wizard-3" type="text" class="form-control"
                                         placeholder="Barcode QR Produk" required name="barcode_qr_produk"
                                         value="{{ $barang ? $barang->barcode_qr_produk : '' }}">
                                 </div>
                                 <div class="">
                                     <label for="input-wizard-3" class="form-label">Barcode Produk</label>
-                                    <input id="input-wizard-3" type="number" class="form-control"
+                                    <input id="input-wizard-3" type="text" class="form-control"
                                         placeholder="Barcode QR Produk" required name="barcode_produk"
                                         value="{{ $barang ? $barang->barcode_produk : '' }}">
                                 </div>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Isi</label>
                                 <input id="input-wizard-3" type="number" class="form-control" placeholder="" required
                                     name="isi" value="{{ $barang ? $barang->isi : '' }}">
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Satuan Jual Terkecil</label>
                                 <select id="input-wizard-6" class="form-select" required name="satuan_jual_terkecil">
                                     @if ($satuans->isNotEmpty())
@@ -90,19 +90,19 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Keterangan Satuan</label>
                                 <input id="input-wizard-3" type="text" class="form-control" placeholder="" required
                                     name="ket_satuan" value="{{ $barang ? $barang->ket_satuan : '' }}">
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Kemasan</label>
                                 <input id="input-wizard-3" type="text" class="form-control" placeholder=""
                                     required name="kemasan"
                                     value="{{ $barang ? $barang->kemasan : app('request')->input('kemasan') }}">
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
-                                <label for="input-wizard-6" class="form-label">Golongan</label>
+                            <div class="col-span-12 intro-y sm:col-span-6">
+                                <label for="input-wizard-6" class="form-label">Kelompok</label>
                                 <select id="input-wizard-6" class="form-select" required name="golongan">
                                     @if ($golongans->isNotEmpty())
                                         @foreach ($golongans as $gol)
@@ -115,8 +115,8 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
-                                <label for="input-wizard-6" class="form-label">Sub Golongan</label>
+                            <div class="col-span-12 intro-y sm:col-span-6">
+                                <label for="input-wizard-6" class="form-label">Golongan</label>
                                 <select id="input-wizard-6" class="form-select" required name="sub_golongan">
                                     @if ($sub_golongans->isNotEmpty())
                                         @foreach ($sub_golongans as $gol)
@@ -129,7 +129,7 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Jenis Obat/Barang</label>
                                 <select id="input-wizard-6" class="form-select" required name="jenis_obat_barang">
                                     @if ($jenis_obat->isNotEmpty())
@@ -143,7 +143,7 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Produsen</label>
                                 <select id="input-wizard-6" class="form-select" required name="produsen">
                                     @if ($produsens->isNotEmpty())
@@ -158,7 +158,7 @@
 
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Tipe</label>
                                 <select id="input-wizard-6" class="form-select" required name="tipe">
                                     <option {{ $barang ? ($barang->tipe == 'Dagang' ? 'selected' : '') : '' }}>
@@ -169,34 +169,34 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Stok Minimal</label>
                                 <input id="input-wizard-3" type="number" class="form-control" placeholder=""
                                     required name="stok_minimal" value="{{ $barang ? $barang->stok_minimal : '' }}">
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Stok Maksimal</label>
                                 <input id="input-wizard-3" type="number" class="form-control" placeholder=""
                                     required name="stok_maksimal"
                                     value="{{ $barang ? $barang->stok_maksimal : '' }}">
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Komposisi</label>
                                 <textarea id="input-wizard-3" type="text" class="form-control" placeholder="" required name="komposisi">{{ $barang ? $barang->komposisi : '' }}</textarea>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Zak Aktif</label>
                                 <textarea id="input-wizard-3" type="text" class="form-control" placeholder="" required name="zat_aktif">{{ $barang ? $barang->zat_aktif : '' }}</textarea>
                             </div>
-                            <div class="intro-y col-span-12 sm:col-span-6 mt-2">
+                            <div class="col-span-12 mt-2 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">Bentuk Dan Kekuatan</label>
                                 <input id="input-wizard-3" type="text" class="form-control" placeholder=""
                                     required name="bentuk_kekuatan"
                                     value="{{ $barang ? $barang->bentuk_kekuatan : '' }}">
                             </div>
                         </div>
-                        <div class="flex mt-3 gap-3">
-                            <div class="intro-y col-span-12 sm:col-span-6">
+                        <div class="flex gap-3 mt-3">
+                            <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-3" class="form-label">No. Ijin Edar</label>
                                 <input id="input-wizard-3" type="text" class="form-control" placeholder=""
                                     required name="no_ijin_edar" value="{{ $barang ? $barang->no_ijin_edar : '' }}">
@@ -224,7 +224,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="table-set" class="form-control">Setting Harga Jual</label>
-                            <table class="table border mt-3" id="table-set">
+                            <table class="table mt-3 border" id="table-set">
                                 <thead class="font-bold">
                                     <tr>
                                         <td>Kelompok</td>
@@ -295,7 +295,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center font-bold">Belum ada
+                                                <td colspan="4" class="font-bold text-center">Belum ada
                                                     kelompok
                                                     tersedia
                                                 </td>
@@ -308,7 +308,7 @@
                         <div class="mt-3">
                             <label for="file_upload" class="form-control">Gambar</label>
                             <input id="file_upload" type="file"
-                                class="appearance-none mt-2 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
+                                class="w-full px-3 py-2 mt-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
                                 {{ $barang ? '' : 'required' }} name="gambar" accept="image/*">
 
                             <img id="previewImage"
@@ -318,7 +318,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary mt-5">Simpan</button>
+                    <button class="mt-5 btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

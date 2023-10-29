@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AkunAkutansiController;
 use App\Http\Controllers\AreaRayonController;
+use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\JabatanController;
@@ -133,7 +135,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tampil-produk-e-report', [ObatBarangController::class, 'cariProdukEReport'])->name('cari.e-report');
 
 
-    Route::get('/set-harga-jual', [SetHargaJualController::class, 'index'])->name('setHarga');
+    Route::get('/set-harga-jual/{id}', [SetHargaJualController::class, 'index'])->name('setHarga');
+    Route::post('/create-set-harga-jual', [SetHargaJualController::class, 'createHarga'])->name('create.setHarga');
+    Route::post('/set-harga-jual/{id}', [SetHargaJualController::class, 'updateHarga'])->name('update.setHarga');
 
     //satuan
     Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
@@ -208,13 +212,26 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-stok-awal', [StokAwalController::class, 'tambahStok'])->name('tambah.stok-awal');
     Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
     Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
+
+    //akun akutansi
+    Route::get('/akun-akuntansi', [AkunAkutansiController::class, 'index'])->name('akun-akutansi');
+    Route::post('/tambah-akun-akuntansi', [AkunAkutansiController::class, 'tambahAkun'])->name('tambah.akun-akutansi');
+    Route::post('/edit-akun-akuntansi/{id}', [AkunAkutansiController::class, 'editAkun'])->name('edit.akun-akutansi');
+    Route::post('/delete-akun-akuntansi/{id}', [AkunAkutansiController::class, 'deleteAkun'])->name('delete.akun-akutansi');
+
+    //set awal
+    Route::get('/setting-akuntansi', function () {
+        return view('pages.master.akuntansi.setting-akuntansi', [
+            'title' => 'master'
+        ]);
+    });
+
+    //barcode
+    Route::get('/barcode-produk', [BarcodeController::class, 'indexProduk'])->name('barcode.produk');
+    Route::get('/barcode-pelanggan', [BarcodeController::class, 'indexPelanggan'])->name('barcode.pelanggan');
+    Route::get('/download-barcode/{data}', [BarcodeController::class, 'download'])->name('download.barcode');
 });
 
-Route::get('/akun-akuntansi', function () {
-    return view('pages.master.akuntansi.akun-akuntansi', [
-        'title' => 'master'
-    ]);
-})->middleware(['auth']);
 
 //set awal
 Route::get('/hutang-awal', function () {
