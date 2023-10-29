@@ -16,8 +16,10 @@ class SatuanSeeder extends Seeder
     {
         $userId = Auth::id() ?: 1;
 
-        Satuan::create(['satuan' => 'pcs', 'id_perusahaan' => $userId]);
-        Satuan::create(['satuan' => 'box', 'id_perusahaan' => $userId]);
-        Satuan::create(['satuan' => 'saset', 'id_perusahaan' => $userId]);
+        Satuan::create(['satuan' => 'Pcs', 'id_perusahaan' => $userId]);
+        Satuan::create(['satuan' => 'Box', 'id_perusahaan' => $userId]);
+        Satuan::create(['satuan' => 'Kapsul', 'id_perusahaan' => $userId]);
+        Satuan::create(['satuan' => 'Tablet', 'id_perusahaan' => $userId]);
+        Satuan::create(['satuan' => 'Strip', 'id_perusahaan' => $userId]);
     }
 }
