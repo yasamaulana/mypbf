@@ -16,8 +16,8 @@ class SubGolonganSeeder extends Seeder
     {
         $userId = Auth::id() ?: 1;
 
-        SubGolongan::create(['sub_golongan' => 'Sub A', 'id_perusahaan' => $userId]);
-        SubGolongan::create(['sub_golongan' => 'Sub B', 'id_perusahaan' => $userId]);
-        SubGolongan::create(['sub_golongan' => 'Sub C', 'id_perusahaan' => $userId]);
+        SubGolongan::create(['sub_golongan' => 'Golongan A', 'id_perusahaan' => $userId]);
+        SubGolongan::create(['sub_golongan' => 'Golongan B', 'id_perusahaan' => $userId]);
+        SubGolongan::create(['sub_golongan' => 'Golongan C', 'id_perusahaan' => $userId]);
     }
 }

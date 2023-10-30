@@ -1,25 +1,23 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Jabatan
         </h2>
     </div>
-    @if (session('success'))
-        @include('components.alert')
-    @endif
+    @include('components.alert')
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
             @can('tambah jabatan')
-                <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
+                <button class="mr-2 shadow-md btn btn-primary" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
                     Jabatan</button>
             @endcan
             <!-- BEGIN: Modal Content -->
             <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-body p-10">
+                        <div class="p-10 modal-body">
                             <div class="preview">
                                 <form action="{{ route('create.jabatan') }}" method="POST">
                                     @csrf
@@ -28,7 +26,7 @@
                                         <input id="vertical-form-1" name="jabatan" type="text" class="form-control"
                                             placeholder="Masukan jabatan Anda">
                                     </div>
-                                    <button class="btn btn-primary mt-5" type="submit">Simpan</button>
+                                    <button class="mt-5 btn btn-primary" type="submit">Simpan</button>
                                 </form>
                             </div>
                         </div>
@@ -37,14 +35,14 @@
             </div>
             <!-- END: Modal Content -->
 
-            <div class="w-56 relative text-slate-500 ">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+            <div class="relative w-56 text-slate-500 ">
+                <input type="text" class="w-56 pr-10 form-control box" placeholder="Search...">
+                <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
             </div>
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <table class="table -mt-2 table-report">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">Nomor</th>
@@ -53,17 +51,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (!$jabatans->isNotEmpty())
-                        <tr class="intro-x">
-                            <td colspan="3" class="text-center font-bold">Data belum tersedia</td>
-                        </tr>
-                    @endif
-                    @foreach ($jabatans as $jabatan)
+                    @forelse ($jabatans as $jabatan)
                         <tr class="intro-x">
                             <td class="w-40">1</td>
                             <td class="">{{ $jabatan->jabatan }}</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
+                            <td class="w-56 table-report__action">
+                                <div class="flex items-center justify-center">
                                     @can('edit jabatan')
                                         <a data-tw-toggle="modal" data-tw-target="#edit-modal{{ $jabatan->id }}"
                                             class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square"
@@ -86,7 +79,7 @@
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <div class="modal-body p-10">
+                                                <div class="p-10 modal-body">
                                                     <div class="preview">
                                                         <form action="{{ route('edit.jabatan', ['id' => $jabatan->id]) }}"
                                                             method="POST">
@@ -98,7 +91,7 @@
                                                                     name="jabatan" type="text" class="form-control"
                                                                     placeholder="Masukan jabatan Anda">
                                                             </div>
-                                                            <button class="btn btn-primary mt-5"
+                                                            <button class="mt-5 btn btn-primary"
                                                                 type="submit">Simpan</button>
                                                         </form>
                                                     </div>
@@ -110,7 +103,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr class="intro-x">
+                            <td colspan="3" class="font-bold text-center">Data belum tersedia</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

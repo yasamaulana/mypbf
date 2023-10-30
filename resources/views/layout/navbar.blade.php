@@ -182,12 +182,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/set-harga-jual" class="top-menu">
-                                    <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="top-menu__title">Set Harga Jual</div>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/satuan" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Satuan</div>
@@ -311,13 +305,13 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="/produk" class="top-menu">
+                                <a href="{{ route('barcode.produk') }}" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Produk</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="/pelanggan" class="top-menu">
+                                <a href="{{ route('barcode.pelanggan') }}" class="top-menu">
                                     <div class="top-menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="top-menu__title">Pelanggan</div>
                                 </a>

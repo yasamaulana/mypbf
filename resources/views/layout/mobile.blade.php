@@ -2,7 +2,7 @@
     <div class="mobile-menu md:hidden">
         <div class="mobile-menu-bar">
             <a href="" class="flex mr-auto">
-                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="dist/pbflogo.png">
+                <img alt="Rubick Tailwind HTML Admin Template" class="w-20" src="{{ asset('dist/pbflogo.png') }}">
             </a>
             <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
                     class="w-8 h-8 text-white transform -rotate-90"></i> </a>
@@ -187,12 +187,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/set-harga-jual" class="menu">
-                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
-                                    <div class="menu__title">Set Harga Jual</div>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/satuan" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="menu__title">Satuan</div>
@@ -298,6 +292,33 @@
                                 <a href="/akun-akuntansi" class="menu">
                                     <div class="menu__icon"> <i data-feather="zap"></i> </div>
                                     <div class="menu__title">Akun Akuntansi</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/setting-akuntansi" class="menu">
+                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="menu__title">Setting Akuntansi</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="menu">
+                            <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="menu__title"> Barcode <i data-feather="chevron-down"
+                                    class="menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="">
+                            <li>
+                                <a href="{{ route('barcode.produk') }}" class="menu">
+                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="menu__title">Produk</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('barcode.pelanggan') }}" class="menu">
+                                    <div class="menu__icon"> <i data-feather="zap"></i> </div>
+                                    <div class="menu__title">Pelanggan</div>
                                 </a>
                             </li>
                         </ul>

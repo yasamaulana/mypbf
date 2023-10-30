@@ -16,8 +16,10 @@ class KelompokSeeder extends Seeder
     {
         $userId = Auth::id() ?: 1;
 
-        Kelompok::create(['kelompok' => 'Kelompok A', 'id_perusahaan' => $userId]);
-        Kelompok::create(['kelompok' => 'Kelompok B', 'id_perusahaan' => $userId]);
-        Kelompok::create(['kelompok' => 'Kelompok C', 'id_perusahaan' => $userId]);
+        Kelompok::create(['kelompok' => 'Kelompok 1', 'id_perusahaan' => $userId]);
+        Kelompok::create(['kelompok' => 'Kelompok 2', 'id_perusahaan' => $userId]);
+        Kelompok::create(['kelompok' => 'Kelompok 3', 'id_perusahaan' => $userId]);
+        Kelompok::create(['kelompok' => 'Kelompok 4', 'id_perusahaan' => $userId]);
+        Kelompok::create(['kelompok' => 'Kelompok 5', 'id_perusahaan' => $userId]);
     }
 }

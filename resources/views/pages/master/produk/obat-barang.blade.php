@@ -1,16 +1,17 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Produk
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#modal-tambah">Tambah
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
+            <button class="mr-2 shadow-md btn btn-primary" id="tombol-tambah" data-tw-toggle="modal"
+                data-tw-target="#modal-tambah">Tambah
                 Produk Baru</button>
-            <button class="btn btn-success text-white shadow-md mr-2">Import Excell</button>
+            <button class="mr-2 text-white shadow-md btn btn-success">Import Excell</button>
             {{-- modal begin --}}
             @include('components.modal.modal-obat-barang', [
                 'id_modal' => 'modal-tambah',
@@ -19,16 +20,16 @@
                 'barang' => '',
             ])
             {{-- end modal --}}
-            <div class="w-56 relative text-slate-500 ">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+            <div class="relative w-56 text-slate-500 ">
+                <input type="text" class="w-56 pr-10 form-control box" placeholder="Search...">
+                <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
             </div>
         </div>
     </div>
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 mt-5 overflow-auto lg:overflow-visible">
+    <div class="col-span-12 mt-5 overflow-auto intro-y lg:overflow-visible">
         <div class="overflow-auto">
-            <table class="table table-report -mt-2">
+            <table class="table -mt-2 table-report">
                 <thead>
                     <tr>
                         <th class="">Kode obat</th>
@@ -61,10 +62,10 @@
                             <td class="">{{ $barang->zat_aktif }}</td>
                             <td class="">{{ $barang->bentuk_kekuatan }}</td>
                             <td class="">{{ $barang->status == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="credit-card"
-                                            class="w-4 h-4 mr-1"></i> Harga </a>
+                            <td class="w-56 table-report__action">
+                                <div class="flex items-center justify-center">
+                                    <a class="flex items-center mr-3" href="/set-harga-jual/{{ $barang->id }}"> <i
+                                            data-feather="credit-card" class="w-4 h-4 mr-1"></i> Harga </a>
                                     <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
                                         data-tw-target="#modal-edit{{ $barang->id }}"> <i data-feather="check-square"
                                             class="w-4 h-4 mr-1"></i> Edit </a>
@@ -91,13 +92,19 @@
                         </tr>
                     @empty
                         <tr class="intro-x">
-                            <td class="text-center font-bold" colspan="13">Belum ada data tersedia</td>
+                            <td class="font-bold text-center" colspan="13">Belum ada data tersedia</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- END: Data List -->
-    </div>
+    @if (app('request')->input('nama_obat_barang'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var tombolTambah = document.getElementById("tombol-tambah");
+                tombolTambah.click();
+            });
+        </script>
+    @endif
 @endsection
