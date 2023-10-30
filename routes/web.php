@@ -5,6 +5,7 @@ use App\Http\Controllers\AreaRayonController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GudangController;
+use App\Http\Controllers\HutangAwalController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisObatBarangController;
 use App\Http\Controllers\KelompokController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PiutangAwalController;
 use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
@@ -21,7 +23,6 @@ use App\Http\Controllers\SetAksesController;
 use App\Http\Controllers\SetHargaJualController;
 use App\Http\Controllers\SetUserController;
 use App\Http\Controllers\StokAwalController;
-use App\Http\Controllers\StokAwalControllre;
 use App\Http\Controllers\SubGolonganController;
 use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\TargetProdukController;
 use App\Http\Controllers\TargetSalesController;
 use App\Http\Controllers\TargetSPVController;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -213,6 +215,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
     Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
 
+    //set awal
+    Route::get('/hutang-awal', [HutangAwalController::class, 'index'])->name("hutang-awal");
+    Route::post('/tambah-hutang-awal', [HutangAwalController::class, 'create'])->name('tambah.hutang-awal');
+    Route::post('/edit-hutang-awal/{id}', [HutangAwalController::class, 'edit'])->name('edit.hutang-awal');
+    Route::post('/hapus-hutang-awal/{id}', [HutangAwalController::class, 'destroy'])->name('delete.hutang-awal');
+
+    //piutang awal
+    Route::get('/piutang-awal', [PiutangAwalController::class, 'index'])->name('piutang-awal');
+    Route::post('/tambah-piutang-awal', [PiutangAwalController::class, 'create'])->name('tambah.piutang-awal');
+    Route::post('/edit-piutang-awal/{id}', [PiutangAwalController::class, 'edit'])->name('edit.piutang-awal');
+    Route::post('/hapus-piutang-awal/{id}', [PiutangAwalController::class, 'destroy'])->name('delete.piutang-awal');
+
     //akun akutansi
     Route::get('/akun-akuntansi', [AkunAkutansiController::class, 'index'])->name('akun-akutansi');
     Route::post('/tambah-akun-akuntansi', [AkunAkutansiController::class, 'tambahAkun'])->name('tambah.akun-akutansi');
@@ -233,17 +247,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-//set awal
-Route::get('/hutang-awal', function () {
-    return view('pages.set-awal.hutang-awal', [
-        'title' => 'setting awal'
-    ]);
-})->middleware(['auth']);
-Route::get('/piutang-awal', function () {
-    return view('pages.set-awal.piutang-awal', [
-        'title' => 'setting awal'
-    ]);
-})->middleware(['auth']);
+// settings akuntansi
+Route::get('/setting-akuntansi', function () {
+    return view('');
+});
 
 Route::get('/saldo-awal', function () {
     return view('pages.set-awal.saldo-awal.saldo-awal', [

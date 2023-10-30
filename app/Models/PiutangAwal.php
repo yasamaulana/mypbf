@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Pelanggan extends Model
+class PiutangAwal extends Model
 {
     use HasFactory;
-
-    protected $table = 'pelanggan';
+    protected $table = 'piutang_awal';
     protected $guarded = ['id'];
 
     public function getByIdPerusahaan()
