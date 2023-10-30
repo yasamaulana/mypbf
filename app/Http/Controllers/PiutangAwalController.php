@@ -6,7 +6,6 @@ use App\Models\Pelanggan;
 use App\Models\PiutangAwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class PiutangAwalController extends Controller
 {
@@ -14,10 +13,10 @@ class PiutangAwalController extends Controller
     {
         return view('pages.set-awal.piutang-awal', [
             'title' => 'setting awal',
-            'piutangAwals' => PiutangAwal::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
-            'pelanggans' => Pelanggan::all(),
+            'piutangAwals' => (new PiutangAwal())->getByIdPerusahaan(),
+            'pelanggans' => (new Pelanggan())->getByIdPerusahaan(),
             'nofakturRand' => strval(rand(1, 99999999999)),
-            'totalPiutang' => DB::table('piutang_awal')->get()->sum('jmlh_piutang')
+            'totalPiutang' => PiutangAwal::get()->sum('jmlh_piutang')
         ]);
     }
 
