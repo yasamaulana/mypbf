@@ -6,6 +6,9 @@
             Target Produk
         </h2>
     </div>
+    @if (session('success'))
+        @include('components.alert')
+    @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#tambah-data">Tambah
@@ -13,6 +16,9 @@
             <!-- BEGIN: Modal Content -->
             @include('components.modal.modal-target-produk', [
                 'id_modal' => 'tambah-data',
+                'route' => 'tambah.target_produk',
+                'id' => '',
+                'obatBarangs' => $obatBarangs,
             ])
             <!-- END: Modal Content -->
 
@@ -23,6 +29,8 @@
                 <select data-tw-merge aria-label="Default select example" class="form-control">
                     <option>2023</option>
                     <option>2022</option>
+                    <option>2021</option>
+                    <option>2020</option>
                 </select>
             </div>
         </div>
