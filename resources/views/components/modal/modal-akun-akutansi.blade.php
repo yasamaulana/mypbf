@@ -49,8 +49,8 @@
                         </div>
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <div class="form-check form-switch">
-                                <input id="checkbox-switch-7" class="form-check-input" checked type="checkbox"
-                                    name="kas_bank" {{ $akun ? ($akun->kas_bank == '1' ? 'checked' : '') : '' }}>
+                                <input id="checkbox-switch-7" class="form-check-input" type="checkbox" name="kas_bank"
+                                    {{ $akun ? ($akun->kas_bank == '1' ? 'checked' : '') : '' }}>
                             </div>
                             <label class="ml-3 font-bold">Kas/Bank</label>
                         </div>
