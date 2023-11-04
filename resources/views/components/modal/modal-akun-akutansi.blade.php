@@ -49,8 +49,8 @@
                         </div>
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <div class="form-check form-switch">
-                                <input id="checkbox-switch-7" class="form-check-input" type="checkbox" name="kas_bank"
-                                    {{ $akun ? ($akun->kas_bank == '1' ? 'checked' : '') : '' }}>
+                                <input id="checkbox-switch-7" class="form-check-input" checked type="checkbox"
+                                    name="kas_bank" {{ $akun ? ($akun->kas_bank == '1' ? 'checked' : '') : '' }}>
                             </div>
                             <label class="ml-3 font-bold">Kas/Bank</label>
                         </div>
@@ -64,3 +64,48 @@
         </div>
     </div>
 </div>
+<script>
+    // Get references to the dropdowns and input elements
+    const jenisAkunDropdowns = document.querySelectorAll('select[name="jenis_akun"]');
+    const kodeAkunInputs = document.querySelectorAll('input[name="kode"]');
+
+    // Define a mapping of jenis_akun values to prefixes
+    const kodeMapping = {
+        'Aktiva': '1-',
+        'Kewajiban': '2-',
+        'Modal': '3-',
+        'Pendapatan': '4-',
+        'HPP': '5-',
+        'Biaya': '6-',
+        'Pendapatan Lain': '7-',
+        'Biaya Lain': '8-'
+    };
+
+    // Initialize the input fields with the default values
+    for (let i = 0; i < jenisAkunDropdowns.length; i++) {
+        const selectedOption = jenisAkunDropdowns[i].value;
+        kodeAkunInputs[i].value = kodeMapping[selectedOption] || '';
+    }
+
+    // Add event listeners to the dropdowns to handle changes
+    for (let i = 0; i < jenisAkunDropdowns.length; i++) {
+        jenisAkunDropdowns[i].addEventListener('change', function() {
+            const selectedOption = jenisAkunDropdowns[i].value;
+
+            // Update the value of the Kode Akun input fields based on the selected option
+            kodeAkunInputs[i].value = kodeMapping[selectedOption] || '';
+        });
+    }
+
+    // Add event listeners to the input fields to prevent changes
+    for (let i = 0; i < kodeAkunInputs.length; i++) {
+        kodeAkunInputs[i].addEventListener('input', function(event) {
+            const selectedOption = jenisAkunDropdowns[i].value;
+            const prefix = kodeMapping[selectedOption];
+
+            if (!kodeAkunInputs[i].value.startsWith(prefix)) {
+                kodeAkunInputs[i].value = prefix + kodeAkunInputs[i].value.substring(prefix.length);
+            }
+        });
+    }
+</script>

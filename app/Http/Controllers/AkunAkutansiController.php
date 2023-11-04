@@ -12,7 +12,9 @@ class AkunAkutansiController extends Controller
     {
         return view('pages.master.akuntansi.akun-akuntansi', [
             'title' => 'master',
-            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)->get()
+            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)
+                ->orderBy('kode', 'asc')
+                ->get(),
         ]);
     }
 

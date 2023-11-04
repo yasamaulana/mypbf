@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelompok;
 use App\Models\ObatBarang;
+use App\Models\PPN;
 use App\Models\Satuan;
 use App\Models\SetHarga;
 use App\Models\StokAwal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SetHargaJualController extends Controller
 {
@@ -20,6 +22,7 @@ class SetHargaJualController extends Controller
             'stok' => StokAwal::where('id_obat_barang', $id)->first(),
             'produk' => ObatBarang::where('id', $id)->first(),
             'setHarga' => SetHarga::where('id_produk', $id)->get(),
+            'ppn' => PPN::where('id_perusahaan', Auth::user()->id_perusahaan)->first(),
         ]);
     }
 
