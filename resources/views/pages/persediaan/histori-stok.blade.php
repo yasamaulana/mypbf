@@ -10,7 +10,7 @@
         <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
             <div data-tw-merge class="items-center block ml-5 sm:flex">
                 <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 font-bold sm:w-20">
-                    Jenis
+                    Gudang
                 </label>
                 <select data-tw-merge aria-label="Default select example" class="form-control">
                     <option>- Pilih -</option>
