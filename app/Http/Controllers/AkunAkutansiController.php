@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AkunAkutansi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class AkunAkutansiController extends Controller
@@ -15,6 +16,17 @@ class AkunAkutansiController extends Controller
             'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)
                 ->orderBy('kode', 'asc')
                 ->get(),
+            'list_akun' => [
+                'Piutang Dagang',
+                'Piutang Konsinyasi',
+                'Persediaan Dagang',
+                'Persediaan Konsinyasi',
+                'PPN Masukan',
+                'Hutang Dagang',
+                'Hutang Konsinyasi',
+                'Modal Pemilih'
+            ],
+
         ]);
     }
 
@@ -22,6 +34,15 @@ class AkunAkutansiController extends Controller
     {
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
         $request->merge(['kas_bank' => $request->has('kas_bank') ? 1 : 0]);
+
+        $validator = Validator::make($request->all(), [
+            'kode' => 'required|unique:akun_akutansi',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('error', 'Gagal menambahkan, Kode akun tidak boleh sama');
+        }
+
         AkunAkutansi::create($request->all());
 
         return back()->with('success', 'Akun Akutansi added successfully');

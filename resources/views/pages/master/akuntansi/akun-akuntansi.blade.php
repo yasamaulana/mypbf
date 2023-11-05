@@ -125,27 +125,31 @@
                             <td class="">{{ $akun->nama_akun }}</td>
                             <td class="">{{ $akun->jenis_akun }}</td>
                             <td class="w-56 table-report__action">
-                                <div class="flex items-center justify-center">
-                                    <a class="flex items-center mr-3" href="javascript:;"data-tw-toggle="modal"
-                                        data-tw-target="#edit-akun{{ $akun->id }}"> <i data-feather="check-square"
-                                            class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#delete-confirmation-modal{{ $akun->id }}"> <i
-                                            data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
-                                    <!-- BEGIN: Delete Confirmation Modal -->
-                                    @include('components.modal-delete', [
-                                        'id_modal' => 'delete-confirmation-modal',
-                                        'id' => $akun->id,
-                                        'route' => 'delete.akun-akutansi',
-                                    ])
-                                    <!-- END: Delete Confirmation Modal -->
+                                @if (!in_array($akun->nama_akun, $list_akun))
+                                    <div class="flex items-center justify-center">
+                                        <a class="flex items-center mr-3" href="javascript:;"data-tw-toggle="modal"
+                                            data-tw-target="#edit-akun{{ $akun->id }}"> <i data-feather="check-square"
+                                                class="w-4 h-4 mr-1"></i> Edit </a>
+                                        <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
+                                            data-tw-target="#delete-confirmation-modal{{ $akun->id }}"> <i
+                                                data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                        <!-- BEGIN: Delete Confirmation Modal -->
+                                        @include('components.modal-delete', [
+                                            'id_modal' => 'delete-confirmation-modal',
+                                            'id' => $akun->id,
+                                            'route' => 'delete.akun-akutansi',
+                                        ])
+                                        <!-- END: Delete Confirmation Modal -->
 
-                                    @include('components.modal.modal-akun-akutansi', [
-                                        'id_modal' => 'edit-akun',
-                                        'route' => 'edit.akun-akutansi',
-                                        'id' => $akun->id,
-                                    ])
-                                </div>
+                                        @include('components.modal.modal-akun-akutansi', [
+                                            'id_modal' => 'edit-akun',
+                                            'route' => 'edit.akun-akutansi',
+                                            'id' => $akun->id,
+                                        ])
+                                    </div>
+                                @else
+                                    <p class="text-center">Tidak Tersedia</p>
+                                @endif
                             </td>
                         </tr>
                     @empty

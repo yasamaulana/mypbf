@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SubRakSeeder::class,
             ProdusenSeeder::class,
             DaftarObatSeeder::class,
+            AkunAkutansiSeeder::class,
         ]);
     }
 }
