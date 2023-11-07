@@ -34,8 +34,8 @@
                 <select data-tw-merge aria-label="Default select example" id="filterSelect" class="form-control"
                     onchange="selectOption()">
                     <option value="">- Pilih -</option>
-                    <option value="Hutang Dagang">Hutang Dagang</option>
-                    <option value="Hutang Kongsinyasi">Hutang Kongsinyasi</option>
+                    <option value="Piutang Dagang">Piutang Dagang</option>
+                    <option value="Piutang Konsinyasi">Piutang Konsinyasi</option>
                 </select>
             </div>
         </div>
