@@ -9,6 +9,7 @@ use App\Http\Controllers\HutangAwalController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisObatBarangController;
 use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
@@ -279,16 +280,23 @@ Route::get('/tambah-stok-opname', function () {
         'title' => 'persediaan'
     ]);
 })->middleware(['auth']);
-Route::get('/mutasi-stok', function () {
-    return view('pages.persediaan.mutasi-stok.mutasi', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
-Route::get('/tambah-mutasi-stok', function () {
-    return view('pages.persediaan.mutasi-stok.tambah-mutasi', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
+//mutasi stock
+Route::get('/mutasi-stok', [MutasiController::class, 'index'])->name('mutasi-stok');
+    // Route::get('/get-nama-barang/{id}', [StokAwalController::class, 'getNamaBarang'])->name('get-barang');
+    Route::get('/data-mutasi-stok', [MutasiController::class, 'datamutasi'])->name('data-mutasi');
+    Route::post('/tambah-mutasi', [MutasiController::class, 'tambahmutasi'])->name('tambah-mutasi');
+    // Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
+    // Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
+// Route::get('/mutasi-stok', function () {
+//     return view('pages.persediaan.mutasi-stok.mutasi', [
+//         'title' => 'persediaan'
+//     ]);
+// })->middleware(['auth']);
+// Route::get('/tambah-mutasi-stok', function () {
+//     return view('pages.persediaan.mutasi-stok.tambah-mutasi', [
+//         'title' => 'persediaan'
+//     ]);
+// })->middleware(['auth']);
 
 //transaksi
 //rencana pengadaan
