@@ -32,7 +32,7 @@ class StokAwalController extends Controller
         StokAwal::create($request->all());
 
         return back()->with('success', 'Stok Awal added successfully');
-    }
+    }  
 
     public function editStok(Request $request, $id)
     {

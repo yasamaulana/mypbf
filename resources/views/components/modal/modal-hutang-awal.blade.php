@@ -73,8 +73,8 @@
                                 <option {{ $hutangAwal && $hutangAwal->jns_hutang == 'Hutang Dagang' ? 'selected' : '' }}>
                                     Hutang Dagang
                                 </option>
-                                <option {{ $hutangAwal && $hutangAwal->jns_hutang == 'Hutang Kongsinyasi' ? 'selected' : '' }}>
-                                    Hutang Kongsinyasi
+                                <option {{ $hutangAwal && $hutangAwal->jns_hutang == 'Hutang Konsinyasi' ? 'selected' : '' }}>
+                                    Hutang Konsinyasi
                                 </option>
                             </select>
                             

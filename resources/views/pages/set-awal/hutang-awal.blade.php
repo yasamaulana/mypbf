@@ -35,7 +35,7 @@
                     id="filterSelect" onchange="selectOption()">
                     <option value="">- Pilih -</option>
                     <option value="Hutang Dagang">Hutang Dagang</option>
-                    <option value="Hutang Kongsinyasi">Hutang Kongsinyasi</option>
+                    <option value="Hutang Konsinyasi">Hutang Konsinyasi</option>
                 </select>
             </div>
         </div>

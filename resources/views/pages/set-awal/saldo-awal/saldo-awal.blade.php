@@ -23,24 +23,29 @@
             <div id="vertical-form" class="p-5">
                 <table class="table border border-slate-600">
                     <thead>
+
                         <tr>
                             <td class="border border-slate-600 bg-primary text-white">Akun</td>
                             <td class="border border-slate-600 bg-primary text-white">Saldo</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
+                        @foreach ($akunAktiva as $item)
+                            <tr>
+                                <td class="border border-slate-600">{{ $item->nama_akun }}</td>
+                                <td class="border border-slate-600">
+                                    @if ($item->nama_akun == 'Piutang Dagang' || $item->nama_akun == 'piutang dagang')
+                                        {{ 'Rp. ' . number_format($totalDagangPiutang, 2, ',', '.') }}
+                                    @endif
+                                    @if ($item->nama_akun == 'Piutang Konsinyasi' || $item->nama_akun == 'piutang konsinyasi')
+                                        {{ 'Rp. ' . number_format($totalKonsinyasiPiutang, 2, ',', '.') }}
+                                    @endif
+                                    @if ($item->nama_akun == 'Persediaan Dagang' || $item->nama_akun == 'persediaan dagang')
+                                        {{ 'Rp. ' . number_format($persediaanDagang, 2, ',', '.') }}
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                         <tr>
                             <td class="border border-slate-600 text-center bg-secondary font-bold">Total</td>
                             <td class="border border-slate-600"></td>
@@ -64,18 +69,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
-                        <tr>
-                            <td class="border border-slate-600"></td>
-                            <td class="border border-slate-600"></td>
-                        </tr>
+                        @foreach ($akunPasifa as $itemPasifa)
+                            <tr>
+                                <td class="border border-slate-600">{{ $itemPasifa->nama_akun }}</td>
+                                <td class="border border-slate-600">
+                                    @if ($itemPasifa->nama_akun == 'Hutang Dagang' || $itemPasifa->nama_akun == 'hutang dagang')
+                                        {{ 'Rp. ' . number_format($totalHutangDagang, 2, ',', '.') }}
+                                    @endif
+                                    @if ($itemPasifa->nama_akun == 'Hutang Konsinyasi' || $itemPasifa->nama_akun == 'hutang konsinyasi')
+                                        {{ 'Rp. ' . number_format($totalHutangKonsinyasi, 2, ',', '.') }}
+                                    @endif
+                                    @if ($itemPasifa->nama_akun == 'Modal Pemilik' || $itemPasifa->nama_akun == 'modal pemilik')
+                                        {{ 'Rp. ' . number_format($modal, 2, ',', '.') }}
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                         <tr>
                             <td class="border border-slate-600 text-center bg-secondary font-bold">Total</td>
                             <td class="border border-slate-600"></td>

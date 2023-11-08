@@ -17,6 +17,7 @@ use App\Http\Controllers\PiutangAwalController;
 use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RakController;
+use App\Http\Controllers\SaldoAwalController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SetAksesController;
@@ -244,6 +245,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/barcode-produk', [BarcodeController::class, 'indexProduk'])->name('barcode.produk');
     Route::get('/barcode-pelanggan', [BarcodeController::class, 'indexPelanggan'])->name('barcode.pelanggan');
     Route::get('/download-barcode/{data}', [BarcodeController::class, 'download'])->name('download.barcode');
+
+    // Saldo Awal
+    Route::get('/saldo-awal', [SaldoAwalController::class, 'index'])->name('saldo-awal');
 });
 
 
@@ -252,11 +256,6 @@ Route::get('/setting-akuntansi', function () {
     return view('');
 });
 
-Route::get('/saldo-awal', function () {
-    return view('pages.set-awal.saldo-awal.saldo-awal', [
-        'title' => 'setting awal'
-    ]);
-})->middleware(['auth']);
 Route::get('/tambah-saldo-awal', function () {
     return view('pages.set-awal.saldo-awal.tambah-saldo-awal', [
         'title' => 'setting awal'

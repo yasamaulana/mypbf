@@ -69,11 +69,11 @@
                             </label>
                             <select data-tw-merge aria-label="Default select example" class="form-control" name="jns_piutang" required>
                                 <option value="">- Pilih -</option>
-                                <option {{ $piutangAwal && $piutangAwal->jns_piutang == 'Hutang Dagang' ? 'selected' : '' }}>
-                                    Hutang Dagang
+                                <option {{ $piutangAwal && $piutangAwal->jns_piutang == 'Piutang Dagang' ? 'selected' : '' }}>
+                                    Piutang Dagang
                                 </option>
-                                <option {{ $piutangAwal && $piutangAwal->jns_piutang == 'Hutang Kongsinyasi' ? 'selected' : '' }}>
-                                    Hutang Kongsinyasi
+                                <option {{ $piutangAwal && $piutangAwal->jns_piutang == 'Piutang Konsinyasi' ? 'selected' : '' }}>
+                                    Piutang Konsinyasi
                                 </option>
                             </select>
                             
