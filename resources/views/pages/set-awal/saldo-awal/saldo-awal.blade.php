@@ -1,22 +1,22 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Saldo Awal
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="/tambah-saldo-awal"><button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal"
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
+            <a href="/tambah-saldo-awal"><button class="mr-2 shadow-md btn btn-primary" data-tw-toggle="modal"
                     data-tw-target="#basic-modal-preview">Tambah
                     Saldo Awal +</button></a>
         </div>
     </div>
-    <div class="sm:grid grid-cols-2 gap-4">
-        <div class="intro-y box mt-5">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                <h2 class="font-medium text-base mr-auto">
+    <div class="grid-cols-2 gap-4 sm:grid">
+        <div class="mt-5 intro-y box">
+            <div class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="mr-auto text-base font-medium">
                     Aktiva
                 </h2>
             </div>
@@ -25,8 +25,8 @@
                     <thead>
 
                         <tr>
-                            <td class="border border-slate-600 bg-primary text-white">Akun</td>
-                            <td class="border border-slate-600 bg-primary text-white">Saldo</td>
+                            <td class="text-white border border-slate-600 bg-primary">Akun</td>
+                            <td class="text-white border border-slate-600 bg-primary">Saldo</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,16 +47,18 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td class="border border-slate-600 text-center bg-secondary font-bold">Total</td>
-                            <td class="border border-slate-600"></td>
+                            <td class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
+                            <td class="border border-slate-600">
+                                {{ 'Rp. ' . number_format($totalDagangPiutang + $totalKonsinyasiPiutang + $persediaanDagang, 2, ',', '.') }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="intro-y box mt-5">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                <h2 class="font-medium text-base mr-auto">
+        <div class="mt-5 intro-y box">
+            <div class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="mr-auto text-base font-medium">
                     Pasiva
                 </h2>
             </div>
@@ -64,8 +66,8 @@
                 <table class="table border border-slate-600">
                     <thead>
                         <tr>
-                            <td class="border border-slate-600 bg-primary text-white">Akun</td>
-                            <td class="border border-slate-600 bg-primary text-white">Saldo</td>
+                            <td class="text-white border border-slate-600 bg-primary">Akun</td>
+                            <td class="text-white border border-slate-600 bg-primary">Saldo</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,8 +88,10 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td class="border border-slate-600 text-center bg-secondary font-bold">Total</td>
-                            <td class="border border-slate-600"></td>
+                            <td class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
+                            <td class="border border-slate-600">
+                                {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
