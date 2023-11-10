@@ -18,16 +18,15 @@
                                 <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
                                     Tahun
                                 </label>
-                                <input type="number" id="tahun" class="form-control" placeholder="Masukan Tahun"
-                                    name="tahun" min="1900" max="2099">
-
+                                <input type="number" class="form-control tahun" id="tahun"
+                                    placeholder="Masukan Tahun" name="tahun" min="1900" max="2099">
                             </div>
                             <div data-tw-merge class="items-center block mt-3 sm:flex">
                                 <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
                                     Bulan
                                 </label>
-                                <select data-tw-merge name="bulan" aria-label="Default select example"
-                                    class="form-control w-44">
+                                <select data-tw-merge id="bulanSelect" name="bulan"
+                                    aria-label="Default select example" class="form-control w-44 bulanSelect">
                                     <option value="">- Pilih -</option>
                                     <option value="Januari">Januari</option>
                                     <option value="Februari">Februari</option>
@@ -74,8 +73,10 @@
                                             <td class="border border-slate-600">{{ $obatBarang->tipe }}</td>
                                             <td class="border border-slate-600">
                                                 <input data-tw-merge id="horizontal-form-1" type="number"
-                                                    placeholder="" name="target"
+                                                    placeholder="" name="target[{{ $loop->index }}][target_produk]"
                                                     class="w-32 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                                <input type="hidden" name="target[{{ $loop->index }}][id_produk]"
+                                                    value="{{ $obatBarang->id }}">
                                             </td>
                                             <td class="border border-slate-600">Contoh data</td>
                                             <td class="border border-slate-600">Contoh data</td>
@@ -121,6 +122,23 @@
                     tr[i].style.display = "none";
                 }
             }
+        }
+    }
+
+    function updateHiddenFields() {
+        const tahunInputs = document.querySelectorAll('.tahun');
+        const bulanSelects = document.querySelectorAll('.bulanSelect');
+        const tahunHiddenInputs = document.querySelectorAll('.tahunHidden');
+        const bulanHiddenInputs = document.querySelectorAll('.bulanHidden');
+
+        for (let i = 0; i < tahunInputs.length; i++) {
+            const tahunInput = tahunInputs[i];
+            const bulanSelect = bulanSelects[i];
+            const tahunHidden = tahunHiddenInputs[i];
+            const bulanHidden = bulanHiddenInputs[i];
+
+            tahunHidden.value = tahunInput.value;
+            bulanHidden.value = bulanSelect.value;
         }
     }
 </script>

@@ -13,62 +13,69 @@ class TargetProdukController extends Controller
     {
         return view('pages.perusahaan.marketing.target-produk', [
             'title' => 'master',
-            'targetProduks' => TargetProduk::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'targetProduks' => TargetProduk::where('id_perusahaan', Auth::user()->id_perusahaan)->groupBy('tahun', 'bulan')
+                ->get(),
             'obatBarangs' => ObatBarang::where('id_perusahaan', Auth::user()->id_perusahaan)->get()
         ]);
     }
 
     public function tambahTargetProduk(Request $request)
     {
+        $targets = $request->target;
 
-        $currentDateTime = now();
+        foreach ($targets as $target) {
+            TargetProduk::create([
+                'id_perusahaan' => Auth::user()->id_perusahaan,
+                'id_produk' => $target['id_produk'],
+                'tahun' => $request->tahun,
+                'bulan' => $request->bulan,
+                'target' => $target['target_produk'],
+            ]);
+        }
 
-        $request->validate([
-            'inputs.*.target' => '', // Tambahkan validasi sesuai kebutuhan Anda
-            'inputs.*.obat_barang_id' => 'numeric',
-            'inputs.*.tahun' => 'numeric',
-            'inputs.*.id_perusahaan' => 'numeric',
-            'inputs.*.tahunTarget' => '',
-            'inputs.*.bulanTarget' => '',
-        ]);
+        return back()->with('success', 'Berhasil menambahkan target');
+    }
 
-        $dataToInsert = [];
-        foreach ($request->inputs as $input) {
-            // Cek apakah nilai target lebih besar dari 0, jika ya, maka tambahkan ke $dataToInsert
-            if ($input['target'] > 0) {
-                $dataToInsert[] = [
-                    'id_perusahaan' => $input['id_perusahaan'],
-                    'obat_barang_id' => $input['obat_barang_id'],
-                    'target' => $input['target'],
-                    'tahun' => $input['tahun'],
-                    'tahun_target' => $input['tahunTarget'],
-                    'bulan_target' => $input['bulanTarget'],
-                    'created_at' => $currentDateTime,
-                    'updated_at' => $currentDateTime,
-                ];
+    public function editTargetProduk(Request $request)
+    {
+        $targets = $request->target;
+
+        foreach ($targets as $target) {
+            // Find the existing record based on 'id_produk,' 'tahun,' and 'bulan'
+            $existingTarget = TargetProduk::where('id_produk', $target['id_produk'])
+                ->where('tahun', $request->tahun)
+                ->where('bulan', $request->bulan)
+                ->first();
+
+            // Update the 'target' value if the record exists, otherwise create a new one
+            if ($existingTarget) {
+                $existingTarget->update(['target' => $target['target_produk']]);
+            } else {
+                TargetProduk::create([
+                    'id_perusahaan' => Auth::user()->id_perusahaan,
+                    'id_produk' => $target['id_produk'],
+                    'tahun' => $request->tahun,
+                    'bulan' => $request->bulan,
+                    'target' => $target['target_produk'],
+                ]);
             }
         }
 
-        if (!empty($dataToInsert)) {
-            TargetProduk::insert($dataToInsert);
-            return back()->with('success', 'Target Produk added successfully');
+        return back()->with('success', 'Berhasil mengedit target');
+    }
+
+    public function deleteTargetProduk(Request $request)
+    {
+        $targets = $request->target;
+
+        foreach ($targets as $target) {
+            // Find and delete the existing record based on 'id_produk,' 'tahun,' and 'bulan'
+            TargetProduk::where('id_produk', $target['id_produk'])
+                ->where('tahun', $request->tahun)
+                ->where('bulan', $request->bulan)
+                ->delete();
         }
 
-        return back()->with('error', 'No valid targets were provided');
-    }
-
-    public function editTargetProduk(Request $request, $id)
-    {
-        $targetProduk = TargetProduk::find($id);
-        $targetProduk->update($request->all());
-
-        return back()->with('success', 'Target Produk Updated successfully');
-    }
-
-    public function deleteTargetProduk($id)
-    {
-        $targetProduk = TargetProduk::find($id);
-        $targetProduk->delete();
-        return back()->with('success', 'Target Produk Deleted successfully');
+        return back()->with('success', 'Berhasil menghapus target');
     }
 }

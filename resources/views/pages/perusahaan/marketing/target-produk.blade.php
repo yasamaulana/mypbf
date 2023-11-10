@@ -57,8 +57,8 @@
                     @forelse ($targetProduks as $targetProduk)
                         <tr class="intro-x">
                             <td class="w-40">{{ $loop->iteration }}</td>
-                            <td class="">{{ $targetProduk->tahun_target }}</td>
-                            <td class="">{{ $targetProduk->bulan_target }}</td>
+                            <td class="">{{ $targetProduk->tahun }}</td>
+                            <td class="">{{ $targetProduk->bulan }}</td>
                             <td class="table-report__action w-72">
                                 <div class="flex items-center justify-center">
                                     <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
@@ -83,7 +83,6 @@
                                         'id_modal' => 'edit-target-produk',
                                         'route' => 'edit.target_produk',
                                         'id' => $targetProduk->id,
-                                        'targetProduk' => $targetProduk,
                                     ])
                                 </div>
                             </td>
@@ -109,7 +108,7 @@
             let displayedRowCount = 0;
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[3];
+                td = tr[i].getElementsByTagName("td")[2];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase() === filterSelect.toUpperCase() || filterSelect === "") {

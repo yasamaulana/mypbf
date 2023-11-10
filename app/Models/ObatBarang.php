@@ -22,9 +22,4 @@ class ObatBarang extends Model
     {
         return $this->hasOne(StokAwal::class, 'id_obat_barang', 'id');
     }
-
-    public function targetProduk()
-    {
-        return $this->hasOne(TargetProduk::class);
-    }
 }

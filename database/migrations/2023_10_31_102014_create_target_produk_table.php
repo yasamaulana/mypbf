@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('target_produk', function (Blueprint $table) {
             $table->id();
             $table->string('id_perusahaan');
-            $table->string('id_target');
-            $table->foreignId('obat_barang_id');
-            $table->string('target');
+            $table->foreignId('id_produk');
             $table->string('tahun');
             $table->string('bulan');
+            $table->string('target');
             $table->timestamps();
         });
     }

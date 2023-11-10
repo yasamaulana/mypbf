@@ -13,6 +13,6 @@ class TargetProduk extends Model
 
     public function obatBarang()
     {
-        return $this->belongsTo(ObatBarang::class);
+        return $this->hasOne(ObatBarang::class, 'id', 'id_produk');
     }
 }
