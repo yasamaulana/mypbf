@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AkunAkutansi;
 use App\Models\HutangAwal;
 use App\Models\PiutangAwal;
-use App\Models\SaldoAwal;
 use App\Models\StokAwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class SaldoAwalController extends Controller
 {
@@ -62,8 +60,6 @@ class SaldoAwalController extends Controller
             $isi[$value->produk->id] = $value->produk->isi;
             $hpp[$value->produk->id] = $value->hpp;
         }
-        // var_dump($isi);
-        // var_dump($hpp);
         $result = [];
 
         foreach ($isi as $key1 => $value1) {

@@ -7,13 +7,13 @@
         <form action="{{ route($route, ['id' => $id]) }}" method="POST">
             @csrf
             <div class="modal-content">
-                <div class="modal-body p-10">
+                <div class="p-10 modal-body">
                     <div class="preview">
-                        <div data-tw-merge class="block sm:flex items-center">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Kode
                             </label>
-                            <div class="flex gap-3 w-full">
+                            <div class="flex w-full gap-3">
                                 <input data-tw-merge id="horizontal-form-1" type="text" placeholder="Auto"
                                     name="kode"
                                     value="{{ $pelanggan ? $pelanggan->kode : rand(pow(10, 10), pow(10, 11) - 1) }}"
@@ -23,8 +23,8 @@
                                     class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                             </div>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Tipe
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="tipe"
@@ -45,25 +45,25 @@
                                     Toko Obat</option>
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Nama
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="text" name="nama"
                                 value="{{ $pelanggan ? $pelanggan->nama : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Alamat
                             </label>
                             <textarea name="alamat" id="" rows="2" class="form-control">{{ $pelanggan ? $pelanggan->alamat : '' }}</textarea>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Provinsi
                             </label>
-                            <select data-placeholder="Select your favorite actors" class="tom-select w-full"
+                            <select data-placeholder="Select your favorite actors" class="w-full tom-select"
                                 name="provinsi">
                                 @foreach (Province::all() as $prov)
                                     <option
@@ -72,11 +72,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Kab/Kota
                             </label>
-                            <select data-placeholder="Select your favorite actors" class="tom-select w-full"
+                            <select data-placeholder="Select your favorite actors" class="w-full tom-select"
                                 name="kabupaten">
                                 @foreach (City::all() as $kota)
                                     <option
@@ -85,59 +85,60 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Nomor
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="number" name="nomor"
                                 value="{{ $pelanggan ? $pelanggan->nomor : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 NPWP
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="text" name="npwp"
                                 value="{{ $pelanggan ? $pelanggan->npwp : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Batas Piutang
                             </label>
-                            <input data-tw-merge id="horizontal-form-1" type="text" name="batas_piutang"
+                            <input data-tw-merge id="horizontal-form-1" type="number" name="batas_piutang"
                                 value="{{ $pelanggan ? $pelanggan->batas_piutang : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Batas JT
                             </label>
-                            <input data-tw-merge id="horizontal-form-1" type="text" name="batas_jt"
+                            <input data-tw-merge id="horizontal-form-1" type="number" name="batas_jt"
                                 value="{{ $pelanggan ? $pelanggan->batas_jt : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                            <p class="ml-3">Hari</p>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Apoteker
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="text" name="apoteker"
                                 value="{{ $pelanggan ? $pelanggan->apoteker : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 No SIPA
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="text" name="no_sipa"
                                 value="{{ $pelanggan ? $pelanggan->no_sipa : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 EXP Date SIPA
                             </label>
-                            <div class="flex gap-3 w-full">
+                            <div class="flex w-full gap-3">
                                 <input data-tw-merge id="horizontal-form-1" type="date" name="exp_date_sipa"
                                     value="{{ $pelanggan ? $pelanggan->exp_date_sipa : '' }}"
                                     class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
@@ -149,19 +150,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 No SIA
                             </label>
                             <input data-tw-merge id="horizontal-form-1" type="text" name="no_sia"
                                 value="{{ $pelanggan ? $pelanggan->no_sia : '' }}"
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 EXP Date SIA
                             </label>
-                            <div class="flex gap-3 w-full">
+                            <div class="flex w-full gap-3">
                                 <input data-tw-merge id="horizontal-form-1" type="date" name="exp_date_sia"
                                     value="{{ $pelanggan ? $pelanggan->exp_date_sia : '' }}"
                                     class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
@@ -173,8 +174,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Hari Tagih
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="hari_tagih"
@@ -195,8 +196,8 @@
                                     Minggu</option>
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Kelompok
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="kelompok"
@@ -208,8 +209,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Supervisor
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="supervisor"
@@ -221,8 +222,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Sales
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="sales"
@@ -234,8 +235,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div data-tw-merge class="block sm:flex items-center mt-3">
-                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-32">
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
                                 Kolektor
                             </label>
                             <select data-tw-merge aria-label="Default select example" name="kolektor"
@@ -247,12 +248,38 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
+                                Area Rayon
+                            </label>
+                            <select data-tw-merge aria-label="Default select example" name="area_rayon"
+                                class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                @foreach ($rayons as $rayon)
+                                    <option
+                                        {{ $pelanggan ? ($pelanggan->area_rayon == $rayon->area_rayon ? 'selected' : '') : '' }}>
+                                        {{ $rayon->area_rayon }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div data-tw-merge class="items-center block mt-3 sm:flex">
+                            <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-32">
+                                Sub Rayon
+                            </label>
+                            <select data-tw-merge aria-label="Default select example" name="sub_rayon"
+                                class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 mt-2 sm:mr-2 mt-2 sm:mr-2">
+                                @foreach ($sub_rayons as $rayon)
+                                    <option
+                                        {{ $pelanggan ? ($pelanggan->sub_rayon == $rayon->sub_rayon ? 'selected' : '') : '' }}>
+                                        {{ $rayon->sub_rayon }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     </div>
                 </div>
                 {{-- footer --}}
                 <div class="modal-footer">
-                    <button class="btn btn-primary mt-5">Simpan</button>
+                    <button class="mt-5 btn btn-primary">Simpan</button>
                 </div>
             </div>
         </form>

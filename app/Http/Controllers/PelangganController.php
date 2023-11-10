@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreaRayon;
 use App\Models\Kelompok;
 use App\Models\Pegawai;
 use App\Models\Pelanggan;
+use App\Models\SubRayon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +19,8 @@ class PelangganController extends Controller
             'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'kelompoks' => Kelompok::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'pelanggans' => Pelanggan::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'rayons' => AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'sub_rayons' => SubRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
         ]);
     }
 

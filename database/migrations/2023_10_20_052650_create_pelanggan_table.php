@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('supervisor');
             $table->string('sales');
             $table->string('kolektor');
+            $table->string('area_rayon');
+            $table->string('sub_rayon');
             $table->timestamps();
         });
     }

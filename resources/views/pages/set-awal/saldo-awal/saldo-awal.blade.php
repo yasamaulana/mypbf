@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($akunAktiva as $item)
+                        @forelse ($akunAktiva as $item)
                             <tr>
                                 <td class="border border-slate-600">{{ $item->nama_akun }}</td>
                                 <td class="border border-slate-600">
@@ -45,7 +45,11 @@
                                     @endif
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <p>Belum tersedia data</p>
+                            </tr>
+                        @endforelse
                         <tr>
                             <td class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
                             <td class="border border-slate-600">
