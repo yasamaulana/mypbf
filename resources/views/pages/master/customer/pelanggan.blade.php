@@ -1,14 +1,14 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Pelanggan
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#tambah-pelanggan">Tambah
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
+            <button class="mr-2 shadow-md btn btn-primary" data-tw-toggle="modal" data-tw-target="#tambah-pelanggan">Tambah
                 Pelanggan</button>
             <!-- BEGIN: Modal Content -->
             @include('components.modal.modal-pelanggan', [
@@ -19,15 +19,15 @@
             ])
             <!-- END: Modal Content -->
 
-            <div class="w-56 relative text-slate-500 ">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+            <div class="relative w-56 text-slate-500 ">
+                <input type="text" class="w-56 pr-10 form-control box" placeholder="Search...">
+                <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
             </div>
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
             <div class="overflow-auto">
-                <table class="table table-report -mt-2">
+                <table class="table -mt-2 table-report">
                     <thead>
                         <tr>
                             <th class="whitespace-nowrap">Kode</th>
@@ -51,15 +51,16 @@
                                 <td class="">{{ $pelanggan->nama }}</td>
                                 <td class="">{{ $pelanggan->alamat }}</td>
                                 <td class="">{{ $pelanggan->no_sia }}</td>
-                                <td class="">{{ $pelanggan->exp_date_sia }}</td>
+                                <td class="">{{ date('d-m-Y', strtotime($pelanggan->exp_date_sia)) }}</td>
                                 <td class="">{{ $pelanggan->nomor }}</td>
                                 <td class="">{{ $pelanggan->apoteker }}</td>
                                 <td class="">{{ $pelanggan->no_sipa }}</td>
-                                <td class="">{{ $pelanggan->exp_date_sipa }}</td>
+                                <td class="">{{ date('d-m-Y', strtotime($pelanggan->exp_date_sipa)) }}
+                                </td>
                                 <td class="">{{ $pelanggan->kelompok }}</td>
                                 <td class="">{{ $pelanggan->batas_piutang }}</td>
-                                <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center">
+                                <td class="w-56 table-report__action">
+                                    <div class="flex items-center justify-center">
                                         <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
                                             data-tw-target="#edit-pelanggan{{ $pelanggan->id }}"> <i
                                                 data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
