@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('subrak_asal');
             $table->string('keterangan');
             $table->timestamps();
+
         });
     }
 
