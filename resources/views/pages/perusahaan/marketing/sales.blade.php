@@ -7,8 +7,8 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Sales
         </h2>
     </div>
@@ -16,46 +16,46 @@
         @include('components.alert')
     @endif
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
-                Data</button>
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
+            <button class="mr-2 shadow-md btn btn-primary" data-tw-toggle="modal" data-tw-target="#basic-modal-preview">Tambah
+                +</button>
             <!-- BEGIN: Modal Content -->
             <div id="basic-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-body p-10">
+                        <div class="p-10 modal-body">
                             <div class="preview">
                                 <form action="{{ route('tambah.sales') }}" method="POST">
                                     @csrf
                                     <div>
-                                        <div class="intro-y col-span-12 sm:col-span-6 mt-3">
-                                            <label for="input-wizard-6" class="form-label font-bold">Supervisor</label>
+                                        <div class="col-span-12 mt-3 intro-y sm:col-span-6">
+                                            <label for="input-wizard-6" class="font-bold form-label">Supervisor</label>
                                             <select id="input-wizard-6" class="form-select" required name="supervisor">
-                                                @foreach (Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
+                                                @foreach ($pegawais as $pegawai)
                                                     <option value="{{ $pegawai->nama_pegawai }}">
                                                         {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="intro-y col-span-12 sm:col-span-6 mt-3">
-                                            <label for="input-wizard-6" class="form-label font-bold">Area Rayon</label>
+                                        <div class="col-span-12 mt-3 intro-y sm:col-span-6">
+                                            <label for="input-wizard-6" class="font-bold form-label">Area Rayon</label>
                                             <select id="input-wizard-6" class="form-select" required name="area_rayon">
                                                 @foreach (AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
                                                     <option>{{ $pegawai->area_rayon }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="intro-y col-span-12 sm:col-span-6 mt-3">
-                                            <label for="input-wizard-6" class="form-label font-bold">Sales</label>
+                                        <div class="col-span-12 mt-3 intro-y sm:col-span-6">
+                                            <label for="input-wizard-6" class="font-bold form-label">Sales</label>
                                             <select id="input-wizard-6" class="form-select" required name="sales">
-                                                @foreach (Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
+                                                @foreach ($pegawais as $pegawai)
                                                     <option value="{{ $pegawai->nama_pegawai }}">
                                                         {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="intro-y col-span-12 sm:col-span-6 mt-3">
-                                            <label for="input-wizard-6" class="form-label font-bold">Sub Rayon</label>
+                                        <div class="col-span-12 mt-3 intro-y sm:col-span-6">
+                                            <label for="input-wizard-6" class="font-bold form-label">Sub Rayon</label>
                                             <select id="input-wizard-6" required name="sub_rayon" class="form-select">
                                                 @foreach (SubRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
                                                     <option>{{ $pegawai->sub_rayon }}</option>
@@ -63,7 +63,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-5">Simpan</button>
+                                    <button type="submit" class="mt-5 btn btn-primary">Simpan</button>
                                 </form>
                             </div>
                         </div>
@@ -72,14 +72,13 @@
             </div>
             <!-- END: Modal Content -->
 
-            <div class="w-56 relative text-slate-500 ">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-            </div>
+            @include('components.search', [
+                'id_table' => 'myTable',
+            ])
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <table class="table -mt-2 table-report" id="myTable">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">Nomor</th>
@@ -93,7 +92,7 @@
                 <tbody>
                     @if (!$sales->isNotEmpty())
                         <tr class="intro-x">
-                            <td class="text-center font-bold" colspan="6">Belum ada data tersedia</td>
+                            <td class="font-bold text-center" colspan="6">Belum ada data tersedia</td>
                         </tr>
                     @endif
                     @foreach ($sales as $item)
@@ -103,8 +102,8 @@
                             <td class="">{{ $item->sales }}</td>
                             <td class="">{{ $item->area_rayon }}</td>
                             <td class="">{{ $item->sub_rayon }}</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
+                            <td class="w-56 table-report__action">
+                                <div class="flex items-center justify-center">
                                     <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
                                         data-tw-target="#edit-sales{{ $item->id }}"> <i data-feather="check-square"
                                             class="w-4 h-4 mr-1"></i> Edit </a>
@@ -123,18 +122,18 @@
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <div class="modal-body p-10">
+                                                <div class="p-10 modal-body">
                                                     <div class="preview">
                                                         <form action="{{ route('edit.sales', ['id' => $item->id]) }}"
                                                             method="POST">
                                                             @csrf
                                                             <div>
-                                                                <div class="intro-y col-span-12 sm:col-span-6 mt-3">
+                                                                <div class="col-span-12 mt-3 intro-y sm:col-span-6">
                                                                     <label for="input-wizard-6"
-                                                                        class="form-label font-bold">Supervisor</label>
+                                                                        class="font-bold form-label">Supervisor</label>
                                                                     <select id="input-wizard-6" class="form-select" required
                                                                         name="supervisor">
-                                                                        @foreach (Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
+                                                                        @foreach ($pegawais as $pegawai)
                                                                             <option
                                                                                 {{ $item->supervisor == $pegawai->nama_pegawai ? 'selected' : '' }}
                                                                                 value="{{ $pegawai->nama_pegawai }}">
@@ -143,11 +142,11 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="intro-y col-span-12 sm:col-span-6 mt-3">
+                                                                <div class="col-span-12 mt-3 intro-y sm:col-span-6">
                                                                     <label for="input-wizard-6"
-                                                                        class="form-label font-bold">Area Rayon</label>
-                                                                    <select id="input-wizard-6" class="form-select"
-                                                                        required name="area_rayon">
+                                                                        class="font-bold form-label">Area Rayon</label>
+                                                                    <select id="input-wizard-6" class="form-select" required
+                                                                        name="area_rayon">
                                                                         @foreach (AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $rayon)
                                                                             <option
                                                                                 {{ $item->area_rayon == $rayon->area_rayon ? 'selected' : '' }}>
@@ -156,12 +155,12 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="intro-y col-span-12 sm:col-span-6 mt-3">
+                                                                <div class="col-span-12 mt-3 intro-y sm:col-span-6">
                                                                     <label for="input-wizard-6"
-                                                                        class="form-label font-bold">Sales</label>
+                                                                        class="font-bold form-label">Sales</label>
                                                                     <select id="input-wizard-6" class="form-select"
                                                                         required name="sales">
-                                                                        @foreach (Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $pegawai)
+                                                                        @foreach ($pegawais as $pegawai)
                                                                             <option value="{{ $pegawai->nama_pegawai }}"
                                                                                 {{ $item->sales == $pegawai->nama_pegawai ? 'selected' : '' }}>
                                                                                 {{ $pegawai->nama_pegawai }} -
@@ -169,9 +168,9 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="intro-y col-span-12 sm:col-span-6 mt-3">
+                                                                <div class="col-span-12 mt-3 intro-y sm:col-span-6">
                                                                     <label for="input-wizard-6"
-                                                                        class="form-label font-bold">Sub Rayon</label>
+                                                                        class="font-bold form-label">Sub Rayon</label>
                                                                     <select id="input-wizard-6" required name="sub_rayon"
                                                                         class="form-select">
                                                                         @foreach (SubRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get() as $subrayon)
@@ -183,7 +182,7 @@
                                                                 </div>
                                                             </div>
                                                             <button type="submit"
-                                                                class="btn btn-primary mt-5">Simpan</button>
+                                                                class="mt-5 btn btn-primary">Simpan</button>
                                                         </form>
                                                     </div>
                                                 </div>

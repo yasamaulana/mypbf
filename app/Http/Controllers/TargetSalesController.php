@@ -15,7 +15,7 @@ class TargetSalesController extends Controller
     {
         return view('pages.perusahaan.marketing.target-sales', [
             'title' => "perusahaan",
-            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->where('marketing', 'on')->get(),
             'rayons' => AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'sub_rayon' => SubRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'targets' => TargetSales::where('id_perusahaan', Auth::user()->id_perusahaan)->get()

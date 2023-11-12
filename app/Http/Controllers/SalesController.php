@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pegawai;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ class SalesController extends Controller
     {
         return view('pages.perusahaan.marketing.sales', [
             'title' => "perusahaan",
-            'sales' => Sales::where('id_perusahaan', Auth::user()->id_perusahaan)->get()
+            'sales' => Sales::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->where('marketing', 'on')->get(),
         ]);
     }
 

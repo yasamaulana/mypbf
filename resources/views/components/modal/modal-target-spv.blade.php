@@ -2,7 +2,7 @@
  <div id="{{ $id_modal . $id }}" class="modal" tabindex="-1" aria-hidden="true">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
-             <div class="modal-body p-10">
+             <div class="p-10 modal-body">
                  <div class="preview">
                      <form action="{{ route($route, ['id' => $id]) }}" method="POST">
                          @csrf
@@ -10,15 +10,15 @@
                              <tr>
                                  <td>
                                      <label for="input-wizard-6"
-                                         class="mt-2 mr-3 form-label font-bold">Supervisor</label>
+                                         class="mt-2 mr-3 font-bold form-label">Supervisor</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" required name="supervisor">
                                              @foreach ($pegawais as $pegawai)
                                                  <option
                                                      {{ $target ? ($target->supervisor == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                                     {{ $pegawai->nama_pegawai }}
+                                                     {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}
                                                  </option>
                                              @endforeach
                                          </select>
@@ -27,11 +27,11 @@
                              </tr>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Area
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Area
                                          Rayon</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" required name="area_rayon">
                                              @foreach ($rayons as $rayon)
                                                  <option
@@ -44,10 +44,10 @@
                              </tr>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Tahun</label>
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Tahun</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <input class="form-control" type="number" id="tahun" name="tahun"
                                              min="1900" max="2099" step="1" required
                                              value="{{ $target ? $target->tahun : '' }}">
@@ -56,7 +56,7 @@
                              </tr>
                          </table>
 
-                         <table class="table border border-slate-400 mt-5">
+                         <table class="table mt-5 border border-slate-400">
                              <thead>
                                  <tr>
                                      <td>Bulan</td>
@@ -202,8 +202,8 @@
                          </table>
                          @if (!$lihat)
                              <div class="modal-footer">
-                                 <button class="btn btn-secondary mt-5" data-tw-dismiss="modal">Batal</button>
-                                 <button type="submit" class="btn btn-primary mt-5">Simpan</button>
+                                 <button class="mt-5 btn btn-secondary" data-tw-dismiss="modal">Batal</button>
+                                 <button type="submit" class="mt-5 btn btn-primary">Simpan</button>
                              </div>
                          @endif
                      </form>

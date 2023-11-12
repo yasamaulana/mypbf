@@ -14,7 +14,7 @@ class TargetSPVController extends Controller
     {
         return view('pages.perusahaan.marketing.target-spv', [
             'title' => "perusahaan",
-            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->where('marketing', 'on')->get(),
             'rayons' => AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'targets' => TargetSPV::where('id_perusahaan', Auth::user()->id_perusahaan)->get()
         ]);
