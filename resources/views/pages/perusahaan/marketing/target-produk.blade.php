@@ -16,6 +16,7 @@
                 'id_modal' => 'tambah-data',
                 'route' => 'tambah.target_produk',
                 'id' => '',
+                'lihat' => false,
             ])
             <!-- END: Modal Content -->
 
@@ -68,14 +69,53 @@
                                         data-tw-target="#delete-target-produk{{ $targetProduk->id }}"> <i
                                             data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                     <a class="flex items-center mx-3 mr-3 text-warning" href="javascript:;"
-                                        data-tw-toggle="modal" data-tw-target="#modal-lihat"> <i data-feather="eye"
-                                            class="w-4 h-4 mr-1"></i> Lihat </a>
+                                        data-tw-toggle="modal" data-tw-target="#modal-lihat{{ $targetProduk->id }}"> <i
+                                            data-feather="eye" class="w-4 h-4 mr-1"></i> Lihat </a>
                                     <!-- BEGIN: Delete Confirmation Modal -->
-                                    @include('components.modal-delete', [
-                                        'id_modal' => 'delete-target-produk',
-                                        'id' => $targetProduk->id,
-                                        'route' => 'delete.target_produk',
-                                    ])
+                                    <div id="delete-target-produk{{ $targetProduk->id }}" class="modal" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="p-0 modal-body">
+                                                    <div class="p-5 text-center">
+                                                        <i data-feather="x-circle"
+                                                            class="w-16 h-16 mx-auto mt-3 text-danger"></i>
+                                                        <div class="mt-5 text-3xl">Are you sure?</div>
+                                                        <div class="mt-2 text-slate-500">
+                                                            Do you really want to delete these records?
+                                                            <br>
+                                                            This process cannot be undone.
+                                                        </div>
+                                                    </div>
+                                                    <div class="px-5 pb-8 text-center">
+                                                        <form
+                                                            action="{{ route('delete.target_produk', ['id' => $targetProduk->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $targetProduk->tahun }}"
+                                                                name="tahun">
+                                                            <input type="hidden" value="{{ $targetProduk->bulan }}"
+                                                                name="bulan">
+                                                            @foreach ($targets->where('tahun', $targetProduk->tahun)->where('bulan', $targetProduk->bulan)->get() as $targetProduk)
+                                                                <input data-tw-merge id="horizontal-form-1" type="hidden"
+                                                                    placeholder=""
+                                                                    name="target[{{ $loop->index }}][target_produk]"
+                                                                    value="{{ $targetProduk->target }}">
+                                                                <input type="hidden"
+                                                                    name="target[{{ $loop->index }}][id_produk]"
+                                                                    value="{{ $targetProduk->obatBarang->id }}">
+                                                            @endforeach
+                                                            <button type="button" data-tw-dismiss="modal"
+                                                                class="w-24 mr-1 btn btn-outline-secondary">Cancel</button>
+                                                            <button type="submit"
+                                                                class="w-24 btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- END: Delete Confirmation Modal -->
 
                                     {{-- edit modal --}}
@@ -83,6 +123,15 @@
                                         'id_modal' => 'edit-target-produk',
                                         'route' => 'edit.target_produk',
                                         'id' => $targetProduk->id,
+                                        'lihat' => false,
+                                    ])
+
+                                    {{-- edit modal --}}
+                                    @include('components.modal.modal-edit-target-produk', [
+                                        'id_modal' => 'modal-lihat',
+                                        'route' => 'edit.target_produk',
+                                        'id' => $targetProduk->id,
+                                        'lihat' => true,
                                     ])
                                 </div>
                             </td>

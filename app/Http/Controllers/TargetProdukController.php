@@ -15,6 +15,7 @@ class TargetProdukController extends Controller
             'title' => 'master',
             'targetProduks' => TargetProduk::where('id_perusahaan', Auth::user()->id_perusahaan)->groupBy('tahun', 'bulan')
                 ->get(),
+            'targets' => TargetProduk::where('id_perusahaan', Auth::user()->id_perusahaan),
             'obatBarangs' => ObatBarang::where('id_perusahaan', Auth::user()->id_perusahaan)->get()
         ]);
     }
@@ -69,7 +70,6 @@ class TargetProdukController extends Controller
         $targets = $request->target;
 
         foreach ($targets as $target) {
-            // Find and delete the existing record based on 'id_produk,' 'tahun,' and 'bulan'
             TargetProduk::where('id_produk', $target['id_produk'])
                 ->where('tahun', $request->tahun)
                 ->where('bulan', $request->bulan)
