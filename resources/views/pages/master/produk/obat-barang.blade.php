@@ -20,16 +20,15 @@
                 'barang' => '',
             ])
             {{-- end modal --}}
-            <div class="relative w-56 text-slate-500 ">
-                <input type="text" class="w-56 pr-10 form-control box" placeholder="Search...">
-                <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
-            </div>
+            @include('components.search', [
+                'id_table' => 'myTable',
+            ])
         </div>
     </div>
     <!-- BEGIN: Data List -->
     <div class="col-span-12 mt-5 overflow-auto intro-y lg:overflow-visible">
         <div class="overflow-auto">
-            <table class="table -mt-2 table-report">
+            <table class="table -mt-2 table-report" id="myTable">
                 <thead>
                     <tr>
                         <th class="">Kode obat</th>

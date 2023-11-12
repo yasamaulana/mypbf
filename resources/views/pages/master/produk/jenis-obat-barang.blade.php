@@ -1,15 +1,15 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Jenis Produk
         </h2>
     </div>
     @include('components.alert')
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal"
+        <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
+            <button class="mr-2 shadow-md btn btn-primary" data-tw-toggle="modal"
                 data-tw-target="#tambah-jenis">Tambah</button>
             <!-- BEGIN: Modal Content -->
             @include('components.modal.modal-jenis-obat', [
@@ -20,14 +20,13 @@
             ])
             <!-- END: Modal Content -->
 
-            <div class="w-56 relative text-slate-500 ">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-            </div>
+            @include('components.search', [
+                'id_table' => 'myTable',
+            ])
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <table class="table -mt-2 table-report" id="myTable">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">Nomor</th>
@@ -40,8 +39,8 @@
                         <tr class="intro-x">
                             <td class="w-40">{{ $loop->iteration }}</td>
                             <td class="">{{ $jenis->jenis }}</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
+                            <td class="w-56 table-report__action">
+                                <div class="flex items-center justify-center">
                                     <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
                                         data-tw-target="#edit-jenis-obat{{ $jenis->id }}"> <i data-feather="check-square"
                                             class="w-4 h-4 mr-1"></i> Edit </a>
