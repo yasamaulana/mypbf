@@ -15,9 +15,13 @@
                     Gudang
                 </label>
                 <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                    <option value="">- Pilih -</option>
+                    @foreach ($gudangs as $gudang)
+                        <option value="{{ $gudang->id }}"
+                            {{ $gudang ? ($gudang->id == $gudang->id ? 'selected' : '') : '' }}>
+                            {{ $gudang->gudang }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div data-tw-merge class="block sm:flex items-center">
@@ -25,9 +29,11 @@
                     Rak
                 </label>
                 <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                    @foreach ($raks as $rak)
+                        <option value="{{ $rak->id }}" {{ $rak ? ($rak->id == $rak->id ? 'selected' : '') : '' }}>
+                            {{ $rak->rak }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div data-tw-merge class="block sm:flex items-center">
@@ -35,19 +41,23 @@
                     Sub Rak
                 </label>
                 <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                    @foreach ($stoks as $stok)
+                        <option value="{{ $stok->id }}" {{ $stok ? ($stok->id == $stok->id ? 'selected' : '') : '' }}>
+                            {{ $stok->sub_rak }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div data-tw-merge class="block sm:flex items-center">
                 <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 font-bold mt-2 sm:w-20">
-                    Jenis
+                    Tipe
                 </label>
                 <select data-tw-merge aria-label="Default select example" class="form-control">
-                    <option>- Pilih -</option>
-                    <option>Supri</option>
-                    <option>Ahmad</option>
+                    @foreach ($stoks as $stok)
+                        <option value="{{ $stok->id }}" {{ $stok ? ($stok->id == $stok->id ? 'selected' : '') : '' }}>
+                            {{ $stok->tipe }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div class="">
@@ -74,7 +84,7 @@
                 <table class="table mt-2">
                     <thead>
                         <tr>
-                            <th class="whitespace-nowrap">Nama Obat Barang</th>
+                            <th class="whitespace-nowrap">Nama Produk</th>
                             <th class="whitespace-nowrap">No. Batch</th>
                             <th class="whitespace-nowrap">Exp. Date</th>
                             <th class="whitespace-nowrap">Stok</th>
@@ -128,153 +138,51 @@
                 <table class="table mt-2">
                     <thead>
                         <tr>
-                            <th class="whitespace-nowrap">Nama Obat Barang</th>
+                            <th class="whitespace-nowrap">Nama Produk</th>
                             <th class="whitespace-nowrap">No. Batch</th>
                             <th class="whitespace-nowrap">Exp. Date</th>
                             <th class="whitespace-nowrap">Stok</th>
                             <th class="whitespace-nowrap">Satuan Terkecil</th>
-                            <th class="whitespace-nowrap">Jenis</th>
+                            <th class="whitespace-nowrap">Tipe</th>
                             <th class="whitespace-nowrap">Gudang</th>
                             <th class="whitespace-nowrap">Rak</th>
                             <th class="whitespace-nowrap">Sub Rak</th>
-                            <th class="whitespace-nowrap">Keterangan</th>
+                            <th class="whitespace-nowrap">Ket. Satuan</th>
                             <th class="text-center whitespace-nowrap">ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="intro-x">
-                            <td class="w-40">1</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="">Contoh Data</td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center text-success" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#cetak-kartu-stok"> <i data-feather="file-minus"
-                                            class="w-4 h-4 mr-1"></i> Stok Opname </a>
-                                    <!-- BEGIN: stok kartu Modal -->
-                                    <div id="cetak-kartu-stok" class="modal" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <div class="modal-body px-5">
-                                                        <div class="preview">
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Nama Obat/Barang
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Jenis
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    No. Batch
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Exp. Date
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Stok Tercatat
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Stok Real
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Satuan Terkecil
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Gudang
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Rak
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                                                <label data-tw-merge for="horizontal-form-1"
-                                                                    class="inline-block mb-2  sm:w-60">
-                                                                    Sub Rak
-                                                                </label>
-                                                                <input data-tw-merge id="horizontal-form-1" type="text"
-                                                                    placeholder=""
-                                                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary"
-                                                        data-tw-dismiss="modal">Batal</button>
-                                                    <button class="btn btn-primary">Simpan Perubahan</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                        @forelse ($stoks as $stok)
+
+                            <tr class="intro-x">
+                                <td class="">{{ $stok->produk->nama_obat_barang }}</td>
+                                <td class="">{{ $stok->no_batch }}</td>
+                                <td class="">{{ $stok->exp_date }}</td>
+                                <td class="">{{ $stok->produk->isi }}</td>
+                                <td class="">{{ $stok->produk->satuan_jual_terkecil }}</td>
+                                <td class="">{{ $stok->tipe }}</td>
+                                <td class="">{{ $stok->gudang }}</td>
+                                <td class="">{{ $stok->rak }}</td>
+                                <td class="">{{ $stok->sub_rak }}</td>
+                                <td class="">{{ $stok->produk->ket_satuan }}</td>
+                                <td class="table-report__action w-56">
+                                    <div class="flex justify-center items-center">
+                                        <a class="flex items-center text-success" href="javascript:;"
+                                            data-tw-toggle="modal" data-tw-target="#cetak-kartu-stok"> <i
+                                                data-feather="file-minus" class="w-4 h-4 mr-1"></i> Stok Opname </a>
+                                        <!-- BEGIN: stok kartu Modal -->
+                                        @include('components.modal.modal-tambah-opname')
+
+                                        <!-- END: stok kartu Modal -->
                                     </div>
-                                    <!-- END: stok kartu Modal -->
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-    <!-- END: Data List -->
-    </div>
-@endsection
+
+        <!-- END: Data List -->
+    @endsection

@@ -8,7 +8,8 @@
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-            <a href="/tambah-mutasi-stok"><button class="btn btn-primary shadow-md mr-4">Tambah Mutasi Stok</button></a>
+            <a href="/data-mutasi-stok"><button class="btn btn-primary shadow-md mr-4">Tambah Mutasi Stok</button></a>
+
             <!-- END: Modal Content -->
             <div data-tw-merge class="block sm:flex items-center gap-3">
                 <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 font-bold mt-2">
@@ -41,7 +42,7 @@
                         <tr>
                             <th rowspan="2" class="border border-slate-600">No Reff</th>
                             <th rowspan="2" class="border border-slate-600">Tanggal</th>
-                            <th rowspan="2" class="border border-slate-600">Nama Obat/Barang</th>
+                            <th rowspan="2" class="border border-slate-600">Nama Produk</th>
                             <th rowspan="2" class="border border-slate-600">No Batch</th>
                             <th rowspan="2" class="border border-slate-600">Exp Date</th>
                             <th rowspan="2" class="border border-slate-600">Satuan Terkecil</th>
@@ -60,25 +61,27 @@
                             <th class="border border-slate-600">Sub Rak</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="intro-x">
-                            <td class="border border-slate-600">1</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                            <td class="border border-slate-600">Contoh Data</td>
-                        </tr>
-                    </tbody>
+                    @foreach ($stoks as $stok)
+                        <tbody>
+                            <tr class="intro-x">
+                                <th class="border border-slate-600">{{ $stok->no_reff }}</th>
+                                <td class="border border-slate-600">{{ $stok->exp_date }}</td>
+                                <td class="border border-slate-600">{{ $stok->produk->nama_obat_barang }}</td>
+                                <td class="border border-slate-600">{{ $stok->no_batch }}</td>
+                                <td class="border border-slate-600">{{ $stok->exp_date }}</td>
+                                <td class="border border-slate-600">{{ $stok->produk->satuan_jual_terkecil }}</td>
+                                <td class="border border-slate-600">{{ $stok->produk->ket_satuan }}</td>
+                                <td class="border border-slate-600">{{ $stok->produk->isi }}</td>
+                                <td class="border border-slate-600">{{ $stok->gudang }}</td>
+                                <td class="border border-slate-600">{{ $stok->rak }}</td>
+                                <td class="border border-slate-600">{{ $stok->sub_rak }}</td>
+                                <td class="border border-slate-600">{{ $stok->gudang }}</td>
+                                <td class="border border-slate-600">{{ $stok->rak }}</td>
+                                <td class="border border-slate-600">{{ $stok->sub_rak }}</td>
+                                <td class="border border-slate-600">{{ $stok->produk->ket_satuan }}</td>
+                            </tr>
+                        </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>

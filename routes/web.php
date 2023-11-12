@@ -9,6 +9,7 @@ use App\Http\Controllers\HutangAwalController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisObatBarangController;
 use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\SetAksesController;
 use App\Http\Controllers\SetHargaJualController;
 use App\Http\Controllers\SetUserController;
 use App\Http\Controllers\StokAwalController;
+use App\Http\Controllers\StokOpnameController;
 use App\Http\Controllers\SubGolonganController;
 use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
@@ -268,26 +270,30 @@ Route::get('/histori-stok', function () {
         'title' => 'persediaan'
     ]);
 })->middleware(['auth']);
-Route::get('/stok-opname', function () {
-    return view('pages.persediaan.stok-opname.opname', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
-Route::get('/tambah-stok-opname', function () {
-    return view('pages.persediaan.stok-opname.tambah-stok', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
-Route::get('/mutasi-stok', function () {
-    return view('pages.persediaan.mutasi-stok.mutasi', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
-Route::get('/tambah-mutasi-stok', function () {
-    return view('pages.persediaan.mutasi-stok.tambah-mutasi', [
-        'title' => 'persediaan'
-    ]);
-})->middleware(['auth']);
+
+// Route::get('/stok-opname', function () {
+//     return view('pages.persediaan.stok-opname.opname', [
+//         'title' => 'persediaan'
+//     ]);
+// })->middleware(['auth']);
+// Route::get('/tambah-stok-opname', function () {
+//     return view('pages.persediaan.stok-opname.tambah-stok', [
+//         'title' => 'persediaan'
+//     ]);
+// })->middleware(['auth']);
+
+//opname stock
+Route::get('/stok-opname', [StokOpnameController::class, 'index'])->name('stok-opname');
+Route::get('/data-stok-opname', [StokOpnameController::class, 'datastokopname'])->name('data-stok-opname');
+Route::post('/tambah-stok-opname', [StokOpnameController::class, 'tambahstokopname'])->name('tambah-stok-opname');
+Route::post('/tambah-opname-masuk', [StokOpnameController::class, 'tambahstokmasuk'])->name('tambah-opname-masuk');
+
+
+//mutasi stock
+ Route::get('/mutasi-stok', [MutasiController::class, 'index'])->name('mutasi-stok');
+ Route::get('/data-mutasi-stok', [MutasiController::class, 'datamutasi'])->name('data-mutasi');
+ Route::post('/tambah-mutasi', [MutasiController::class, 'tambahmutasi'])->name('tambah-mutasi');
+   
 
 //transaksi
 //rencana pengadaan
