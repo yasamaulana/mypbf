@@ -40,24 +40,35 @@ class PajakController extends Controller
 
         $noSeriPajak = $request->no_seri_pajak;
         $kali = $request->kali;
+        $tanggal = $request->tanggal_exp;
 
-        // Pisahkan bagian depan dan belakang
-        $parts = explode('.', $noSeriPajak);
-        $bagianDepan = $parts[0] . '.' . $parts[1] . '.';
-        $bagianBelakang = intval($parts[2]);
+        if ($kali == '') {
+            $kali = 1;
+        }
 
-        for ($i = 0; $i < $kali; $i++) {
-            // Tambahkan nomor pada bagian belakang
-            $bagianBelakangBaru = $bagianBelakang + $i;
+        if ($tanggal == '') {
+            $tanggal = date('d-m-Y');
+        }
 
-            // Gabungkan kembali dengan bagian depan
-            $nomorBaru = $bagianDepan . $bagianBelakangBaru;
+        if ($noSeriPajak != '') {
+            // Pisahkan bagian depan dan belakang
+            $parts = explode('.', $noSeriPajak);
+            $bagianDepan = $parts[0] . '.' . $parts[1] . '.';
+            $bagianBelakang = intval($parts[2]);
 
-            $pajak = new Pajak();
-            $pajak->tanggal_exp = $request->tanggal_exp;
-            $pajak->pajak = $nomorBaru;
-            $pajak->id_perusahaan = Auth::user()->id_perusahaan;
-            $pajak->save();
+            for ($i = 0; $i < $kali; $i++) {
+                // Tambahkan nomor pada bagian belakang
+                $bagianBelakangBaru = $bagianBelakang + $i;
+
+                // Gabungkan kembali dengan bagian depan
+                $nomorBaru = $bagianDepan . $bagianBelakangBaru;
+
+                $pajak = new Pajak();
+                $pajak->tanggal_exp = $tanggal;
+                $pajak->pajak = $nomorBaru;
+                $pajak->id_perusahaan = Auth::user()->id_perusahaan;
+                $pajak->save();
+            }
         }
 
 

@@ -10,9 +10,7 @@
             Pajak Perusahaan
         </h2>
     </div>
-    @if (session('success'))
-        @include('components.alert')
-    @endif
+    @include('components.alert')
     <form action="{{ route('update.pajak') }}" method="POST">
         @csrf
         <div class="gap-5 sm:flex">
@@ -50,12 +48,12 @@
                                     id="formattedInput" placeholder="000.14.12345678">
                                 <p class="mx-3 mt-2">s/d</p>
                                 <input name="kali" id="horizontal-form-2" type="text" class="form-control"
-                                    style="width: 20%;" required placeholder="">
+                                    style="width: 20%;" placeholder="">
                             </div>
                             <div class="flex mt-4 sm:mt-0">
                                 <label class="w-40 mt-2 form-label ">Tgl Expired</label>
                                 <input name="tanggal_exp" id="horizontal-form-2" type="date" class="form-control"
-                                    style="width: 100%;" required placeholder="" required>
+                                    style="width: 100%;" placeholder="">
                             </div>
                         </div>
                     </div>

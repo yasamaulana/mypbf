@@ -537,7 +537,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var getPPN = {{ $ppn->ppn }};
+            var getPPN = {{ $ppn ? $ppn->ppn : '' }};
             var ppn = 1 + (getPPN / 100);
 
             // Mengambil elemen input dan checkbox
