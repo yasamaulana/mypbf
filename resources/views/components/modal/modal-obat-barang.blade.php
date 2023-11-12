@@ -275,28 +275,24 @@
                                                 {{-- End hiddenn information --}}
                                                 <td>{{ $kelompok->kelompok }}</td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][persentase]"
+                                                    <input type="number" value="0" class="form-control"
+                                                        required name="kelompoks[{{ $loop->index }}][persentase]"
                                                         value="{{ $kelompok->persentase ?? '' }}">
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][disc_1]"
+                                                    <input type="number" value="0" class="form-control"
+                                                        required name="kelompoks[{{ $loop->index }}][disc_1]"
                                                         value="{{ $kelompok->disc_1 ?? '' }}">
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][disc_2]"
+                                                    <input type="number" value="0" class="form-control"
+                                                        required name="kelompoks[{{ $loop->index }}][disc_2]"
                                                         value="{{ $kelompok->disc_2 ?? '' }}">
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="font-bold text-center">Belum ada
-                                                    kelompok
+                                                <td colspan="4" class="font-bold text-center">Belum ada kelompok
                                                     tersedia
                                                 </td>
                                             </tr>
