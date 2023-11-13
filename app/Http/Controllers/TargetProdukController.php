@@ -30,14 +30,14 @@ class TargetProdukController extends Controller
                 ->first();
 
             if ($existingTarget) {
-                $existingTarget->update(['target' => $this->sanitizeTarget($target['target_produk'])]);
+                $existingTarget->update(['target' => $target['target_produk']]);
             } else {
                 TargetProduk::create([
                     'id_perusahaan' => Auth::user()->id_perusahaan,
                     'id_produk' => $target['id_produk'],
                     'tahun' => $request->tahun,
                     'bulan' => $request->bulan,
-                    'target' => $this->sanitizeTarget($target['target_produk']),
+                    'target' => $target['target_produk'],
                 ]);
             }
         }
