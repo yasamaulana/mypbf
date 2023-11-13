@@ -2,22 +2,22 @@
  <div id="{{ $id_modal . $id }}" class="modal" tabindex="-1" aria-hidden="true">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
-             <div class="modal-body p-10">
+             <div class="p-10 modal-body">
                  <div class="preview">
                      <form action="{{ route($route, ['id' => $id]) }}" method="POST">
                          @csrf
                          <table>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Sales</label>
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Sales</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" name="sales">
                                              @foreach ($pegawais as $pegawai)
                                                  <option
                                                      {{ $target ? ($target->sales == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                                     {{ $pegawai->nama_pegawai }}
+                                                     {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}
                                                  </option>
                                              @endforeach
                                          </select>
@@ -27,15 +27,15 @@
                              <tr>
                                  <td>
                                      <label for="input-wizard-6"
-                                         class="mt-2 mr-3 form-label font-bold">Supervisor</label>
+                                         class="mt-2 mr-3 font-bold form-label">Supervisor</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" name="supervisor">
                                              @foreach ($pegawais as $pegawai)
                                                  <option
                                                      {{ $target ? ($target->supervisor == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                                     {{ $pegawai->nama_pegawai }}</option>
+                                                     {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                              @endforeach
                                          </select>
                                      </div>
@@ -43,11 +43,11 @@
                              </tr>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Area
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Area
                                          Rayon</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" name="area_rayon">
                                              @foreach ($rayons as $rayon)
                                                  <option
@@ -60,11 +60,11 @@
                              </tr>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Sub
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Sub
                                          Rayon</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <select id="input-wizard-6" class="form-select" name="sub_rayon">
                                              @foreach ($sub_rayon as $rayon)
                                                  <option
@@ -77,10 +77,10 @@
                              </tr>
                              <tr>
                                  <td>
-                                     <label for="input-wizard-6" class="mt-2 mr-3 form-label font-bold">Tahun</label>
+                                     <label for="input-wizard-6" class="mt-2 mr-3 font-bold form-label">Tahun</label>
                                  </td>
                                  <td class="w-full">
-                                     <div class="intro-y col-span-12 sm:col-span-6 mt-3 flex">
+                                     <div class="flex col-span-12 mt-3 intro-y sm:col-span-6">
                                          <input class="form-control" type="number" id="tahun" name="tahun"
                                              min="1900" max="2099" step="1" required
                                              value="{{ $target ? $target->tahun : '' }}">
@@ -89,7 +89,7 @@
                              </tr>
                          </table>
 
-                         <table class="table border border-slate-400 mt-5">
+                         <table class="table mt-5 border border-slate-400">
                              <thead>
                                  <tr>
                                      <td>Bulan</td>
@@ -101,131 +101,26 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <tr>
-                                     <td>Januari</td>
-                                     <td>
-                                         <input type="number" name="target_januari" class="form-control" id=""
-                                             value="{{ $target ? $target->target_januari : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Februari</td>
-                                     <td><input type="number" name="target_februari" class="form-control"
-                                             id="" value="{{ $target ? $target->target_februari : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Maret</td>
-                                     <td><input type="number" name="target_maret" class="form-control" id=""
-                                             value="{{ $target ? $target->target_maret : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>April</td>
-                                     <td>
-                                         <input type="number" name="target_april" class="form-control" id=""
-                                             value="{{ $target ? $target->target_april : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Mei</td>
-                                     <td><input type="number" name="target_mei" class="form-control" id=""
-                                             value="{{ $target ? $target->target_mei : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Juni</td>
-                                     <td><input type="number" name="target_juni" class="form-control" id=""
-                                             value="{{ $target ? $target->target_juni : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Juli</td>
-                                     <td><input type="number" name="target_juli" class="form-control" id=""
-                                             value="{{ $target ? $target->target_juli : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Agustus</td>
-                                     <td><input type="number" name="target_agustus" class="form-control"
-                                             value="{{ $target ? $target->target_agustus : '' }}" id="">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>September</td>
-                                     <td><input type="number" name="target_september" class="form-control"
-                                             id=""value="{{ $target ? $target->target_september : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Oktober</td>
-                                     <td><input type="number" name="target_oktober" class="form-control"
-                                             id=""value="{{ $target ? $target->target_oktober : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>November</td>
-                                     <td><input type="number" name="target_november" class="form-control"
-                                             id=""value="{{ $target ? $target->target_november : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Desember</td>
-                                     <td><input type="number" name="target_desember" class="form-control"
-                                             id=""value="{{ $target ? $target->target_desember : '' }}">
-                                     </td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                 </tr>
+                                 @php
+                                     $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                 @endphp
+                                 @foreach ($months as $month)
+                                     <tr>
+                                         <td>{{ $month }}</td>
+                                         <td>
+                                             <input type="text" name="target_{{ strtolower($month) }}"
+                                                 class="form-control target-input{{ $id }}"
+                                                 value="{{ $target ? $target->{'target_' . strtolower($month)} : '' }}">
+                                         </td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                     </tr>
+                                 @endforeach
                                  <tr>
                                      <td class="font-bold">Total</td>
-                                     <td></td>
+                                     <td class="total-target{{ $id }}"></td>
                                      <td></td>
                                      <td></td>
                                      <td></td>
@@ -233,10 +128,35 @@
                                  </tr>
                              </tbody>
                          </table>
+
+                         <script>
+                             $(document).ready(function() {
+                                 $('.target-input{{ $id }}').on('input', function() {
+                                     var formattedValue = $(this).val().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                     $(this).val(formattedValue);
+                                     updateTotal();
+                                 });
+
+                                 function updateTotal() {
+                                     var total = 0;
+                                     $('.target-input{{ $id }}').each(function() {
+                                         var value = parseInt($(this).val().replace(/\D/g, ''), 10) || 0;
+                                         total += value;
+                                     });
+                                     $('.total-target{{ $id }}').text(numberFormat(total));
+                                 }
+
+                                 function numberFormat(value) {
+                                     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                 }
+
+                                 updateTotal();
+                             });
+                         </script>
                          @if (!$lihat)
                              <div class="modal-footer">
-                                 <button class="btn btn-secondary mt-5" data-tw-dismiss="modal">Batal</button>
-                                 <button type="submit" class="btn btn-primary mt-5">Simpan</button>
+                                 <button class="mt-5 btn btn-secondary" data-tw-dismiss="modal">Batal</button>
+                                 <button type="submit" class="mt-5 btn btn-primary">Simpan</button>
                              </div>
                          @endif
                      </form>

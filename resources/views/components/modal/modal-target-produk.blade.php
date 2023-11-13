@@ -18,14 +18,14 @@
                                 <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
                                     Tahun
                                 </label>
-                                <input type="number" class="form-control tahun" id="tahun"
+                                <input type="number" class="form-control tahun" id="tahun" required
                                     placeholder="Masukan Tahun" name="tahun" min="1900" max="2099">
                             </div>
                             <div data-tw-merge class="items-center block mt-3 sm:flex">
                                 <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
                                     Bulan
                                 </label>
-                                <select data-tw-merge id="bulanSelect" name="bulan"
+                                <select data-tw-merge id="bulanSelect" name="bulan" required
                                     aria-label="Default select example" class="form-control w-44 bulanSelect">
                                     <option value="">- Pilih -</option>
                                     <option value="Januari">Januari</option>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_produk');
             $table->string('tahun');
             $table->string('bulan');
-            $table->string('target');
+            $table->string('target')->nullable();
             $table->timestamps();
         });
     }

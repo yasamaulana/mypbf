@@ -1,6 +1,9 @@
 @extends('layout.main')
 
 @section('main')
+    @php
+        use App\Models\TargetProduk;
+    @endphp
     <div class="flex items-center mt-8 intro-y">
         <h2 class="mr-auto text-lg font-medium">
             Target Produk
@@ -21,24 +24,9 @@
             <!-- END: Modal Content -->
 
             <div data-tw-merge class="items-center block sm:flex">
-                <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
-                    Tahun
-                </label>
-                <select data-tw-merge aria-label="Default select example" class="form-control" id="filterSelect"
-                    onchange="selectOption()">
-                    <option value="">Pilih</option>
-                    <option value="2030">2030</option>
-                    <option value="2029">2029</option>
-                    <option value="2028">2028</option>
-                    <option value="2027">2027</option>
-                    <option value="2026">2026</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                </select>
+                @include('components.search', [
+                    'id_table' => 'tableTargetProduk',
+                ])
             </div>
         </div>
     </div>
@@ -63,17 +51,18 @@
                             <td class="table-report__action w-72">
                                 <div class="flex items-center justify-center">
                                     <a class="flex items-center mr-3" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#edit-target-produk{{ $targetProduk->id }}"> <i
-                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                        data-tw-target="#edit-target-produk{{ $targetProduk->tahun }}{{ $targetProduk->bulan }}">
+                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i>Edit </a>
                                     <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                        data-tw-target="#delete-target-produk{{ $targetProduk->id }}"> <i
-                                            data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                        data-tw-target="#delete-target-produk{{ $targetProduk->tahun }}{{ $targetProduk->bulan }}">
+                                        <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                     <a class="flex items-center mx-3 mr-3 text-warning" href="javascript:;"
-                                        data-tw-toggle="modal" data-tw-target="#modal-lihat{{ $targetProduk->id }}"> <i
-                                            data-feather="eye" class="w-4 h-4 mr-1"></i> Lihat </a>
+                                        data-tw-toggle="modal"
+                                        data-tw-target="#modal-lihat{{ $targetProduk->tahun }}{{ $targetProduk->bulan }}">
+                                        <i data-feather="eye" class="w-4 h-4 mr-1"></i> Lihat </a>
                                     <!-- BEGIN: Delete Confirmation Modal -->
-                                    <div id="delete-target-produk{{ $targetProduk->id }}" class="modal" tabindex="-1"
-                                        aria-hidden="true">
+                                    <div id="delete-target-produk{{ $targetProduk->tahun }}{{ $targetProduk->bulan }}"
+                                        class="modal" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="p-0 modal-body">
@@ -96,7 +85,7 @@
                                                                 name="tahun">
                                                             <input type="hidden" value="{{ $targetProduk->bulan }}"
                                                                 name="bulan">
-                                                            @foreach ($targets->where('tahun', $targetProduk->tahun)->where('bulan', $targetProduk->bulan)->get() as $targetProduk)
+                                                            @foreach (TargetProduk::where('id_perusahaan', Auth::user()->id_perusahaan)->where('tahun', $targetProduk->tahun)->where('bulan', $targetProduk->bulan)->get() as $targetProduk)
                                                                 <input data-tw-merge id="horizontal-form-1" type="hidden"
                                                                     placeholder=""
                                                                     name="target[{{ $loop->index }}][target_produk]"
@@ -115,22 +104,20 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- END: Delete Confirmation Modal -->
 
                                     {{-- edit modal --}}
                                     @include('components.modal.modal-edit-target-produk', [
-                                        'id_modal' => 'edit-target-produk',
+                                        'id_modal' =>
+                                            'edit-target-produk' . $targetProduk->tahun . $targetProduk->bulan,
                                         'route' => 'edit.target_produk',
-                                        'id' => $targetProduk->id,
                                         'lihat' => false,
                                     ])
 
                                     {{-- edit modal --}}
                                     @include('components.modal.modal-edit-target-produk', [
-                                        'id_modal' => 'modal-lihat',
+                                        'id_modal' => 'modal-lihat' . $targetProduk->tahun . $targetProduk->bulan,
                                         'route' => 'edit.target_produk',
-                                        'id' => $targetProduk->id,
                                         'lihat' => true,
                                     ])
                                 </div>
@@ -146,29 +133,4 @@
         </div>
     </div>
     <!-- END: Data List -->
-    </div>
-
-    <script>
-        function selectOption() {
-            let filterSelect = document.getElementById("filterSelect").value;
-            let tableTargetProduk = document.getElementById("tableTargetProduk");
-            let tr = tableTargetProduk.getElementsByTagName("tr");
-            var i, txtValue, td;
-            let displayedRowCount = 0;
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase() === filterSelect.toUpperCase() || filterSelect === "") {
-                        tr[i].style.display = "";
-                        displayedRowCount++;
-                        tr[i].getElementsByTagName("td")[0].textContent = displayedRowCount;
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 @endsection

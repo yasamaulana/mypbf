@@ -125,8 +125,8 @@ Route::middleware(['auth'])->group(function () {
     //target produk
     Route::get('/target-produk', [TargetProdukController::class, 'index'])->name('target_produk');
     Route::post('/tambah-target-produk', [TargetProdukController::class, 'tambahTargetProduk'])->name('tambah.target_produk');
-    Route::post('/edit-target-produk/{id}', [TargetProdukController::class, 'editTargetProduk'])->name('edit.target_produk');
-    Route::post('/delete-target-produk/{id}', [TargetProdukController::class, 'deleteTargetProduk'])->name('delete.target_produk');
+    Route::post('/edit-target-produk', [TargetProdukController::class, 'editTargetProduk'])->name('edit.target_produk');
+    Route::post('/delete-target-produk', [TargetProdukController::class, 'deleteTargetProduk'])->name('delete.target_produk');
 
     //master
     //obat dan barang
