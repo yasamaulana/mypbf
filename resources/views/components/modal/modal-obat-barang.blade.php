@@ -130,7 +130,7 @@
                                 </select>
                             </div>
                             <div class="col-span-12 intro-y sm:col-span-6">
-                                <label for="input-wizard-6" class="form-label">Jenis Obat/Barang</label>
+                                <label for="input-wizard-6" class="form-label">Jenis Produk</label>
                                 <select id="input-wizard-6" class="form-select" required name="jenis_obat_barang">
                                     @if ($jenis_obat->isNotEmpty())
                                         @foreach ($jenis_obat as $jenis)
