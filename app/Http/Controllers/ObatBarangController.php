@@ -51,15 +51,16 @@ class ObatBarangController extends Controller
 
         $kelompoks = $request->input('kelompoks');
 
-        foreach ($kelompoks as $kelompok) {
-            DiskonKelompok::create([
-                'id_obat_barang' => $obatBarang['id'],
-                'id_kelompok' => $kelompok['id_kelompok'],
-                'persentase' => $kelompok['persentase'],
-                'disc_1' => $kelompok['disc_1'],
-                'disc_2' => $kelompok['disc_2'],
-            ]);
-        }
+foreach ($kelompoks as $kelompok) {
+    DiskonKelompok::create([
+        'id_obat_barang' => $obatBarang['id'],
+        'id_kelompok' => $kelompok['id_kelompok'],
+        'persentase' => $kelompok['persentase'] ?? 0,
+        'disc_1' => $kelompok['disc_1'] ?? 0,
+        'disc_2' => $kelompok['disc_2'] ?? 0,
+    ]);
+}
+
 
         return redirect()->route('obat-barang')->with('success', 'Produk added successfully');
     }

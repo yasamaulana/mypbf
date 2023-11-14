@@ -36,12 +36,12 @@
                                 <td class="border border-slate-600">
                                     @if ($item->nama_akun == 'Piutang Dagang' || $item->nama_akun == 'piutang dagang')
                                         {{ 'Rp. ' . number_format($totalDagangPiutang, 2, ',', '.') }}
-                                    @endif
-                                    @if ($item->nama_akun == 'Piutang Konsinyasi' || $item->nama_akun == 'piutang konsinyasi')
+                                    @elseif ($item->nama_akun == 'Piutang Konsinyasi' || $item->nama_akun == 'piutang konsinyasi')
                                         {{ 'Rp. ' . number_format($totalKonsinyasiPiutang, 2, ',', '.') }}
-                                    @endif
-                                    @if ($item->nama_akun == 'Persediaan Dagang' || $item->nama_akun == 'persediaan dagang')
+                                    @elseif ($item->nama_akun == 'Persediaan Dagang' || $item->nama_akun == 'persediaan dagang')
                                         {{ 'Rp. ' . number_format($persediaanDagang, 2, ',', '.') }}
+                                    @else
+                                        Rp. 0,00
                                     @endif
                                 </td>
                             </tr>
@@ -81,12 +81,12 @@
                                 <td class="border border-slate-600">
                                     @if ($itemPasifa->nama_akun == 'Hutang Dagang' || $itemPasifa->nama_akun == 'hutang dagang')
                                         {{ 'Rp. ' . number_format($totalHutangDagang, 2, ',', '.') }}
-                                    @endif
-                                    @if ($itemPasifa->nama_akun == 'Hutang Konsinyasi' || $itemPasifa->nama_akun == 'hutang konsinyasi')
+                                    @elseif ($itemPasifa->nama_akun == 'Hutang Konsinyasi' || $itemPasifa->nama_akun == 'hutang konsinyasi')
                                         {{ 'Rp. ' . number_format($totalHutangKonsinyasi, 2, ',', '.') }}
-                                    @endif
-                                    @if ($itemPasifa->nama_akun == 'Modal Pemilik' || $itemPasifa->nama_akun == 'modal pemilik')
+                                    @elseif ($itemPasifa->nama_akun == 'Modal Pemilik' || $itemPasifa->nama_akun == 'modal pemilik')
                                         {{ 'Rp. ' . number_format($modal, 2, ',', '.') }}
+                                    @else
+                                        Rp. 0,00
                                     @endif
                                 </td>
                             </tr>

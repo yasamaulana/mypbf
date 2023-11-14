@@ -246,20 +246,17 @@
                                                 <td>{{ $kelompoks->where('id', $diskon->id_kelompok)->first()->kelompok }}
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
+                                                    <input type="number" class="form-control" required
                                                         name="kelompoks[{{ $loop->index }}][persentase]"
                                                         value="{{ $diskon->persentase }}">
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
+                                                    <input type="number" class="form-control" required
                                                         name="kelompoks[{{ $loop->index }}][disc_1]"
                                                         value="{{ $diskon->disc_1 }}">
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="1" max="100"
-                                                        class="form-control" required
+                                                    <input type="number" class="form-control" required
                                                         name="kelompoks[{{ $loop->index }}][disc_2]"
                                                         value="{{ $diskon->disc_2 }}">
                                                 </td>
@@ -276,17 +273,17 @@
                                                 <td>{{ $kelompok->kelompok }}</td>
                                                 <td>
                                                     <input type="number" value="0" class="form-control"
-                                                        required name="kelompoks[{{ $loop->index }}][persentase]"
+                                                        name="kelompoks[{{ $loop->index }}][persentase]"
                                                         value="{{ $kelompok->persentase ?? '' }}">
                                                 </td>
                                                 <td>
                                                     <input type="number" value="0" class="form-control"
-                                                        required name="kelompoks[{{ $loop->index }}][disc_1]"
+                                                        name="kelompoks[{{ $loop->index }}][disc_1]"
                                                         value="{{ $kelompok->disc_1 ?? '' }}">
                                                 </td>
                                                 <td>
                                                     <input type="number" value="0" class="form-control"
-                                                        required name="kelompoks[{{ $loop->index }}][disc_2]"
+                                                        name="kelompoks[{{ $loop->index }}][disc_2]"
                                                         value="{{ $kelompok->disc_2 ?? '' }}">
                                                 </td>
                                             </tr>
@@ -305,12 +302,25 @@
                             <label for="file_upload" class="form-control">Gambar</label>
                             <input id="file_upload" type="file"
                                 class="w-full px-3 py-2 mt-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
-                                {{ $barang ? '' : 'required' }} name="gambar" accept="image/*">
+                                {{ $barang ? '' : 'required' }} name="gambar" accept="image/*"
+                                onchange="loadFile(event, {{ $id ? $id : '0' }})">
 
-                            <img id="previewImage"
+                            <img class="previewImage{{ $id ? $id : '0' }}"
                                 src="{{ $barang ? url('storage/obat-barang/' . $barang->gambar) : '' }}"
                                 alt="">
                         </div>
+
+                        <script>
+                            var loadFile = function(event, id) {
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    $('.previewImage' + id).attr('src', reader.result);
+                                };
+                                reader.readAsDataURL(event.target.files[0]);
+                            };
+                        </script>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">

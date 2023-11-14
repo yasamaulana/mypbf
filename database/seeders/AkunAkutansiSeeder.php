@@ -24,5 +24,7 @@ class AkunAkutansiSeeder extends Seeder
         AkunAkutansi::create(['id_perusahaan' => $userId, 'kode' => '2-1001', 'nama_akun' => 'Hutang Dagang', 'jenis_akun' => 'Kewajiban', 'kas_bank' => 0]);
         AkunAkutansi::create(['id_perusahaan' => $userId, 'kode' => '2-1002', 'nama_akun' => 'Hutang Konsinyasi', 'jenis_akun' => 'Kewajiban', 'kas_bank' => 0]);
         AkunAkutansi::create(['id_perusahaan' => $userId, 'kode' => '3-1001', 'nama_akun' => 'Modal Pemilik', 'jenis_akun' => 'Modal', 'kas_bank' => 0]);
+        
+        AkunAkutansi::create(['id_perusahaan' => $userId, 'kode' => '3-1001', 'nama_akun' => 'Modal Pemilik', 'jenis_akun' => 'Modal', 'kas_bank' => 0]);
     }
 }
