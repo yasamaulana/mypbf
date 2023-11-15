@@ -41,7 +41,7 @@ class NeracaController extends Controller
 
         return view('pages.keuangan-akuntansi.akuntansi.neraca', [
             'title' => 'keuangan & akuntansi',
-            'akunAktiva' => AkunAkutansi::where('jenis_akun', 'Aktiva')->where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'akunAktiva' => AkunAkutansi::where('jenis_akun', 'Aktiva')->where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')->get(),
             'totalPiutangDagang' => $totalPiutangDagang,
             'totalPiutangKonsinyasi' => $totalPiutangKonsinyasi,
             'PersediaanDagang' => $totalStokAwal,
@@ -49,7 +49,7 @@ class NeracaController extends Controller
             //untuk pasiva
             'akunPasiva' => AkunAkutansi::where('jenis_akun', 'Kewajiban')
                 ->orWhere('jenis_akun', 'Modal')
-                ->where('id_perusahaan', Auth::user()->id_perusahaan)
+                ->where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')
                 ->get(),
             'totalHutangDagang' => $totalHutangDagang,
             'totalHutangKonsinyasi' => $totalHutangKonsinyasi,

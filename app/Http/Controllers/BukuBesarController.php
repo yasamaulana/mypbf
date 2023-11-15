@@ -13,7 +13,7 @@ class BukuBesarController extends Controller
     {
         return view('pages.keuangan-akuntansi.akuntansi.buku-besar', [
             'title' => 'keuangan & akuntansi',
-            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')->get(),
             'piutangDagang' => PiutangAwal::where('jns_piutang', 'Piutang Dagang')->get(),
         ]);
     }
