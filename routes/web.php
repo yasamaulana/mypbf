@@ -3,12 +3,15 @@
 use App\Http\Controllers\AkunAkutansiController;
 use App\Http\Controllers\AreaRayonController;
 use App\Http\Controllers\BarcodeController;
+use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HutangAwalController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisObatBarangController;
 use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\NeracaController;
+use App\Http\Controllers\NeracaLajurController;
 use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
@@ -248,6 +251,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Saldo Awal
     Route::get('/saldo-awal', [SaldoAwalController::class, 'index'])->name('saldo-awal');
+
+    //neraca
+    Route::get('/neraca', [NeracaController::class, 'index'])->name('neraca');
+
+    // neraca lajur
+    Route::get('/neraca-lajur', [NeracaLajurController::class, 'index']);
+
+    //--->buku besar
+    Route::get('/buku-besar', [BukuBesarController::class, 'index'])->name('buku.besar');
 });
 
 
@@ -483,24 +495,7 @@ Route::get('/jurnal-umum', function () {
         'title' => 'keuangan & akuntansi'
     ]);
 })->middleware(['auth']);
-//--->buku besar
-Route::get('/buku-besar', function () {
-    return view('pages.keuangan-akuntansi.akuntansi.buku-besar', [
-        'title' => 'keuangan & akuntansi'
-    ]);
-})->middleware(['auth']);
-//--->neraca lajur
-Route::get('/neraca-lajur', function () {
-    return view('pages.keuangan-akuntansi.akuntansi.neraca-lajur', [
-        'title' => 'keuangan & akuntansi'
-    ]);
-})->middleware(['auth']);
-//--->Neraca
-Route::get('/neraca', function () {
-    return view('pages.keuangan-akuntansi.akuntansi.neraca', [
-        'title' => 'keuangan & akuntansi'
-    ]);
-})->middleware(['auth']);
+
 //--->laba/rugi
 Route::get('/laba-rugi', function () {
     return view('pages.keuangan-akuntansi.akuntansi.laba-rugi', [

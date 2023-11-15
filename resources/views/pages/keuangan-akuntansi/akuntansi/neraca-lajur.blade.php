@@ -1,19 +1,19 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Neraca Lajur
         </h2>
     </div>
 
     <div class="grid grid-cols-12 gap-6 mt-5">
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <div class="sm:flex gap-3 justify-between">
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <div class="justify-between gap-3 sm:flex">
                 <div class="">
-                    <div class="flex gap-2 overflow-auto mr-auto mb-2 sm:mb-0">
-                        <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-20">
+                    <div class="flex gap-2 mb-2 mr-auto overflow-auto sm:mb-0">
+                        <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-20">
                             Tanggal
                         </label>
                         <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Stok dari master"
@@ -24,14 +24,14 @@
                     </div>
                 </div>
                 <div class="flex gap-2 mt-3 sm:mt-0">
-                    <button class="btn btn-success text-white">Tampilkan</button>
-                    <button class="btn btn-warning text-white">Setting</button>
+                    <button class="text-white btn btn-success">Tampilkan</button>
+                    <button class="text-white btn btn-warning">Setting</button>
                 </div>
             </div>
-            <div class="box mt-5">
+            <div class="mt-5 box">
                 <div class="overflow-auto">
                     <table class="table">
-                        <thead class="text-center font-bold">
+                        <thead class="font-bold text-center">
                             <tr>
                                 <th class="border border-slate-600" rowspan="2">Kode</th>
                                 <th class="border border-slate-600" rowspan="2">Nama Akun</th>
@@ -55,20 +55,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                                <td class="border border-slate-600">Contoh Data</td>
-                            </tr>
+                            @forelse ($akuns as $akun)
+                                <tr>
+                                    <td class="border border-slate-600">{{ $akun->kode }}</td>
+                                    <td class="border border-slate-600">{{ $akun->nama_akun }}</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                    <td class="border border-slate-600">Contoh Data</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="12">Belum ada data tersedia</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

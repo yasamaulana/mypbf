@@ -1,16 +1,16 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Neraca
         </h2>
     </div>
-    <div class="box p-5 mt-5">
-        <div class="sm:flex gap-3">
+    <div class="p-5 mt-5 box">
+        <div class="gap-3 sm:flex">
             <div class="">
-                <div class="flex gap-2 overflow-auto mr-auto mb-2 sm:mb-0">
-                    <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 mt-2 sm:w-60">
+                <div class="flex gap-2 mb-2 mr-auto overflow-auto sm:mb-0">
+                    <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-60">
                         Periode Sampai
                     </label>
                     <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Stok dari master"
@@ -18,74 +18,72 @@
                 </div>
             </div>
             <div class="flex gap-2 mt-3 sm:mt-0">
-                <button class="btn btn-success text-white">Tampilkan</button>
-                <button class="btn btn-warning text-white">Setting</button>
+                <button class="text-white btn btn-success">Tampilkan</button>
+                <button class="text-white btn btn-warning">Setting</button>
             </div>
         </div>
     </div>
-    <div class="box p-5 mt-5">
+    <div class="p-5 mt-5 box">
         <p class="text-xl font-bold">AKTIVA</p>
         <hr>
         <table class="w-full text-lg ">
-            <tr class="mt-3">
-                <td>1-0001</td>
-                <td>Kas Besar</td>
-                <td class="text-right">Rp. 1.000.000</td>
-            </tr>
-            <tr class="mt-3">
-                <td>1-0002</td>
-                <td>Kas Kecil</td>
-                <td class="text-right">Rp. 500.000</td>
-            </tr>
-            <tr class="mt-3">
-                <td>1-0003</td>
-                <td>Kas BCA</td>
-                <td class="text-right">Rp. 50.000.000</td>
-            </tr>
+            @foreach ($akunAktiva as $akun)
+                <tr class="mt-3">
+                    <td>{{ $akun->kode }}</td>
+                    <td>{{ $akun->nama_akun }}</td>
+                    <td class="text-right">
+                        @if ($akun->nama_akun == 'Piutang Dagang' || $akun->nama_akun == 'piutang dagang')
+                            {{ 'Rp. ' . number_format($totalPiutangDagang, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Piutang Konsinyasi' || $akun->nama_akun == 'piutang konsinyasi')
+                            {{ 'Rp. ' . number_format($totalPiutangKonsinyasi, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Persediaan Dagang' || $akun->nama_akun == 'persediaan dagang')
+                            {{ 'Rp. ' . number_format($PersediaanDagang, 2, ',', '.') }}
+                        @else
+                            Rp. 0,00
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
             <tr>
-                <td colspan="2" class="font-bold text-right px-3">Total</td>
-                <td class="text-right font-bold bg-primary text-white px-3">Rp. 56.500.000</td>
+                <td colspan="2" class="px-3 font-bold text-right">Total</td>
+                <td class="px-3 font-bold text-right text-white bg-primary">
+                    {{ 'Rp. ' . number_format($totalPiutangDagang + $totalPiutangKonsinyasi + $PersediaanDagang, 2, ',', '.') }}
+                </td>
             </tr>
-            <tr class="font-bold text-white bg-success p-5">
+            <tr class="p-5 font-bold text-white bg-success">
                 <td class="px-3">Total Aktiva</td>
-                <td>Rp. 56.500.000</td>
+                <td>{{ 'Rp. ' . number_format($totalPiutangDagang + $totalPiutangKonsinyasi + $PersediaanDagang, 2, ',', '.') }}
+                </td>
             </tr>
         </table>
         {{-- pasiva --}}
-        <p class="text-xl mt-5 font-bold">PASIVA</p>
+        <p class="mt-5 text-xl font-bold">PASIVA</p>
         <hr>
         <table class="w-full text-lg ">
-            <tr class="mt-3">
-                <td>2-0001</td>
-                <td>Hutang PPN</td>
-                <td class="text-right">Rp. 6.000.000</td>
+            @foreach ($akunPasiva as $akun)
+                <tr class="mt-3">
+                    <td>{{ $akun->kode }}</td>
+                    <td>{{ $akun->nama_akun }}</td>
+                    <td class="text-right">
+                        @if ($akun->nama_akun == 'Hutang Dagang' || $akun->nama_akun == 'hutang dagang')
+                            {{ 'Rp. ' . number_format($totalHutangDagang, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Hutang Konsinyasi' || $akun->nama_akun == 'hutang konsinyasi')
+                            {{ 'Rp. ' . number_format($totalHutangKonsinyasi, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Modal Pemilik' || $akun->nama_akun == 'modal pemilik')
+                            {{ 'Rp. ' . number_format($modal, 2, ',', '.') }}
+                        @else
+                            Rp. 0,00
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+            <td colspan="2" class="px-3 font-bold text-right">Total</td>
+            <td class="px-3 font-bold text-right text-white bg-primary">
+                {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}</td>
             </tr>
-            <tr class="mt-3">
-                <td>2-0002</td>
-                <td>Hutang Gaji</td>
-                <td class="text-right"></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="font-bold text-right px-3">Total</td>
-                <td class="text-right font-bold bg-primary text-white px-3">Rp. 6.000.000</td>
-            </tr>
-            <tr class="mt-3">
-                <td>3-0001</td>
-                <td>Modal Pemilik</td>
-                <td class="text-right">Rp. 50.000.000</td>
-            </tr>
-            <tr class="mt-3">
-                <td>3-0002</td>
-                <td>Laba/Rugi</td>
-                <td class="text-right">Rp. 500.000</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="font-bold text-right px-3">Total</td>
-                <td class="text-right font-bold bg-primary text-white px-3">Rp. 50.500.000</td>
-            </tr>
-            <tr class="font-bold text-white bg-warning p-5">
-                <td class="px-3">Total Aktiva</td>
-                <td>Rp. 56.500.000</td>
+            <tr class="p-5 font-bold text-white bg-warning">
+                <td class="px-3">Total Pasiva</td>
+                <td> {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}</td>
             </tr>
         </table>
     </div>

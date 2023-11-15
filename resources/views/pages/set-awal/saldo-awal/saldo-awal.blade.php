@@ -25,6 +25,7 @@
                     <thead>
 
                         <tr>
+                            <td class="text-white border border-slate-600 bg-primary">Kode</td>
                             <td class="text-white border border-slate-600 bg-primary">Akun</td>
                             <td class="text-white border border-slate-600 bg-primary">Saldo</td>
                         </tr>
@@ -32,6 +33,7 @@
                     <tbody>
                         @forelse ($akunAktiva as $item)
                             <tr>
+                                <td class="border border-slate-600">{{ $item->kode }}</td>
                                 <td class="border border-slate-600">{{ $item->nama_akun }}</td>
                                 <td class="border border-slate-600">
                                     @if ($item->nama_akun == 'Piutang Dagang' || $item->nama_akun == 'piutang dagang')
@@ -51,7 +53,7 @@
                             </tr>
                         @endforelse
                         <tr>
-                            <td class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
+                            <td class="font-bold text-center border border-slate-600 bg-secondary" colspan="2">Total</td>
                             <td class="border border-slate-600">
                                 {{ 'Rp. ' . number_format($totalDagangPiutang + $totalKonsinyasiPiutang + $persediaanDagang, 2, ',', '.') }}
                             </td>
@@ -70,6 +72,7 @@
                 <table class="table border border-slate-600">
                     <thead>
                         <tr>
+                            <td class="text-white border border-slate-600 bg-primary">Kode</td>
                             <td class="text-white border border-slate-600 bg-primary">Akun</td>
                             <td class="text-white border border-slate-600 bg-primary">Saldo</td>
                         </tr>
@@ -77,6 +80,7 @@
                     <tbody>
                         @foreach ($akunPasifa as $itemPasifa)
                             <tr>
+                                <td class="border border-slate-600">{{ $itemPasifa->kode }}</td>
                                 <td class="border border-slate-600">{{ $itemPasifa->nama_akun }}</td>
                                 <td class="border border-slate-600">
                                     @if ($itemPasifa->nama_akun == 'Hutang Dagang' || $itemPasifa->nama_akun == 'hutang dagang')
@@ -92,7 +96,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
+                            <td colspan="2" class="font-bold text-center border border-slate-600 bg-secondary">Total</td>
                             <td class="border border-slate-600">
                                 {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}
                             </td>
