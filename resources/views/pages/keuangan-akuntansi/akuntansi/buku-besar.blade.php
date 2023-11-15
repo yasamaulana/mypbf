@@ -43,7 +43,9 @@
             @forelse ($akuns as $akun)
                 <div class="p-5 mt-5 box">
                     <div class="flex justify-between gap-3 mt-5 mb-3">
-                        <p class="mr-auto ">Akun : <span class="font-bold">{{ $akun->nama_akun }}</span></p>
+                        <p class="mr-auto ">Akun : <span class="font-bold">{{ $akun->kode }} -
+                                {{ $akun->nama_akun }}</span>
+                        </p>
                         <div class="relative w-56 text-slate-500">
                             <input type="text" class="w-56 pr-10 form-control" placeholder="Search...">
                             <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
