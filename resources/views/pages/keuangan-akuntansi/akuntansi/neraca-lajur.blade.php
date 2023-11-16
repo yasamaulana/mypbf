@@ -77,9 +77,13 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="flex justify-center mt-4 mb-5 align-item-center ">
+                        {{ $akuns->links() }}
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- END: Data List -->
+    </div>
+    <!-- END: Data List -->
     </div>
 @endsection

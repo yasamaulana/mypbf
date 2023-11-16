@@ -47,8 +47,10 @@ class NeracaController extends Controller
             'PersediaanDagang' => $totalStokAwal,
 
             //untuk pasiva
-            'akunPasiva' => AkunAkutansi::where('jenis_akun', 'Kewajiban')
-                ->orWhere('jenis_akun', 'Modal')
+            'akunKewajiban' => AkunAkutansi::where('jenis_akun', 'Kewajiban')
+                ->where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')
+                ->get(),
+            'akunModal' => AkunAkutansi::where('jenis_akun', 'Modal')
                 ->where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')
                 ->get(),
             'totalHutangDagang' => $totalHutangDagang,

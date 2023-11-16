@@ -60,7 +60,7 @@
         <p class="mt-5 text-xl font-bold">PASIVA</p>
         <hr>
         <table class="w-full text-lg ">
-            @foreach ($akunPasiva as $akun)
+            @foreach ($akunKewajiban as $akun)
                 <tr class="mt-3">
                     <td>{{ $akun->kode }}</td>
                     <td>{{ $akun->nama_akun }}</td>
@@ -79,8 +79,25 @@
             @endforeach
             <td colspan="2" class="px-3 font-bold text-right">Total</td>
             <td class="px-3 font-bold text-right text-white bg-primary">
-                {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}</td>
+                {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi, 2, ',', '.') }}</td>
             </tr>
+            @foreach ($akunModal as $akun)
+                <tr class="mt-3">
+                    <td>{{ $akun->kode }}</td>
+                    <td>{{ $akun->nama_akun }}</td>
+                    <td class="text-right">
+                        @if ($akun->nama_akun == 'Hutang Dagang' || $akun->nama_akun == 'hutang dagang')
+                            {{ 'Rp. ' . number_format($totalHutangDagang, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Hutang Konsinyasi' || $akun->nama_akun == 'hutang konsinyasi')
+                            {{ 'Rp. ' . number_format($totalHutangKonsinyasi, 2, ',', '.') }}
+                        @elseif ($akun->nama_akun == 'Modal Pemilik' || $akun->nama_akun == 'modal pemilik')
+                            {{ 'Rp. ' . number_format($modal, 2, ',', '.') }}
+                        @else
+                            Rp. 0,00
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
             <tr class="p-5 font-bold text-white bg-warning">
                 <td class="px-3">Total Pasiva</td>
                 <td> {{ 'Rp. ' . number_format($totalHutangDagang + $totalHutangKonsinyasi + $modal, 2, ',', '.') }}</td>

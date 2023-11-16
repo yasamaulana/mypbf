@@ -12,7 +12,7 @@ class NeracaLajurController extends Controller
     {
         return view('pages.keuangan-akuntansi.akuntansi.neraca-lajur', [
             'title' => 'keuangan & akuntansi',
-            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')->get(),
+            'akuns' => AkunAkutansi::where('id_perusahaan', Auth::user()->id_perusahaan)->orderBy('kode', 'asc')->paginate(10),
         ]);
     }
 }
