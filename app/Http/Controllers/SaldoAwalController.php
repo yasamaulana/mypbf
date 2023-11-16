@@ -57,7 +57,7 @@ class SaldoAwalController extends Controller
         $isi = [];
         $hpp = [];
         foreach ($stockAwal as $value) {
-            $isi[$value->produk->id] = $value->produk->isi;
+            $isi[$value->produk->id] = $value->jumlah;
             $hpp[$value->produk->id] = $value->hpp;
         }
         $result = [];
