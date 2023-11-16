@@ -220,7 +220,7 @@
                                 @foreach ($pegawais as $pegawai)
                                     <option
                                         {{ $pelanggan ? ($pelanggan->supervisor == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                        {{ $pegawai->nama_pegawai }}</option>
+                                        {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -233,7 +233,7 @@
                                 @foreach ($pegawais as $pegawai)
                                     <option
                                         {{ $pelanggan ? ($pelanggan->sales == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                        {{ $pegawai->nama_pegawai }}</option>
+                                        {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -246,7 +246,7 @@
                                 @foreach ($pegawais as $pegawai)
                                     <option
                                         {{ $pelanggan ? ($pelanggan->kolektor == $pegawai->nama_pegawai ? 'selected' : '') : '' }}>
-                                        {{ $pegawai->nama_pegawai }}</option>
+                                        {{ $pegawai->nama_pegawai }} - {{ $pegawai->jabatan }}</option>
                                 @endforeach
                             </select>
                         </div>

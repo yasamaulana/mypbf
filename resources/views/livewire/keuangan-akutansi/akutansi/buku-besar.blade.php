@@ -68,7 +68,8 @@
                                     @forelse ($piutangDagang as $piutang)
                                         <tr class="text-center">
                                             <td class="border border-slate-600">{{ $piutang->no_reff }}</td>
-                                            <td class="border border-slate-600">{{ $piutang->tgl_faktur }}</td>
+                                            <td class="border border-slate-600">
+                                                {{ $piutang->created_at->format('d-m-Y') }}</td>
                                             <td class="border border-slate-600">Piutang Dagang</td>
                                             <td class="border border-slate-600">
                                                 {{ 'Rp. ' . number_format($piutang->jmlh_piutang, 2, ',', '.') }}</td>

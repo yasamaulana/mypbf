@@ -16,7 +16,7 @@ class PelangganController extends Controller
     {
         return view('pages.master.customer.pelanggan', [
             'title' => 'master',
-            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
+            'pegawais' => Pegawai::where('id_perusahaan', Auth::user()->id_perusahaan)->where('marketing', 'on')->get(),
             'kelompoks' => Kelompok::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'pelanggans' => Pelanggan::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
             'rayons' => AreaRayon::where('id_perusahaan', Auth::user()->id_perusahaan)->get(),
