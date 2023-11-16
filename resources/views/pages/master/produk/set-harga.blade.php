@@ -303,16 +303,16 @@
                         </div>
                         <div class="col-span-12 intro-y sm:col-span-6">
                             <label for="input-wizard-3" class="form-label">Isi</label>
-                            <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
-                                value="{{ $produk->isi }}">
+                            <div class="flex gap-2">
+                                <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                                    value="{{ $produk->isi }}">
+                                <p class="mt-2 font-bold text-primary">{{ $produk->satuan_jual_terkecil }}</p>
+                            </div>
                         </div>
                         <div class="col-span-12 intro-y ">
                             <label for="input-wizard-3" class="form-label">HPP Final</label>
-                            <div class="flex gap-2">
-                                <input id="hpp_final" type="text" class="form-control" readonly placeholder=""
-                                    value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->isi : '' }}">
-                                <p class="mt-2 font-bold text-success">{{ $produk->satuan_jual_terkecil }}</p>
-                            </div>
+                            <input id="hpp_final" type="text" class="form-control" readonly placeholder=""
+                                value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->isi : '' }}">
                         </div>
                     </div>
                 </div>
