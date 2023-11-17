@@ -69,6 +69,7 @@ class StokAwalController extends Controller
             'satuan_terkecil' => $barang->satuan_jual_terkecil,
             'isi' => $barang->isi,
             'tipe' => $barang->tipe,
+            'exp_date' => $barang->exp_date,
         ]);
     }
 }
