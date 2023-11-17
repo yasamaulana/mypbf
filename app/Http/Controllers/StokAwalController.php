@@ -32,7 +32,7 @@ class StokAwalController extends Controller
         StokAwal::create($request->all());
 
         return back()->with('success', 'Stok Awal added successfully');
-    }  
+    }
 
     public function editStok(Request $request, $id)
     {
@@ -68,6 +68,7 @@ class StokAwalController extends Controller
             'satuan' => $barang->satuan_dasar_beli,
             'satuan_terkecil' => $barang->satuan_jual_terkecil,
             'isi' => $barang->isi,
+            'tipe' => $barang->tipe,
         ]);
     }
 }

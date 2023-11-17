@@ -517,7 +517,7 @@
                         <div class="form-inline">
                             <label for="horizontal-form-1" class="mx-4 form-label">Isi</label>
                             <input id="horizontal-form-1" type="text" class="form-control" placeholder="" required>
-                            <p class="mt-2 ml-2 font-bold text-primary">{{ $produk->satuan_jual_terkecil }}</p>
+                            <p class="mt-1 ml-2 font-bold text-primary">{{ $produk->satuan_jual_terkecil }}</p>
                         </div>
                         <div class="form-inline">
                             <label for="horizontal-form-1" class="mx-4 form-label">HPP Final</label>

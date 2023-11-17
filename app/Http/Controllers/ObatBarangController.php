@@ -51,15 +51,15 @@ class ObatBarangController extends Controller
 
         $kelompoks = $request->input('kelompoks');
 
-foreach ($kelompoks as $kelompok) {
-    DiskonKelompok::create([
-        'id_obat_barang' => $obatBarang['id'],
-        'id_kelompok' => $kelompok['id_kelompok'],
-        'persentase' => $kelompok['persentase'] ?? 0,
-        'disc_1' => $kelompok['disc_1'] ?? 0,
-        'disc_2' => $kelompok['disc_2'] ?? 0,
-    ]);
-}
+        foreach ($kelompoks as $kelompok) {
+            DiskonKelompok::create([
+                'id_obat_barang' => $obatBarang['id'],
+                'id_kelompok' => $kelompok['id_kelompok'],
+                'persentase' => $kelompok['persentase'] ?? 0,
+                'disc_1' => $kelompok['disc_1'] ?? 0,
+                'disc_2' => $kelompok['disc_2'] ?? 0,
+            ]);
+        }
 
 
         return redirect()->route('obat-barang')->with('success', 'Produk added successfully');
@@ -122,10 +122,17 @@ foreach ($kelompoks as $kelompok) {
             }
         }
 
+        if ($barang->stokAwal) {
+            $barang->stokAwal->delete();
+        }
+
+        DiskonKelompok::where('id_obat_barang', $id)->delete();
+
         $barang->delete();
 
-        return back()->with('success', 'Produk delete successfully');
+        return back()->with('success', 'Produk berhasil dihapus');
     }
+
 
     public function ProdukEReport()
     {

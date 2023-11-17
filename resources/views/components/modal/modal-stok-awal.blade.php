@@ -25,8 +25,8 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
                                 Nama Barang
                             </label>
-                            <select data-tw-merge id="{{ $id_dropdown }}" aria-label="Default select example"
-                                name="id_obat_barang" class="form-control">
+                            <select data-tw-merge aria-label="Default select example" name="id_obat_barang"
+                                class="form-control" id="nama_barang{{ $id }}">
                                 <option value="">- Pilih -</option>
                                 @foreach ($barangs as $barang)
                                     <option value="{{ $barang->id }}"
@@ -40,7 +40,7 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
                                 Satuan
                             </label>
-                            <input data-tw-merge id="satuan{{ $id_dropdown }}" type="text" placeholder="Auto"
+                            <input data-tw-merge id="satuan{{ $id }}" type="text" placeholder="Auto"
                                 class="form-control" disabled />
                         </div>
 
@@ -49,9 +49,9 @@
                                 Isi
                             </label>
                             <div class="flex w-full gap-3">
-                                <input data-tw-merge id="isi{{ $id_dropdown }}" type="number" placeholder="Auto"
+                                <input data-tw-merge id="isi{{ $id }}" type="number" placeholder="Auto"
                                     class="form-control" disabled />
-                                <p id="satuan_terkecil{{ $id_dropdown }}" class="mt-2"></p>
+                                <p id="satuan_terkecil{{ $id }}" class="mt-2"></p>
                             </div>
                         </div>
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
@@ -117,7 +117,7 @@
                                 Tipe
                             </label>
                             <select data-tw-merge aria-label="Default select example" class="form-control"
-                                name="tipe">
+                                name="tipe" id="tipe{{ $id }}">
                                 <option {{ $stok ? ($stok->tipe == 'Dagang' ? 'selected' : '') : '' }}>
                                     Dagang</option>
                                 <option {{ $stok ? ($stok->tipe == 'Konsinyasi' ? 'selected' : '') : '' }}>
@@ -136,7 +136,7 @@
 </div>
 <script>
     jQuery(document).ready(function($) {
-        let id_dropdown = "{{ $id_dropdown }}";
+        let id_dropdown = "{{ $id }}";
 
         // Fungsi untuk mengambil dan mengisi data saat halaman dimuat
         function fetchData(selectedOption) {
@@ -147,6 +147,8 @@
                     $("#satuan" + id_dropdown).val(data.satuan);
                     $("#isi" + id_dropdown).val(data.isi);
                     $("#satuan_terkecil" + id_dropdown).text(data.satuan_terkecil);
+                    $('#tipe{{ $id }}').val(data.tipe);
+                    $('#tipe{{ $id }}').trigger('change');
                 },
                 error: function(err) {
                     console.error('Error:', err);
@@ -159,26 +161,10 @@
             fetchData(selectedOption);
         }
 
-        let selectedValue = document.getElementById(id_dropdown);
+        let selectedValue = document.getElementById('nama_barang{{ $id }}');
 
         selectedValue.addEventListener('change', handleDropdownChange);
 
         fetchData(selectedValue.value);
-    });
-
-
-    //setting input
-    var inputHPP = document.getElementsByClassName("hpp");
-
-    inputHPP.addEventListener("input", function() {
-        var formattedValue = this.value.replace(/\D/g, '');
-        var formattedString = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g,
-            "$1.");
-        this.value = formattedString;
-    });
-
-    inputHPP.form.addEventListener("submit", function() {
-        inputHPP.value = inputHPP.value.replace(/\D/g,
-            '');
     });
 </script>
