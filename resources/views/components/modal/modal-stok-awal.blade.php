@@ -30,7 +30,7 @@
                                 <option value="">- Pilih -</option>
                                 @foreach ($barangs as $barang)
                                     <option value="{{ $barang->id }}"
-                                        {{ $stok ? ($stok->id == $barang->id ? 'selected' : '') : '' }}>
+                                        {{ $stok ? ($stok->id_obat_barang == $barang->id ? 'selected' : '') : '' }}>
                                         {{ $barang->kode_obat_barang . ' || ' . $barang->nama_obat_barang }}</option>
                                 @endforeach
                             </select>
