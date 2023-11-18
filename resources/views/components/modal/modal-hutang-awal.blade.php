@@ -10,7 +10,7 @@
                     <div class="preview">
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
-                                No. Reff
+                                No. Reff Contoh
                             </label>
                             @php
                                 $nomor_urut = count($hutangAwals) + 1;
