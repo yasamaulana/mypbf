@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('id_obat_barang');
             $table->string('id_kelompok');
+            $table->string('id_set_harga');
+            $table->string('satuan_dasar_beli')->nullable();
             $table->string('persentase');
             $table->string('disc_1');
             $table->string('disc_2');

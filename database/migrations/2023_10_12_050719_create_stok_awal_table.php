@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('no_reff');
             $table->string('no_batch');
             $table->string('id_obat_barang');
+            $table->string('satuan');
             $table->string('jumlah');
             $table->string('exp_date')->nullable();
             $table->string('hpp');

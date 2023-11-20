@@ -37,7 +37,7 @@
                     <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-3" class="form-label">HPP Final</label>
                         <input id="input-wizard-3" type="text" class="form-control" placeholder="" readonly
-                            value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->isi : '' }}">
+                            value="{{ $produk->stokAwal ? number_format(str_replace('.', '', $produk->stokAwal->hpp) / $produk->isi, 0, ',', '.') : '' }}">
                     </div>
                 </div>
                 <div class="flex justify-center w-full gap-3 mt-6">
@@ -80,7 +80,7 @@
                     <div class="col-span-12 intro-y ">
                         <label for="input-wizard-3" class="form-label">HPP Final</label>
                         <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
-                            value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->isi : '' }}">
+                            value="{{ $produk->stokAwal ? number_format(str_replace('.', '', $produk->stokAwal->hpp) / $produk->isi, 0, ',', '.') : '' }}">
                     </div>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                         <div class="col-span-12 intro-y ">
                             <label for="input-wizard-3" class="form-label">HPP Final</label>
                             <input id="hpp_final" type="text" class="form-control" readonly placeholder=""
-                                value="{{ $produk->stokAwal ? $produk->stokAwal->hpp / $produk->isi : '' }}">
+                                value="{{ $produk->stokAwal ? number_format(str_replace('.', '', $produk->stokAwal->hpp) / $produk->isi, 0, ',', '.') : '' }}">
                         </div>
                     </div>
                 </div>

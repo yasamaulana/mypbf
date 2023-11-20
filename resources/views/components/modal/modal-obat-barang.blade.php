@@ -130,7 +130,7 @@
                                 </select>
                             </div>
                             <div class="col-span-12 intro-y sm:col-span-6">
-                                <label for="input-wizard-6" class="form-label">Jenis Produk</label>
+                                <label for="input-wizard-6" class="form-label">Jenis Produk </label>
                                 <select id="input-wizard-6" class="form-select" required name="jenis_obat_barang">
                                     @if ($jenis_obat->isNotEmpty())
                                         @foreach ($jenis_obat as $jenis)
@@ -222,82 +222,169 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <label for="table-set" class="form-control">Setting Harga Jual</label>
-                            <table class="table mt-3 border" id="table-set">
-                                <thead class="font-bold">
-                                    <tr>
-                                        <td>Kelompok</td>
-                                        <td>%</td>
-                                        <td>Disc 1</td>
-                                        <td>Disc 2</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{-- @forelse ($kelompoks as $kelompok) --}}
-                                    @if ($barang)
-                                        @foreach (DiskonKelompok::where('id_obat_barang', $barang->id)->get() as $diskon)
-                                            <tr>
-                                                {{-- hidden information --}}
+                        @php
+                            $key = 0;
+                        @endphp
+                        @forelse ($kelompoks as $item)
+                            <div class="mt-3">
+                                <label for="table-set" class="font-bold form-control">Setting Harga Jual
+                                    {{ $loop->iteration }}</label>
+                                <table class="table mt-3 border" id="table-set">
+                                    <thead class="font-bold">
+                                        <tr>
+                                            <td>Kelompok</td>
+                                            <td>%</td>
+                                            <td>Disc 1</td>
+                                            <td>Disc 2</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{-- @forelse ($kelompoks as $kelompok) --}}
+                                        @if ($barang)
+                                            @foreach (DiskonKelompok::where('id_obat_barang', $barang->id)->where('id_set_harga', $key + 1)->get() as $diskon)
+                                                @if ($loop->first)
+                                                    <div class="flex gap-3 mt-3">
+                                                        <label for="input-wizard-6" class="mt-2 form-label">Satuan
+                                                            Dasar/Beli</label>
+                                                        <select id="input{{ $key }}"
+                                                            class="w-40 form-select input{{ $key }}">
+                                                            @if ($satuans->isNotEmpty())
+                                                                <option value="">- Pilih -</option>
+                                                                @foreach ($satuans as $satuan)
+                                                                    <option value="{{ $satuan->satuan }}"
+                                                                        {{ $barang ? ($diskon->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                        {{ $satuan->satuan }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @else
+                                                                <option value="">Belum ada data</option>
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                @endif
                                                 <input type="hidden"
-                                                    name="kelompoks[{{ $loop->index }}][id_kelompok]"
-                                                    value="{{ $diskon->id_kelompok }}">
-                                                {{-- End hidden information --}}
-                                                <td>{{ $kelompoks->where('id', $diskon->id_kelompok)->first()->kelompok }}
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][persentase]"
-                                                        value="{{ $diskon->persentase }}">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][disc_1]"
-                                                        value="{{ $diskon->disc_1 }}">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control" required
-                                                        name="kelompoks[{{ $loop->index }}][disc_2]"
-                                                        value="{{ $diskon->disc_2 }}">
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        @forelse ($kelompoks as $kelompok)
-                                            <tr>
-                                                {{-- hidden information --}}
+                                                    name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][satuan_dasar_beli]"
+                                                    id="satuan{{ $key }}"
+                                                    class="satuan{{ $key }}">
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        var inputElement = document.getElementById('input{{ $key }}');
+
+                                                        inputElement.addEventListener('change', function() {
+                                                            var selectedValue = this.value;
+                                                            $('.satuan{{ $key }}').val(selectedValue);
+                                                        });
+                                                    });
+                                                </script>
+                                                <tr>
+                                                    {{-- hidden information --}}
+                                                    <input type="hidden"
+                                                        name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][id_kelompok]"
+                                                        value="{{ $diskon->id_kelompok }}">
+                                                    <input type="hidden"
+                                                        name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][id_set_harga]"
+                                                        value="{{ $item->id }}">
+                                                    {{-- End hidden information --}}
+                                                    <td>{{ $kelompoks->where('id', $diskon->id_kelompok)->first()->kelompok }}
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" required
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][persentase]"
+                                                            value="{{ $diskon->persentase }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" required
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][disc_1]"
+                                                            value="{{ $diskon->disc_1 }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" required
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][disc_2]"
+                                                            value="{{ $diskon->disc_2 }}">
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            @forelse ($kelompoks as $kelompok)
+                                                @if ($loop->first)
+                                                    <div class="flex gap-3 mt-3">
+                                                        <label for="input-wizard-6" class="mt-2 form-label">Satuan
+                                                            Dasar/Beli</label>
+                                                        <select id="input{{ $key }}"
+                                                            class="w-40 form-select input{{ $key }}">
+                                                            @if ($satuans->isNotEmpty())
+                                                                <option value="">- Pilih -</option>
+                                                                @foreach ($satuans as $satuan)
+                                                                    <option value="{{ $satuan->satuan }}"
+                                                                        {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                        {{ $satuan->satuan }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @else
+                                                                <option value="">Belum ada data</option>
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                @endif
                                                 <input type="hidden"
-                                                    name="kelompoks[{{ $loop->index }}][id_kelompok]"
-                                                    value="{{ $kelompok->id }}">
-                                                {{-- End hiddenn information --}}
-                                                <td>{{ $kelompok->kelompok }}</td>
-                                                <td>
-                                                    <input type="number" value="0" class="form-control"
-                                                        name="kelompoks[{{ $loop->index }}][persentase]"
-                                                        value="{{ $kelompok->persentase ?? '' }}">
-                                                </td>
-                                                <td>
-                                                    <input type="number" value="0" class="form-control"
-                                                        name="kelompoks[{{ $loop->index }}][disc_1]"
-                                                        value="{{ $kelompok->disc_1 ?? '' }}">
-                                                </td>
-                                                <td>
-                                                    <input type="number" value="0" class="form-control"
-                                                        name="kelompoks[{{ $loop->index }}][disc_2]"
-                                                        value="{{ $kelompok->disc_2 ?? '' }}">
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="4" class="font-bold text-center">Belum ada kelompok
-                                                    tersedia
-                                                </td>
-                                            </tr>
-                                        @endforelse
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
+                                                    name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][satuan_dasar_beli]"
+                                                    id="satuan{{ $key }}"
+                                                    class="satuan{{ $key }}">
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        var inputElement = document.getElementById('input{{ $key }}');
+
+                                                        inputElement.addEventListener('change', function() {
+                                                            var selectedValue = this.value;
+                                                            $('.satuan{{ $key }}').val(selectedValue);
+                                                        });
+                                                    });
+                                                </script>
+                                                <tr>
+                                                    {{-- hidden information --}}
+                                                    <input type="hidden"
+                                                        name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][id_kelompok]"
+                                                        value="{{ $kelompok->id }}">
+                                                    <input type="hidden"
+                                                        name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][id_set_harga]"
+                                                        value="{{ $item->id }}">
+                                                    {{-- End hiddenn information --}}
+                                                    <td>{{ $kelompok->kelompok }}</td>
+                                                    <td>
+                                                        <input type="number" value="0" class="form-control"
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][persentase]"
+                                                            value="{{ $kelompok->persentase ?? '' }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value="0" class="form-control"
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][disc_1]"
+                                                            value="{{ $kelompok->disc_1 ?? '' }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" value="0" class="form-control"
+                                                            name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][disc_2]"
+                                                            value="{{ $kelompok->disc_2 ?? '' }}">
+                                                    </td>
+                                                </tr>
+
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4" class="font-bold text-center">Belum ada
+                                                        kelompok
+                                                        tersedia
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                            @php
+                                $key++;
+                            @endphp
+                        @empty
+                            <h1 class="text-center">Belum ada data tersedia</h1>
+                        @endforelse
                         <div class="mt-3">
                             <label for="file_upload" class="form-control">Gambar</label>
                             <input id="file_upload" type="file"
@@ -319,8 +406,6 @@
                                 reader.readAsDataURL(event.target.files[0]);
                             };
                         </script>
-
-
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -48,8 +48,9 @@
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
                                 Satuan
                             </label>
-                            <input data-tw-merge id="satuan{{ $id }}" type="text" placeholder="Auto"
-                                class="form-control" disabled />
+                            <select data-tw-merge aria-label="Default select example" name="satuan"
+                                class="form-control" id="satuan{{ $id }}">
+                            </select>
                         </div>
 
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
@@ -76,14 +77,22 @@
                             <input data-tw-merge id="exp_date{{ $id }}" type="date" placeholder="Auto"
                                 class="form-control" name="exp_date" value="{{ $stok ? $stok->exp_date : '' }}" />
                         </div>
+                        <!-- Tambahkan class 'formatted-input' untuk input HPP -->
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <label data-tw-merge for="hpp" class="inline-block mb-2 sm:w-40">
                                 HPP
                             </label>
-                            <input data-tw-merge id="hpp" type="text" placeholder="" name="hpp"
-                                value="{{ $stok ? $stok->hpp : '' }}"
-                                class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                            <input data-tw-merge id="hpp{{ $id }}" type="text" placeholder=""
+                                name="hpp" value="{{ $stok ? $stok->hpp : '' }}"
+                                class="w-full text-sm transition duration-200 ease-in-out rounded-md shadow-sm hpp disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent border-slate-200 placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                         </div>
+                        <script>
+                            $('.hpp').on('input', function() {
+                                var formattedValue = $(this).val().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                $(this).val(formattedValue);
+                            })
+                        </script>
+
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
                                 Gudang
@@ -122,7 +131,7 @@
                         </div>
                         <div data-tw-merge class="items-center block mt-3 sm:flex">
                             <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 sm:w-40">
-                                Isi
+                                Tipe
                             </label>
                             <div class="flex w-full gap-3">
                                 <input data-tw-merge id="tipe{{ $id }}" type="text" placeholder="Tipe"
@@ -154,10 +163,31 @@
                     $("#satuan_terkecil" + id_dropdown).text(data.satuan_terkecil);
                     $('#tipe{{ $id }}').val(data.tipe);
                     $('#exp_date{{ $id }}').prop('disabled', data.exp_date === '0');
+                    var selectOptions = data.satuan;
+                    var selectElement = $('<select></select>').attr({
+                        'id': "satuan" + id_dropdown,
+                        'class': 'form-control',
+                        'name': 'satuan'
+                    });
+
+                    var defaultSatuan = "{{ $stok->satuan ?? '' }}";
+                    $.each(selectOptions, function(key, value) {
+                        var option = $('<option></option>').attr('value', value).text(
+                            value);
+                        if (defaultSatuan !== '' && value === defaultSatuan) {
+                            option.prop('selected', true);
+                        }
+                        selectElement.append(option);
+                    });
+
+                    $("#satuan" + id_dropdown).replaceWith(selectElement);
+
+                    if (defaultSatuan !== '') {
+                        $("#satuan" + id_dropdown).val(defaultSatuan);
+                    }
+
                 },
-                error: function(err) {
-                    console.error('Error:', err);
-                }
+                error: function(err) {}
             });
         }
 

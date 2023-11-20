@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DiskonKelompok;
 use App\Models\Gudang;
 use App\Models\JenisObatBarang;
 use App\Models\ObatBarang;
@@ -62,11 +63,20 @@ class StokAwalController extends Controller
 
     public function getNamaBarang($id)
     {
+        $items = DiskonKelompok::where('id_obat_barang', $id)->pluck('satuan_dasar_beli')->toArray();
+
+        $filteredItems = array_filter($items, function ($value) {
+            return $value !== null;
+        });
+
+        $diskon = array_unique($filteredItems);
+
         $barang = ObatBarang::find($id);
 
         return response()->json([
             'satuan' => $barang->satuan_dasar_beli,
             'satuan_terkecil' => $barang->satuan_jual_terkecil,
+            'satuan' => $diskon,
             'isi' => $barang->isi,
             'tipe' => $barang->tipe,
             'exp_date' => $barang->exp_date,

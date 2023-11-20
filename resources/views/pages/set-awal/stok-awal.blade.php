@@ -58,7 +58,7 @@
                             <td class="">{{ $stok->produk->nama_obat_barang }}</td>
                             <td class="">{{ $stok->no_batch }}</td>
                             <td class="">{{ $stok->exp_date }}</td>
-                            <td class="">{{ $stok->produk->satuan_dasar_beli }}</td>
+                            <td class="">{{ $stok->satuan }}</td>
                             <td class="">{{ $stok->produk->isi }}</td>
                             <td class="">{{ $stok->produk->satuan_jual_terkecil }}</td>
                             <td class="">{{ $stok->produk->ket_satuan }}</td>

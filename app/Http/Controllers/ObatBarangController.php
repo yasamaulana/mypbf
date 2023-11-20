@@ -55,18 +55,20 @@ class ObatBarangController extends Controller
             DiskonKelompok::create([
                 'id_obat_barang' => $obatBarang['id'],
                 'id_kelompok' => $kelompok['id_kelompok'],
+                'id_set_harga' => $kelompok['id_set_harga'] ?? 1,
+                'satuan_dasar_beli' => $kelompok['satuan_dasar_beli'],
                 'persentase' => $kelompok['persentase'] ?? 0,
                 'disc_1' => $kelompok['disc_1'] ?? 0,
                 'disc_2' => $kelompok['disc_2'] ?? 0,
             ]);
         }
-
-
         return redirect()->route('obat-barang')->with('success', 'Produk added successfully');
     }
 
     public function editObat(Request $request, $id)
     {
+        // dd($request->all());
+
         $obatBarang = ObatBarang::find($id);
         $request->merge(['exp_date' => $request->has('exp_date') ? 1 : 0]);
         $request->merge(['status' => $request->has('status') ? 1 : 0]);
@@ -95,11 +97,13 @@ class ObatBarangController extends Controller
 
         foreach ($kelompoks as $kelompok) {
             DiskonKelompok::create([
-                'id_obat_barang' => $obatBarang->id,
+                'id_obat_barang' => $obatBarang['id'],
                 'id_kelompok' => $kelompok['id_kelompok'],
-                'persentase' => $kelompok['persentase'],
-                'disc_1' => $kelompok['disc_1'],
-                'disc_2' => $kelompok['disc_2'],
+                'id_set_harga' => $kelompok['id_set_harga'] ?? 1,
+                'satuan_dasar_beli' => $kelompok['satuan_dasar_beli'],
+                'persentase' => $kelompok['persentase'] ?? 0,
+                'disc_1' => $kelompok['disc_1'] ?? 0,
+                'disc_2' => $kelompok['disc_2'] ?? 0,
             ]);
         }
         return redirect()->route('obat-barang')->with('success', 'Produk updated successfully');
