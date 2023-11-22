@@ -78,7 +78,8 @@
                             </div>
                             <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Satuan Jual Terkecil</label>
-                                <select id="input-wizard-6" class="form-select" required name="satuan_jual_terkecil">
+                                <select id="input-satuan-terkecil{{ $id ?? 0 }}" class="form-select" required
+                                    name="satuan_jual_terkecil">
                                     @if ($satuans->isNotEmpty())
                                         @foreach ($satuans as $satuan)
                                             <option
@@ -266,14 +267,25 @@
                                                     name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][satuan_dasar_beli]"
                                                     id="satuan{{ $key }}"
                                                     class="satuan{{ $key }}">
+                                                <input type="hidden" class="form-control"
+                                                    id="isi{{ $key }}"
+                                                    name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][isi]">
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
                                                         var inputElement = document.getElementById('input{{ $key }}');
+                                                        var inputIsi = document.getElementById('inputIsi{{ $key }}');
 
                                                         inputElement.addEventListener('change', function() {
                                                             var selectedValue = this.value;
                                                             $('.satuan{{ $key }}').val(selectedValue);
                                                         });
+
+                                                        inputIsi.addEventListener('input', function() {
+                                                            var selectedValue = this.value;
+                                                            $('#isi{{ $key }}').val(
+                                                                selectedValue);
+                                                        });
+
                                                     });
                                                 </script>
                                                 <tr>
@@ -308,35 +320,56 @@
                                             @forelse ($kelompoks as $kelompok)
                                                 @if ($loop->first)
                                                     <div class="flex gap-3 mt-3">
-                                                        <label for="input-wizard-6" class="mt-2 form-label">Satuan
-                                                            Dasar/Beli</label>
-                                                        <select id="input{{ $key }}"
-                                                            class="w-40 form-select input{{ $key }}">
-                                                            @if ($satuans->isNotEmpty())
-                                                                <option value="">- Pilih -</option>
-                                                                @foreach ($satuans as $satuan)
-                                                                    <option value="{{ $satuan->satuan }}"
-                                                                        {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
-                                                                        {{ $satuan->satuan }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @else
-                                                                <option value="">Belum ada data</option>
-                                                            @endif
-                                                        </select>
+                                                        <div class="flex gap-3 ">
+                                                            <label for="input-wizard-6" class="mt-2 form-label">Satuan
+                                                                Dasar/Beli</label>
+                                                            <select id="input{{ $key }}"
+                                                                class="w-40 form-select input{{ $key }}">
+                                                                @if ($satuans->isNotEmpty())
+                                                                    <option value="">- Pilih -</option>
+                                                                    @foreach ($satuans as $satuan)
+                                                                        <option value="{{ $satuan->satuan }}"
+                                                                            {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                            {{ $satuan->satuan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                @else
+                                                                    <option value="">Belum ada data</option>
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex gap-3 ">
+                                                            <label for="inputIsi{{ $key }}"
+                                                                class="mt-2 form-label">Isi</label>
+                                                            <input type="number" class="form-control"
+                                                                id="inputIsi{{ $key }}">
+                                                        </div>
+                                                        <p class="mt-2 font-bold satuan-terkecil{{ $id ?? 0 }}">
+                                                            Tablet
+                                                        </p>
                                                     </div>
                                                 @endif
                                                 <input type="hidden"
                                                     name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][satuan_dasar_beli]"
                                                     id="satuan{{ $key }}"
                                                     class="satuan{{ $key }}">
+                                                <input type="hidden" class="form-control"
+                                                    id="isi{{ $key }}"
+                                                    name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][isi]">
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
                                                         var inputElement = document.getElementById('input{{ $key }}');
+                                                        var inputIsi = document.getElementById('inputIsi{{ $key }}');
 
                                                         inputElement.addEventListener('change', function() {
                                                             var selectedValue = this.value;
                                                             $('.satuan{{ $key }}').val(selectedValue);
+                                                        });
+
+                                                        inputIsi.addEventListener('input', function() {
+                                                            var selectedValue = this.value;
+                                                            $('#isi{{ $key }}').val(
+                                                                selectedValue);
                                                         });
                                                     });
                                                 </script>
@@ -389,8 +422,7 @@
                             <label for="file_upload" class="form-control">Gambar</label>
                             <input id="file_upload" type="file"
                                 class="w-full px-3 py-2 mt-2 leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
-                                {{ $barang ? '' : 'required' }} name="gambar" accept="image/*"
-                                onchange="loadFile(event, {{ $id ? $id : '0' }})">
+                                name="gambar" accept="image/*" onchange="loadFile(event, {{ $id ? $id : '0' }})">
 
                             <img class="previewImage{{ $id ? $id : '0' }}"
                                 src="{{ $barang ? url('storage/obat-barang/' . $barang->gambar) : '' }}"
@@ -415,3 +447,14 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputSatuan = document.getElementById('input-satuan-terkecil{{ $id }}');
+
+        inputSatuan.addEventListener('change', function() {
+            var selectedValue = this.value;
+            console.log(selectedValue);
+            $('.satuan-terkecil{{ $id ?? 0 }}').innerHTML(selectedValue);
+        });
+    });
+</script>
