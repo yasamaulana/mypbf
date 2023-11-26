@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-span-12 intro-y sm:col-span-6">
                         <label for="input-wizard-3" class="form-label">HPP</label>
-                        <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
+                        <input id="hpp" type="text" class="form-control" readonly placeholder=""
                             value="{{ $produk->stokAwal ? $produk->stokAwal->hpp : '' }}">
                     </div>
                     <div class="col-span-12 intro-y sm:col-span-6">
@@ -329,7 +329,7 @@
                         <div class="flex gap-3">
                             <label>Inc PPN</label>
                             <div class="form-check form-switch">
-                                <input class="form-check-input inc_ppn" type="checkbox" name="status">
+                                <input class="form-check-input inc_ppn" type="checkbox" name="status" value="11">
                             </div>
                         </div>
                         <div class="overflow-auto">
@@ -346,7 +346,7 @@
                                 </div>
                                 <div class="form-inline">
                                     <label for="laba1" class="form-label">Laba %</label>
-                                    <input id="laba1" type="text" name="laba1"
+                                    <input id="laba1" type="text" name="laba1" oninput="labaPersen()"
                                         class="w-24 form-control form-control-sm laba1" placeholder=""
                                         value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
                                     <input type="text" id="hasil-laba"
@@ -389,7 +389,7 @@
                                 </div>
                                 <div class="form-inline">
                                     <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                    <input id="horizontal-form-1" type="text"name="laba2"
+                                    <input id="laba2" type="text"name="laba2" oninput="labaPersen2()"
                                         class="w-24 form-control form-control-sm" placeholder=""
                                         value="{{ $kelompok->diskon($kelompok->id)->persentase }}">
                                     <input id="horizontal-form-1" type="text"
@@ -409,7 +409,7 @@
                                 </div>
                                 <div class="form-inline">
                                     <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                    <input id="horizontal-form-1" type="text"
+                                    <input id="horizontal-form-1" type="text" name="harga-jual2"
                                         class="w-24 mx-2 form-control form-control-sm" placeholder="">
                                 </div>
                                 <div class="form-inline">
@@ -540,61 +540,120 @@
         <button class="btn btn-danger">Batal</button>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var getPPN = {{ $ppn ? $ppn->ppn : '' }};
-            var ppn = 1 + (getPPN / 100);
-
-            // Mengambil elemen input dan checkbox
-            var incPpnCheckbox = document.querySelector(".inc_ppn");
-            var jumlah1Input = document.querySelector(".jumlah1");
-            var sampai1Input = document.querySelector(".sampai1");
-            var laba1Input = document.querySelector(".laba1");
-            var hasilLabaInput = document.querySelector(".hasil-laba");
-            var disc1Input = document.querySelector(".disc_1_1");
-            var disc2Input = document.querySelector(".disc_2_1");
-            var hargaJualInput = document.querySelector(".harga-jual");
-            var hargaFinal1Input = document.querySelector(".harga-final1");
-
-            // Fungsi untuk menghitung harga jual dan harga final
-            function hitungHarga() {
-                var hppFinal = parseFloat(hppFinalElement.value);
-                var laba1Percent = parseFloat(laba1Input.value) / 100;
-                var disc1Percent = parseFloat(disc1Input.value) / 100;
-                var disc2Percent = parseFloat(disc2Input.value) / 100;
-
-                var hargaJual = hppFinal * (1 + laba1Percent);
-                var hargaFinal = hargaJual * (1 - disc1Percent) * (1 - disc2Percent);
-
-                hargaJualInput.value = hargaFinal;
-
-                if (incPpnCheckbox.checked) {
-                    hargaFinal *= ppn;
-                }
-
-                // Menampilkan hasil pada elemen input "harga-jual" dan "harga-final1"
-                hargaJualInput.value = hargaJual;
-                hargaFinal1Input.value = hargaFinal;
-            }
-
-            // Menambahkan event listener pada elemen input yang relevan
-            laba1Input.addEventListener("input", function() {
-                hitungHarga();
-            });
-
-            disc1Input.addEventListener("input", function() {
-                hitungHarga();
-            });
-
-            disc2Input.addEventListener("input", function() {
-                hitungHarga();
-            });
-
-            incPpnCheckbox.addEventListener("change", function() {
-                hitungHarga();
-            });
-
-            // Inisialisasi perhitungan saat halaman dimuat
-            hitungHarga();
+        //form 1
+        let hppFinal = parseFloat(document.getElementById("hpp_final").value.replace(".", ""));
+        var laba1Input = parseFloat(document.querySelector(".laba1").value);
+        var hasilLabaInput = document.querySelector(".hasil-laba");
+        let disc1Input = parseFloat(document.getElementById("disc_1_1").value);
+        let disc2Input = parseFloat(document.getElementById("disc_2_1").value);
+        var hargaJualInput = document.querySelector(".harga-jual");
+        var hargaFinal1Input = document.querySelector(".harga-final1");
+        let hpp = parseFloat(document.getElementById('hpp').value.replace(".", ""));
+        var incPpnCheckbox = document.querySelector(".inc_ppn");
+        document.getElementById("laba1").addEventListener("input", function() {
+            laba1Input = parseFloat(this.value);
+            labaPersen();
         });
+        incPpnCheckbox.addEventListener('change', function() {
+            // Panggil fungsi labaPersen ketika checkbox berubah
+            labaPersen();
+        });
+        // Panggil labaPersen saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", function() {
+            labaPersen();
+        });
+
+        function labaPersen() {
+            if (isNaN(laba1Input)) {
+                hasilLabaInput.value = '';
+                hargaFinal1Input.value = ''
+                hargaFinal1Input.value = ''
+                return;
+            }
+            // Hitung total laba
+            let totalLaba = Math.round((laba1Input / 100 + 1) * hpp);
+            let labaReplace = totalLaba.toString().replace(/\./g, '');
+
+            hasilLabaInput.value = labaReplace;
+            console.log(totalLaba);
+
+            // diskon harga jual & harga final
+            let laba1Percent = isNaN(laba1Input) ? 0 : laba1Input / 100;
+            let disc1Percent = isNaN(disc1Input) ? 0 : disc1Input / 100;
+            let disc2Percent = isNaN(disc2Input) ? 0 : disc2Input / 100;
+            let diskon1 = labaReplace * disc1Percent;
+            let diskon2 = labaReplace * disc2Percent;
+            let totalDiskon = diskon1 + diskon2;
+            // harga jual
+            let totalHarga = totalLaba - totalDiskon;
+            hargaJualInput.value = totalHarga;
+            console.log('total harga : ' + totalHarga);
+
+            // Periksa apakah incPpnCheckbox dicentang
+            if (incPpnCheckbox.checked) {
+                const desimalPpn = incPpnCheckbox.value / 100;
+                console.log('desimal ppn : ' + desimalPpn);
+                totalHarga -= Math.round(desimalPpn * totalHarga);
+            }
+            // harga final
+            hargaFinal1Input.value = totalHarga;
+        }
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     var getPPN = {{ $ppn ? $ppn->ppn : '' }};
+        //     var ppn = 1 + (getPPN / 100);
+
+        //     // Mengambil elemen input dan checkbox
+        //     var incPpnCheckbox = document.querySelector(".inc_ppn");
+        //     // let hppFinal = document.getElementById("hpp_final");
+        //     var jumlah1Input = document.querySelector(".jumlah1");
+        //     var sampai1Input = document.querySelector(".sampai1");
+        //     // var hasilLabaInput = document.querySelector(".hasil-laba");
+        //     var disc1Input = document.querySelector(".disc_1_1");
+        //     var disc2Input = document.querySelector(".disc_2_1");
+        //     var hargaJualInput = document.querySelector(".harga-jual");
+        //     var hargaFinal1Input = document.querySelector(".harga-final1");
+
+        //     // Fungsi untuk menghitung harga jual dan harga final
+        //     function hitungHarga() {
+        //         var hppFinal = parseFloat(hppFinal.value);
+        //         var laba1Percent = parseFloat(laba1Input.value) / 100;
+        //         var disc1Percent = parseFloat(disc1Input.value) / 100;
+        //         var disc2Percent = parseFloat(disc2Input.value) / 100;
+
+        //         var hargaJual = hppFinal * (1 + laba1Percent);
+        //         var hargaFinal = hargaJual * (1 - disc1Percent) * (1 - disc2Percent);
+
+        //         hargaJualInput.value = hargaFinal;
+
+        //         if (incPpnCheckbox.checked) {
+        //             hargaFinal *= ppn;
+        //         }
+
+        //         // Menampilkan hasil pada elemen input "harga-jual" dan "harga-final1"
+        //         hargaJualInput.value = hargaJual;
+        //         hargaFinal1Input.value = hargaFinal;
+        //     }
+
+        //     // // Menambahkan event listener pada elemen input yang relevan
+        //     // laba1Input.addEventListener("input", function() {
+        //     //     hitungHarga();
+        //     // });
+
+        //     // disc1Input.addEventListener("input", function() {
+        //     //     hitungHarga();
+        //     // });
+
+        //     // disc2Input.addEventListener("input", function() {
+        //     //     hitungHarga();
+        //     // });
+
+        //     // incPpnCheckbox.addEventListener("change", function() {
+        //     //     hitungHarga();
+        //     // });
+
+        //     // // Inisialisasi perhitungan saat halaman dimuat
+        //     // hitungHarga();
+        // });
     </script>
 @endsection

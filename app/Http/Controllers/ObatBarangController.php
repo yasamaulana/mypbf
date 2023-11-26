@@ -34,7 +34,7 @@ class ObatBarangController extends Controller
 
     public function tambahObat(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
         $request->merge(['exp_date' => $request->has('exp_date') ? 1 : 0]);
         $request->merge(['status' => $request->has('status') ? 1 : 0]);
