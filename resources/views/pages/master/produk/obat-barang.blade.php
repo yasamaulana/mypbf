@@ -13,7 +13,7 @@
                 Produk Baru</button>
             <button class="mr-2 text-white shadow-md btn btn-success">Import Excell</button>
             {{-- modal begin --}}
-            @include('components.modal.modal-obat-barang', [
+            @include('components.modal.obat-barang.modal-obat-barang', [
                 'id_modal' => 'modal-tambah',
                 'route' => 'tambah.obat-barang',
                 'id' => '',
@@ -80,7 +80,7 @@
                                     <!-- END: Delete Confirmation Modal -->
 
                                     {{-- modal edit --}}
-                                    @include('components.modal.modal-obat-barang', [
+                                    @include('components.modal.obat-barang.modal-obat-barang', [
                                         'id_modal' => 'modal-edit',
                                         'route' => 'edit.obat-barang',
                                         'id' => $barang->id,

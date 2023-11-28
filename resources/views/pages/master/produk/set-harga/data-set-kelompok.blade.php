@@ -14,13 +14,14 @@
                             <label for="input-wizard-6" class="form-label">Satuan Jual
                                 {{ $loop->iteration }}</label>
                             <input id="input-wizard-3" type="text" class="form-control" placeholder=""
-                                value="{{ $produk->satuan_dasar_beli }}" placeholder="Untuk satuan" readonly>
+                                value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->satuan_dasar_beli }}"
+                                placeholder="Untuk satuan" readonly>
                         </div>
                         <div class="col-span-12 intro-y sm:col-span-6">
                             <label for="input-wizard-3" class="form-label">Isi</label>
                             <div class="flex gap-2">
                                 <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
-                                    value="{{ $produk->isi }}">
+                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->isi }}">
                                 <p class="mt-2 font-bold text-primary">{{ $produk->satuan_jual_terkecil }}</p>
                             </div>
                         </div>
