@@ -34,7 +34,7 @@ class ObatBarangController extends Controller
 
     public function tambahObat(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $request->merge(['id_perusahaan' => Auth::user()->id_perusahaan]);
         $request->merge(['exp_date' => $request->has('exp_date') ? 1 : 0]);
         $request->merge(['status' => $request->has('status') ? 1 : 0]);
@@ -57,6 +57,7 @@ class ObatBarangController extends Controller
                 'id_obat_barang' => $obatBarang['id'],
                 'id_kelompok' => $kelompok['id_kelompok'],
                 'id_set_harga' => $kelompok['id_set_harga'] ?? 1,
+                'isi' => $kelompok['isi'],
                 'satuan_dasar_beli' => $kelompok['satuan_dasar_beli'],
                 'persentase' => $kelompok['persentase'] ?? 0,
                 'disc_1' => $kelompok['disc_1'] ?? 0,
@@ -101,6 +102,7 @@ class ObatBarangController extends Controller
                 'id_obat_barang' => $obatBarang['id'],
                 'id_kelompok' => $kelompok['id_kelompok'],
                 'id_set_harga' => $kelompok['id_set_harga'] ?? 1,
+                'isi' => $kelompok['isi'],
                 'satuan_dasar_beli' => $kelompok['satuan_dasar_beli'],
                 'persentase' => $kelompok['persentase'] ?? 0,
                 'disc_1' => $kelompok['disc_1'] ?? 0,

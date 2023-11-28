@@ -44,8 +44,10 @@
                             </div>
                             <div class="col-span-12 intro-y sm:col-span-6">
                                 <label for="input-wizard-6" class="form-label">Satuan Dasar/Beli</label>
-                                <select id="input-wizard-6" class="form-select" required name="satuan_dasar_beli">
+                                <select id="satuan_dasar_beli{{ $id ?? 0 }}" class="form-select" required
+                                    name="satuan_dasar_beli">
                                     @if ($satuans->isNotEmpty())
+                                        <option value="">- Pilih -</option>
                                         @foreach ($satuans as $satuan)
                                             <option
                                                 {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
@@ -80,6 +82,7 @@
                                 <label for="input-wizard-6" class="form-label">Satuan Jual Terkecil</label>
                                 <select id="input-satuan-terkecil{{ $id ?? 0 }}" class="form-select" required
                                     name="satuan_jual_terkecil">
+                                    <option value="">- Pilih -</option>
                                     @if ($satuans->isNotEmpty())
                                         @foreach ($satuans as $satuan)
                                             <option
@@ -245,44 +248,79 @@
                                             @foreach (DiskonKelompok::where('id_obat_barang', $barang->id)->where('id_set_harga', $key + 1)->get() as $diskon)
                                                 @if ($loop->first)
                                                     <div class="flex gap-3 mt-3">
-                                                        <label for="input-wizard-6" class="mt-2 form-label">Satuan
-                                                            Dasar/Beli</label>
-                                                        <select id="input{{ $key }}"
-                                                            class="w-40 form-select input{{ $key }}">
-                                                            @if ($satuans->isNotEmpty())
-                                                                <option value="">- Pilih -</option>
-                                                                @foreach ($satuans as $satuan)
-                                                                    <option value="{{ $satuan->satuan }}"
-                                                                        {{ $barang ? ($diskon->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
-                                                                        {{ $satuan->satuan }}
-                                                                    </option>
-                                                                @endforeach
-                                                            @else
-                                                                <option value="">Belum ada data</option>
-                                                            @endif
-                                                        </select>
+                                                        @if ($key == 0)
+                                                            <div class="flex gap-3 ">
+                                                                <label for="input-wizard-6"
+                                                                    class="mt-2 form-label">Satuan
+                                                                    Dasar/Beli</label>
+                                                                <select id="inputpertama{{ $id ?? 0 }}"
+                                                                    class="w-40 form-select input{{ $key }}">
+                                                                    @if ($satuans->isNotEmpty())
+                                                                        <option value="">- Pilih -</option>
+                                                                        @foreach ($satuans as $satuan)
+                                                                            <option value="{{ $satuan->satuan }}"
+                                                                                {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                                {{ $satuan->satuan }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <option value="">Belum ada data</option>
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @else
+                                                            <div class="flex gap-3 ">
+                                                                <label for="input-wizard-6"
+                                                                    class="mt-2 form-label">Satuan
+                                                                    Dasar/Beli</label>
+                                                                <select id="edit-input{{ $key }}"
+                                                                    class="w-40 form-select edit-input{{ $key }}">
+                                                                    @if ($satuans->isNotEmpty())
+                                                                        <option value="">- Pilih -</option>
+                                                                        @foreach ($satuans as $satuan)
+                                                                            <option value="{{ $satuan->satuan }}"
+                                                                                {{ $barang ? ($diskon->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                                {{ $satuan->satuan }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <option value="">Belum ada data</option>
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @endif
+                                                        <div class="flex gap-3 ">
+                                                            <label for="inputIsi{{ $key }}"
+                                                                class="mt-2 form-label">Isi</label>
+                                                            <input type="number" class="form-control"
+                                                                id="edit-inputIsi{{ $key }}"
+                                                                value="{{ $diskon->isi }}">
+                                                        </div>
+                                                        <p class="mt-2 font-bold satuan-terkecil{{ $id ?? 0 }}">
+                                                            {{ $barang->satuan_jual_terkecil }}
+                                                        </p>
                                                     </div>
                                                 @endif
                                                 <input type="hidden"
                                                     name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][satuan_dasar_beli]"
-                                                    id="satuan{{ $key }}"
-                                                    class="satuan{{ $key }}">
+                                                    id="edit-satuan{{ $key }}"
+                                                    class="edit-satuan{{ $key }}">
                                                 <input type="hidden" class="form-control"
-                                                    id="isi{{ $key }}"
+                                                    id="edit-isi{{ $key }}"
                                                     name="kelompoks[{{ $loop->index }}{{ $loop->parent->index }}][isi]">
                                                 <script>
                                                     document.addEventListener('DOMContentLoaded', function() {
-                                                        var inputElement = document.getElementById('input{{ $key }}');
-                                                        var inputIsi = document.getElementById('inputIsi{{ $key }}');
+                                                        var inputElement = document.getElementById('edit-input{{ $key }}');
+                                                        var inputIsi = document.getElementById('edit-inputIsi{{ $key }}');
 
                                                         inputElement.addEventListener('change', function() {
                                                             var selectedValue = this.value;
-                                                            $('.satuan{{ $key }}').val(selectedValue);
+                                                            $('.edit-satuan{{ $key }}').val(selectedValue);
                                                         });
 
                                                         inputIsi.addEventListener('input', function() {
                                                             var selectedValue = this.value;
-                                                            $('#isi{{ $key }}').val(
+                                                            $('#edit-isi{{ $key }}').val(
                                                                 selectedValue);
                                                         });
 
@@ -320,24 +358,47 @@
                                             @forelse ($kelompoks as $kelompok)
                                                 @if ($loop->first)
                                                     <div class="flex gap-3 mt-3">
-                                                        <div class="flex gap-3 ">
-                                                            <label for="input-wizard-6" class="mt-2 form-label">Satuan
-                                                                Dasar/Beli</label>
-                                                            <select id="input{{ $key }}"
-                                                                class="w-40 form-select input{{ $key }}">
-                                                                @if ($satuans->isNotEmpty())
-                                                                    <option value="">- Pilih -</option>
-                                                                    @foreach ($satuans as $satuan)
-                                                                        <option value="{{ $satuan->satuan }}"
-                                                                            {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
-                                                                            {{ $satuan->satuan }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                @else
-                                                                    <option value="">Belum ada data</option>
-                                                                @endif
-                                                            </select>
-                                                        </div>
+                                                        @if ($key == 0)
+                                                            <div class="flex gap-3 ">
+                                                                <label for="input-wizard-6"
+                                                                    class="mt-2 form-label">Satuan
+                                                                    Dasar/Beli</label>
+                                                                <select id="inputpertama{{ $id ?? 0 }}"
+                                                                    class="w-40 form-select input{{ $key }}">
+                                                                    @if ($satuans->isNotEmpty())
+                                                                        <option value="">- Pilih -</option>
+                                                                        @foreach ($satuans as $satuan)
+                                                                            <option value="{{ $satuan->satuan }}"
+                                                                                {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                                {{ $satuan->satuan }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <option value="">Belum ada data</option>
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @else
+                                                            <div class="flex gap-3 ">
+                                                                <label for="input-wizard-6"
+                                                                    class="mt-2 form-label">Satuan
+                                                                    Dasar/Beli</label>
+                                                                <select id="input{{ $key }}"
+                                                                    class="w-40 form-select input{{ $key }}">
+                                                                    @if ($satuans->isNotEmpty())
+                                                                        <option value="">- Pilih -</option>
+                                                                        @foreach ($satuans as $satuan)
+                                                                            <option value="{{ $satuan->satuan }}"
+                                                                                {{ $barang ? ($barang->satuan_dasar_beli == $satuan->satuan ? 'selected' : '') : '' }}>
+                                                                                {{ $satuan->satuan }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <option value="">Belum ada data</option>
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @endif
                                                         <div class="flex gap-3 ">
                                                             <label for="inputIsi{{ $key }}"
                                                                 class="mt-2 form-label">Isi</label>
@@ -345,7 +406,6 @@
                                                                 id="inputIsi{{ $key }}">
                                                         </div>
                                                         <p class="mt-2 font-bold satuan-terkecil{{ $id ?? 0 }}">
-                                                            Tablet
                                                         </p>
                                                     </div>
                                                 @endif
@@ -450,11 +510,20 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var inputSatuan = document.getElementById('input-satuan-terkecil{{ $id }}');
+        var inputDasar = document.getElementById('input-satuan-dasar-beli{{ $id }}');
 
         inputSatuan.addEventListener('change', function() {
             var selectedValue = this.value;
-            console.log(selectedValue);
-            $('.satuan-terkecil{{ $id ?? 0 }}').innerHTML(selectedValue);
+            const collection = document.getElementsByClassName("satuan-terkecil{{ $id ?? 0 }}");
+            for (let i = 0; i < collection.length; i++) {
+                collection[i].innerHTML = selectedValue;
+            }
         });
+    });
+
+    //setting input
+    $('#satuan_dasar_beli{{ $id ?? 0 }}').on('change', function() {
+        var selectedValue = $(this).val();
+        $('#inputpertama{{ $id ?? 0 }}').val(selectedValue);
     });
 </script>

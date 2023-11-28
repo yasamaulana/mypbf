@@ -18,8 +18,13 @@ class Kelompok extends Model
         return $this->where('id_perusahaan', Auth::user()->id_perusahaan)->get();
     }
 
-    public function diskon($id)
+    public function diskon($id_kelompok, $id_set_harga)
     {
-        return DiskonKelompok::where('id_kelompok', $id)->first();
+        return DiskonKelompok::where('id_kelompok', $id_kelompok)->where('id_set_harga', $id_set_harga)->first();
+    }
+
+    public function diskonkelompok($id_kelompok)
+    {
+        return DiskonKelompok::where('id_kelompok', $id_kelompok)->first();
     }
 }
