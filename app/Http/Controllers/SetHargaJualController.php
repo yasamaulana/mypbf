@@ -15,7 +15,7 @@ class SetHargaJualController extends Controller
 {
     public function index($id)
     {
-        return view('pages.master.produk.set-harga', [
+        return view('pages.master.produk.set-harga.set-harga', [
             'title' => 'master',
             'kelompoks' => (new Kelompok())->getByIdPerusahaan(),
             'satuans' => (new Satuan())->getByIdPerusahaan(),
