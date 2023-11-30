@@ -11,12 +11,12 @@
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="input-wizard-6" class="form-label">Stok Awal</label>
                     <input id="input-wizard-3" type="text" class="form-control" placeholder="" readonly
-                        value="{{ $stok ? $stok->produk->kode_obat_barang . ' | ' . $stok->gudang . ' | ' . $stok->rak . ' | ' . $stok->sub_rak : '' }}">
+                        value="{{ $stok ? $stok->no_reff . ' | ' . $stok->no_batch . ' | ' . $stok->gudang . ' | ' . $stok->rak . ' | ' . $stok->sub_rak : '' }}">
                 </div>
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="input-wizard-3" class="form-label">HPP</label>
                     <input id="hpp" type="text" class="form-control" readonly placeholder=""
-                        value="{{ $produk->stokAwal ? $produk->stokAwal->hpp : '' }}">
+                        value="{{ $stok ? $stok->hpp : '' }}">
                 </div>
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="input-wizard-6" class="form-label">Pembelian</label>
@@ -26,24 +26,24 @@
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="input-wizard-3" class="form-label">HPP Final</label>
                     <input id="input-wizard-3" type="text" class="form-control" placeholder="" readonly
-                        value="{{ $produk->stokAwal ? number_format(str_replace('.', '', $produk->stokAwal->hpp) / $produk->isi, 0, ',', '.') : '' }}">
+                        value="{{ $stok ? number_format(str_replace('.', '', $stok->hpp) / $stok->produk->isi, 0, ',', '.') : '' }}">
                 </div>
             </div>
             <div class="flex justify-center w-full gap-3 mt-6">
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="satuan-dasar" class="form-label">Satuan Dasar</label>
                     <input id="satuan-dasar" type="text" class="form-control" readonly placeholder=""
-                        value="{{ $produk->satuan_dasar_beli }}">
+                        value="{{ $stok->produk->satuan_dasar_beli }}">
                 </div>
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="isi" class="form-label">Isi</label>
                     <input id="isi" type="text" class="form-control" readonly placeholder=""
-                        value="{{ $produk->isi }}">
+                        value="{{ $stok->produk->isi }}">
                 </div>
                 <div class="col-span-12 intro-y sm:col-span-6">
                     <label for="satuan-jual-terkecil" class="form-label">Satuan Jual Terkecil</label>
                     <input id="satuan-jual-terkecil" type="text" class="form-control" readonly placeholder=""
-                        value="{{ $produk->satuan_jual_terkecil }}">
+                        value="{{ $stok->produk->satuan_jual_terkecil }}">
                 </div>
             </div>
         </div>

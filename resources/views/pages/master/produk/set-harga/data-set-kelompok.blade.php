@@ -1,13 +1,16 @@
+@php
+    use App\Models\DiskonKelompok;
+@endphp
 @forelse ($kelompoks as $kelompok)
-    @if ($kelompok->diskon($kelompok->id, $loop->iteration)->satuan_dasar_beli != null)
-        <div class="col-span-12 intro-y lg:col-span-6 mt-5">
-            <div class="intro-y box">
-                <div
-                    class="flex flex-col items-center p-5 text-white border-b sm:flex-row bg-primary border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="mr-auto text-base font-medium">
-                        Harga Jual {{ $kelompok->kelompok }}
-                    </h2>
-                </div>
+    <div class="col-span-12 intro-y lg:col-span-6 mt-5">
+        <div class="intro-y box">
+            <div
+                class="flex flex-col items-center p-5 text-white border-b sm:flex-row bg-primary border-slate-200/60 dark:border-darkmode-400">
+                <h2 class="mr-auto text-base font-medium">
+                    Harga Jual {{ $kelompok->kelompok }}
+                </h2>
+            </div>
+            @forelse (DiskonKelompok::where('id_kelompok', $loop->iteration)->where('satuan_dasar_beli','!=',null)->get() as $disc)
                 <div class="intro-y box">
                     <div class="flex gap-4 p-5">
                         <div class="col-span-12 intro-y sm:col-span-6">
@@ -22,198 +25,88 @@
                             <div class="flex gap-2">
                                 <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
                                     value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->isi }}">
-                                <p class="mt-2 font-bold text-primary">{{ $produk->satuan_jual_terkecil }}</p>
+                                <p class="mt-2 font-bold text-primary">{{ $stok->produk->satuan_jual_terkecil }}</p>
                             </div>
                         </div>
+                        @php
+                            $id_hpp_final = $kelompok->id . $kelompok->diskon($kelompok->id, $loop->iteration)->id_set_harga;
+                        @endphp
                         <div class="col-span-12 intro-y ">
-                            <label for="input-wizard-3" class="form-label">HPP Final</label>
-                            <input id="hpp_final" type="text" class="form-control" readonly placeholder=""
-                                value="{{ $produk->stokAwal ? number_format(str_replace('.', '', $produk->stokAwal->hpp) / $produk->isi, 0, ',', '.') : '' }}">
+                            <label for="input-wizard-3"
+                                class="form-label">Modal/{{ $kelompok->diskon($kelompok->id, $loop->iteration)->satuan_dasar_beli }}</label>
+                            <input id="hpp_final{{ $id_hpp_final }}" type="text" class="form-control" readonly
+                                placeholder=""
+                                value="{{ $stok ? number_format((str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $kelompok->diskon($kelompok->id, $loop->iteration)->isi, 0, ',', '.') : '' }}">
                         </div>
                     </div>
                 </div>
                 <div class="p-5">
-                    <div class="flex gap-3">
-                        <label>Inc PPN</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input inc_ppn" type="checkbox" name="status" value="11">
-                        </div>
-                    </div>
-                    <div class="overflow-auto">
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="jumlah1" class="form-label">Jumlah 1</label>
-                                <input id="jumlah1" type="text" name="jumlah1"
-                                    class="w-24 form-control form-control-sm" placeholder="">
+                    <div class="overflow-auto w-full">
+                        @for ($i = 1; $i <= 4; $i++)
+                            @php
+                                $id_item = $kelompok->id . $kelompok->diskon($kelompok->id, $loop->iteration)->id_set_harga . $i;
+                            @endphp
+                            <div class="flex flex-nowrap w-full items-center">
+                                <div class="flex items-center mb-4 mr-4">
+                                    <label for="jumlah" class="mr-2 w-32">Jumlah 1</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="jumlah" type="text"
+                                        name="jumlah"
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
+                                <div class="flex items-center mb-4 mr-4">
+                                    <label for="sampai" class="mr-2 w-32">Sampai</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="sampai" type="text"
+                                        name="sampai"
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
+                                <div class="flex items-center mb-4 mr-4">
+                                    <label for="laba" class="mr-2 w-32">Laba</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="laba{{ $id_item }}"
+                                        type="text" name="laba"
+                                        oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
+                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}"
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                    <input pattern="[0-9,.]*" inputmode="decimal" type="text"
+                                        id="hasil-laba{{ $id_item }}"
+                                        oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
+                                        class="w-full number ml-2 py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
+                                <script>
+                                    function initialize() {
+                                        labapersen({{ $id_hpp_final }}, {{ $id_item }});
+                                    }
+                                </script>
+                                <div class="flex items-center mb-4 mr-4">
+                                    <label for="disc_1" class="mr-2 w-32">Disc 1</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="disc_1{{ $id_item }}"
+                                        type="text" name="disc_1"
+                                        oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
+                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
+                                <div class="flex items-center mb-4 mr-4">
+                                    <label for="disc_2" class="mr-2 w-32">Disc 2</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="disc_2{{ $id_item }}"
+                                        type="text" name="disc_2"
+                                        oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
+                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <label for="harga-jual" class="mr-2 w-32">Harga Jual</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="harga-jual{{ $id_item }}"
+                                        type="text" readonly
+                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                </div>
                             </div>
-                            <div class="mx-2 form-inline">
-                                <label for="sampai1" class="form-label form-">Sampai</label>
-                                <input id="sampai1" type="text" name="sampai1"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="laba1" class="form-label">Laba %</label>
-                                <input id="laba1" type="text" name="laba1" oninput="labaPersen()"
-                                    class="w-24 form-control form-control-sm laba1" placeholder=""
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}">
-                                <input type="text" id="hasil-laba"
-                                    class="w-24 mx-2 hasil-laba form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="disc_1_1" class="form-label">Disc 1</label>
-                                <input id="disc_1_1" type="text" name="disc_1_1"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
-                                    class="w-24 mx-2 disc_1 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="disc_2_1" class="form-label">Disc 2</label>
-                                <input id="disc_2_1" type="text" name="disc_2_1"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
-                                    class="w-24 mx-2 disc_2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="harga-jual" class="form-label">Harga Jual</label>
-                                <input id="harga-jual" type="text"
-                                    class="w-24 mx-2 harga-jual form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="harga_final1" class="form-label">Harga Final</label>
-                                <input id="harga_final1" type="text" name="harga_final1"
-                                    class="w-24 mx-2 harga-final1 form-control form-control-sm" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
-                                <input id="horizontal-form-1" type="text" name="jumlah2"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" name="sampai2"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="laba2" type="text"name="laba2" oninput="labaPersen2()"
-                                    class="w-24 form-control form-control-sm" placeholder=""
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}">
-                                <input id="horizontal-form-1" type="text"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text" name="disc_1_2"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text" name="disc_2_2"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text" name="harga-jual2"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text" name="harga_final2"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                        </div>
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
-                                <input id="horizontal-form-1" type="text" name="jumlah3"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" name="sampai3"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text"name="laba3"
-                                    class="w-24 form-control form-control-sm" placeholder=""
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}">
-                                <input id="horizontal-form-1" type="text"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text" name="disc_1_3"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text" name="disc_2_3"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text" name="harga_final3"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                        </div>
-                        <div class="flex mt-5">
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Jumlah 1</label>
-                                <input id="horizontal-form-1" type="text" name="jumlah4"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="mx-2 form-inline">
-                                <label for="horizontal-form-1" class="form-label form-">Sampai</label>
-                                <input id="horizontal-form-1" type="text" name="sampai4"
-                                    class="w-24 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Laba %</label>
-                                <input id="horizontal-form-1" type="text"name="laba4"
-                                    class="w-24 form-control form-control-sm" placeholder=""
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}">
-                                <input id="horizontal-form-1" type="text"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 1</label>
-                                <input id="horizontal-form-1" type="text" name="disc_1_4"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Disc 2</label>
-                                <input id="horizontal-form-1" type="text" name="disc_2_4"
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Jual</label>
-                                <input id="horizontal-form-1" type="text"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                            <div class="form-inline">
-                                <label for="horizontal-form-1" class="form-label">Harga Final</label>
-                                <input id="horizontal-form-1" type="text" name="harga_final4"
-                                    class="w-24 mx-2 form-control form-control-sm" placeholder="">
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                 </div>
-            </div>
+            @empty
+                kosong
+            @endforelse
         </div>
-    @endif
+    </div>
 @empty
     <div class="card">
         <div class="font-bold text-center card-body">

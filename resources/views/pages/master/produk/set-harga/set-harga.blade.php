@@ -6,7 +6,7 @@
 @section('main')
     <div class="flex items-center mt-8 intro-y">
         <h2 class="mr-auto text-lg font-medium">
-            Setting Harga Jual {{ $produk->nama_obat_barang }}
+            Setting Harga Jual {{ $stok->produk->nama_obat_barang }}
         </h2>
     </div>
     @include('pages.master.produk.set-harga.keterangan')

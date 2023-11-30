@@ -17,10 +17,9 @@ class SetHargaJualController extends Controller
     {
         return view('pages.master.produk.set-harga.set-harga', [
             'title' => 'master',
+            'stok' => StokAwal::where('id', $id)->first(),
             'kelompoks' => (new Kelompok())->getByIdPerusahaan(),
             'satuans' => (new Satuan())->getByIdPerusahaan(),
-            'stok' => StokAwal::where('id_obat_barang', $id)->first(),
-            'produk' => ObatBarang::where('id', $id)->first(),
             'setHarga' => SetHarga::where('id_produk', $id)->get(),
             'ppn' => PPN::where('id_perusahaan', Auth::user()->id_perusahaan)->first(),
         ]);

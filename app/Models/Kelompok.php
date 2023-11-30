@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\ObatBarangController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -26,5 +27,10 @@ class Kelompok extends Model
     public function diskonkelompok($id_kelompok)
     {
         return DiskonKelompok::where('id_kelompok', $id_kelompok)->first();
+    }
+
+    public function produk()
+    {
+        return $this->hasOne(ObatBarang::class, 'id', 'id_obat_barang');
     }
 }

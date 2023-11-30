@@ -18,7 +18,7 @@
         </nav>
         <!-- END: Breadcrumb -->
         <!-- BEGIN: Search -->
-        <div class="intro-x relative mr-3 sm:mr-6">
+        {{-- <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
                 <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
                 <i data-feather="search" class="search__icon dark:text-slate-500"></i>
@@ -125,10 +125,10 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- END: Search -->
         <!-- BEGIN: Notifications -->
-        <div class="intro-x dropdown mr-4 sm:mr-6">
+        {{-- <div class="intro-x dropdown mr-4 sm:mr-6">
             <div class="dropdown-toggle notification notification--light notification--bullet cursor-pointer"
                 role="button" aria-expanded="false" data-tw-toggle="dropdown"> <i data-feather="bell"
                     class="notification__icon dark:text-slate-500"></i> </div>
@@ -227,7 +227,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- END: Notifications -->
         <!-- BEGIN: Account Menu -->
         <div class="intro-x dropdown w-8 h-8">

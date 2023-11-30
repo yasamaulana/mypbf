@@ -1,58 +1,62 @@
 <script>
-    //call function
-    let hppFinal = parseFloat(document.getElementById("hpp_final").value.replace(".", ""));
-    var laba1Input = parseFloat(document.querySelector(".laba1").value);
-    var hasilLabaInput = document.querySelector(".hasil-laba");
-    let disc1Input = parseFloat(document.getElementById("disc_1_1").value);
-    let disc2Input = parseFloat(document.getElementById("disc_2_1").value);
-    var hargaJualInput = document.querySelector(".harga-jual");
-    var hargaFinal1Input = document.querySelector(".harga-final1");
-    let hpp = parseFloat(document.getElementById('hpp').value.replace(".", ""));
-    var incPpnCheckbox = document.querySelector(".inc_ppn");
+    function labapersen(id_hpp, id_item) {
+        const hpp_final_element = $('#hpp_final' + id_hpp);
+        const hasil_laba_element = $('#hasil-laba' + id_item);
+        const disc_1_element = $('#disc_1' + id_item);
+        const disc_2_element = $('#disc_2' + id_item);
+        const harga_jual_element = $('#harga-jual' + id_item);
+        const laba_element = $('#laba' + id_item);
 
-    document.getElementById("laba1").addEventListener("input", function() {
-        laba1Input = parseFloat(this.value);
-        labaPersen();
-    });
-    incPpnCheckbox.addEventListener('change', function() {
-        // Panggil fungsi labaPersen ketika checkbox berubah
-        labaPersen();
-    });
-    // Panggil labaPersen saat halaman dimuat
-    document.addEventListener("DOMContentLoaded", function() {
-        labaPersen();
-    });
+        laba_element.on('input', function() {
+            let persen = 1 + parseFloat($(this).val()) / 100;
+            let hpp_final = parseFloat(hpp_final_element.val().replace(".", ""));
+            let result = hpp_final * persen;
+            result = parseFloat(result.toFixed(3));
+            hasil_laba_element.val(result);
 
-    function labaPersen() {
-        if (isNaN(laba1Input)) {
-            hasilLabaInput.value = '';
-            hargaFinal1Input.value = ''
-            hargaFinal1Input.value = ''
-            return;
+            if (isNaN(result)) {
+                hasil_laba_element.val(hpp_final);
+            }
+
+            updateHargaJual();
+        });
+
+        disc_1_element.on('input', function() {
+            updateHargaJual();
+        });
+
+        disc_2_element.on('input', function() {
+            updateHargaJual();
+        });
+
+        hasil_laba_element.on('input', function() {
+            let inputVal = parseFloat($(this).val());
+            let hpp_final = parseFloat(hpp_final_element.val().replace(".", ""));
+            let hasil_persen = ((inputVal - hpp_final) / hpp_final) * 100;
+            laba_element.val(hasil_persen);
+
+            updateHargaJual();
+        });
+
+        function updateHargaJual() {
+            let hpp_final = parseFloat(hpp_final_element.val().replace(".", ""));
+            let result = parseFloat(hasil_laba_element.val());
+            let disc_1 = parseFloat(disc_1_element.val());
+            let disc_2 = parseFloat(disc_2_element.val());
+
+            let hasil_disc_1 = result - (result * disc_1 / 100);
+            let hasil_dis_2 = hasil_disc_1 - (hasil_disc_1 * disc_2 / 100);
+            harga_jual_element.val(!isNaN(hasil_dis_2) ? hasil_dis_2 : hpp_final);
         }
-        // Hitung total laba
-        let totalLaba = Math.round((laba1Input / 100 + 1) * hpp);
-        let labaReplace = totalLaba.toString().replace(/\./g, '');
-
-        hasilLabaInput.value = labaReplace;
-
-        // diskon harga jual & harga final
-        let laba1Percent = isNaN(laba1Input) ? 0 : laba1Input / 100;
-        let disc1Percent = isNaN(disc1Input) ? 0 : disc1Input / 100;
-        let disc2Percent = isNaN(disc2Input) ? 0 : disc2Input / 100;
-        let diskon1 = labaReplace * disc1Percent;
-        let diskon2 = labaReplace * disc2Percent;
-        let totalDiskon = diskon1 + diskon2;
-        // harga jual
-        let totalHarga = totalLaba - totalDiskon;
-        hargaJualInput.value = totalHarga;
-
-        // Periksa apakah incPpnCheckbox dicentang
-        if (incPpnCheckbox.checked) {
-            const desimalPpn = incPpnCheckbox.value / 100;
-            totalHarga -= Math.round(desimalPpn * totalHarga);
-        }
-        // harga final
-        hargaFinal1Input.value = totalHarga;
     }
+
+
+    //setting input
+    $(document).ready(function() {
+        $('.number').on('input', function() {
+            var sanitized = $(this).val().replace(/[^0-9,.]/g,
+                '');
+            $(this).val(sanitized);
+        });
+    });
 </script>
