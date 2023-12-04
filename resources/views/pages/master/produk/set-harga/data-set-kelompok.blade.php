@@ -2,7 +2,7 @@
     use App\Models\DiskonKelompok;
 @endphp
 @forelse ($kelompoks as $kelompok)
-    <div class="col-span-12 intro-y lg:col-span-6 mt-5">
+    <div class="col-span-12 mt-5 intro-y lg:col-span-6">
         <div class="intro-y box">
             <div
                 class="flex flex-col items-center p-5 text-white border-b sm:flex-row bg-primary border-slate-200/60 dark:border-darkmode-400">
@@ -41,62 +41,77 @@
                     </div>
                 </div>
                 <div class="p-5">
-                    <div class="overflow-auto w-full">
+                    <div class="w-full overflow-auto">
                         @for ($i = 1; $i <= 4; $i++)
                             @php
                                 $id_item = $kelompok->id . $kelompok->diskon($kelompok->id, $loop->iteration)->id_set_harga . $i;
+                                $hpp_final = (str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $kelompok->diskon($kelompok->id, $loop->iteration)->isi;
+                                $persentase = $kelompok->diskon($kelompok->id, $loop->iteration)->persentase;
+                                $disc_1 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1;
+                                $disc_2 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2;
+                                $hasil_laba = $hpp_final * (1 + $persentase / 100);
+                                $harga_jual = $hasil_laba - ($hasil_laba * $disc_1) / 100 - ($hasil_laba * $disc_2) / 100;
                             @endphp
-                            <div class="flex flex-nowrap w-full items-center">
+                            {{-- hidden input --}}
+                            <input type="hidden" value="{{ $id }}"
+                                name="sets[{{ $id_hpp_final }},{{ $id_item }}][id_set_harga]">
+                            <input type="hidden" value="{{ app('request')->input('sumber') }}"
+                                name="sets[{{ $id_hpp_final }},{{ $id_item }}][sumber]">
+                            <input type="hidden" value="{{ $kelompok->id }}"
+                                name="sets[{{ $id_hpp_final }},{{ $id_item }}][id_kelompok]">
+                            <input type="hidden" value="{{ $disc->id_set_harga }}"
+                                name="sets[{{ $id_hpp_final }},{{ $id_item }}][id_set]">
+                            <input type="hidden" value="{{ $i }}"
+                                name="sets[{{ $id_hpp_final }},{{ $id_item }}][id_jumlah]">
+                            {{-- end hidden input --}}
+                            <div class="flex items-center w-full flex-nowrap">
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="jumlah" class="mr-2 w-32">Jumlah 1</label>
+                                    <label for="jumlah" class="w-32 mr-2">Jumlah 1</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="jumlah" type="text"
-                                        name="jumlah"
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        name="sets[{{ $id_hpp_final }},{{ $id_item }}][jumlah]"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="sampai" class="mr-2 w-32">Sampai</label>
+                                    <label for="sampai" class="w-32 mr-2">Sampai</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="sampai" type="text"
-                                        name="sampai"
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        name="sets[{{ $id_hpp_final }},{{ $id_item }}][sampai]"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="laba" class="mr-2 w-32">Laba</label>
+                                    <label for="laba" class="w-32 mr-2">Laba</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="laba{{ $id_item }}"
-                                        type="text" name="laba"
+                                        type="text" name="sets[{{ $id_hpp_final }},{{ $id_item }}][laba]"
                                         oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
-                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->persentase }}"
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        value="{{ $persentase }}"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                     <input pattern="[0-9,.]*" inputmode="decimal" type="text"
-                                        id="hasil-laba{{ $id_item }}"
+                                        id="hasil-laba{{ $id_item }}" value="{{ $hasil_laba }}"
                                         oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
-                                        class="w-full number ml-2 py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        name="sets[{{ $id_hpp_final }},{{ $id_item }}][hasil_laba]"
+                                        class="w-full px-2 py-1 ml-2 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
-                                <script>
-                                    function initialize() {
-                                        labapersen({{ $id_hpp_final }}, {{ $id_item }});
-                                    }
-                                </script>
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="disc_1" class="mr-2 w-32">Disc 1</label>
+                                    <label for="disc_1" class="w-32 mr-2">Disc 1</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="disc_1{{ $id_item }}"
-                                        type="text" name="disc_1"
+                                        type="text" name="sets[{{ $id_hpp_final }},{{ $id_item }}][disc_1]"
                                         oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
-                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1 }}"
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        value="{{ $disc_1 }}"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="disc_2" class="mr-2 w-32">Disc 2</label>
+                                    <label for="disc_2" class="w-32 mr-2">Disc 2</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="disc_2{{ $id_item }}"
-                                        type="text" name="disc_2"
+                                        type="text" name="sets[{{ $id_hpp_final }},{{ $id_item }}][disc_2]"
                                         oninput="labapersen({{ $id_hpp_final }},{{ $id_item }})"
-                                        value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2 }}"
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        value="{{ $disc_2 }}"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="flex items-center mb-4">
-                                    <label for="harga-jual" class="mr-2 w-32">Harga Jual</label>
+                                    <label for="harga-jual" class="w-32 mr-2">Harga Jual</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="harga-jual{{ $id_item }}"
-                                        type="text" readonly
-                                        class="w-full number py-1 px-2 text-sm rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none">
+                                        type="text" readonly value="{{ $harga_jual }}"
+                                        name="sets[{{ $id_hpp_final }},{{ $id_item }}][harga_jual]"
+                                        class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                             </div>
                         @endfor

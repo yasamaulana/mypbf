@@ -50,7 +50,6 @@
         }
     }
 
-
     //setting input
     $(document).ready(function() {
         $('.number').on('input', function() {

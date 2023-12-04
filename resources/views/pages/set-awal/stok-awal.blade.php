@@ -77,8 +77,8 @@
                                         data-tw-target="#delete-confirmation-modal{{ $stok->id }}"> <i
                                             data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                     <a class="flex items-center mx-3 mr-3 text-warning"
-                                        href="{{ route('setHarga', ['id' => $stok->id]) }}"> <i data-feather="file-text"
-                                            class="text-xl"></i> Update Harga </a>
+                                        href="{{ route('setHarga', ['id' => $stok->id, 'sumber' => 'stok-awal']) }}"> <i
+                                            data-feather="file-text" class="text-xl"></i> Update Harga </a>
                                     <!-- BEGIN: Delete Confirmation Modal -->
                                     @include('components.modal-delete', [
                                         'id_modal' => 'delete-confirmation-modal',

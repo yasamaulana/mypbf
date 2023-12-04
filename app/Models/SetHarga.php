@@ -12,8 +12,18 @@ class SetHarga extends Model
     protected $table = 'set_harga';
     protected $guarded = ['id'];
 
-    public function kelompok($id)
+    public function kelompok()
     {
-        return kelompok::where('id', $id)->first();
+        return $this->hasOne(Kelompok::class, 'id', 'id_kelompok');
+    }
+
+    public function diskonKelompok($id_kelompok, $id_set)
+    {
+        return DiskonKelompok::where('id_kelompok', $id_kelompok)->where('id_set_harga', $id_set)->first();
+    }
+
+    public function getItem($id_kelompok, $id_set, $id_jumlah)
+    {
+        return SetHarga::where('id_kelompok', $id_kelompok)->where('id_set', $id_set)->where('id_jumlah', $id_jumlah)->first();
     }
 }

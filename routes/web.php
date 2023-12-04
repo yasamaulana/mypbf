@@ -143,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/set-harga-jual/{id}', [SetHargaJualController::class, 'index'])->name('setHarga');
     Route::post('/create-set-harga-jual', [SetHargaJualController::class, 'createHarga'])->name('create.setHarga');
-    Route::post('/set-harga-jual/{id}', [SetHargaJualController::class, 'updateHarga'])->name('update.setHarga');
+    Route::post('/set-harga-jual', [SetHargaJualController::class, 'updateHarga'])->name('update.setHarga');
 
     //satuan
     Route::get('/satuan', [SatuanController::class, 'index'])->name('satuan');
