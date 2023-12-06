@@ -12,7 +12,7 @@
         </h2>
     </div>
     @if (SetHarga::where('id_set_harga', $id)->groupBy('id_kelompok')->get()->isNotEmpty())
-        <form action="{{ route('update.setHarga') }}" method="POST">
+        <form action="{{ route('update.setHarga', ['id' => $stok->id]) }}" method="POST">
         @else
             <form action="{{ route('create.setHarga') }}" method="POST">
     @endif
