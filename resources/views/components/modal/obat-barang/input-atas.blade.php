@@ -145,12 +145,14 @@
         </select>
     </div>
     <div class="col-span-12 intro-y sm:col-span-6">
-        <label for="input-wizard-3" class="form-label">Stok Minimal</label>
+        <label for="input-wizard-3" class="form-label">Stok Minimal <span
+                class="satuan-terkecil{{ $id ?? 0 }} font-bold">{{ $barang ? $barang->satuan_jual_terkecil : '' }}</span></label>
         <input id="input-wizard-3" type="number" class="form-control" placeholder="" required name="stok_minimal"
             value="{{ $barang ? $barang->stok_minimal : '' }}">
     </div>
     <div class="col-span-12 intro-y sm:col-span-6">
-        <label for="input-wizard-3" class="form-label">Stok Maksimal</label>
+        <label for="input-wizard-3" class="form-label">Stok Maksimal <span
+                class="satuan-terkecil{{ $id ?? 0 }} font-bold">{{ $barang ? $barang->satuan_jual_terkecil : '' }}</span></label>
         <input id="input-wizard-3" type="number" class="form-control" placeholder="" required name="stok_maksimal"
             value="{{ $barang ? $barang->stok_maksimal : '' }}">
     </div>
