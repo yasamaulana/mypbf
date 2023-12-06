@@ -46,7 +46,7 @@
 
             let hasil_disc_1 = result - (result * disc_1 / 100);
             let hasil_dis_2 = hasil_disc_1 - (hasil_disc_1 * disc_2 / 100);
-            harga_jual_element.val(!isNaN(hasil_dis_2) ? hasil_dis_2 : hpp_final);
+            harga_jual_element.val(!isNaN(hasil_dis_2) ? Math.round(hasil_dis_2) : hpp_final);
         }
     }
 

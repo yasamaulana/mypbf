@@ -50,7 +50,8 @@
                                 $disc_1 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1;
                                 $disc_2 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2;
                                 $hasil_laba = $hpp_final * (1 + $persentase / 100);
-                                $harga_jual = $hasil_laba - ($hasil_laba * $disc_1) / 100 - ($hasil_laba * $disc_2) / 100;
+                                $harga1 = $hasil_laba - ($hasil_laba * $disc_1) / 100;
+                                $harga_jual = round($harga1 - ($harga1 * $disc_2) / 100);
                             @endphp
                             {{-- hidden input --}}
                             <input type="hidden" value="{{ $id }}"

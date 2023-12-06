@@ -7,6 +7,7 @@ use App\Models\Gudang;
 use App\Models\JenisObatBarang;
 use App\Models\ObatBarang;
 use App\Models\Rak;
+use App\Models\SetHarga;
 use App\Models\StokAwal;
 use App\Models\SubRak;
 use Illuminate\Http\Request;
@@ -57,6 +58,8 @@ class StokAwalController extends Controller
         }
 
         $stokawal->delete();
+
+        SetHarga::where('id_set_harga', $id)->where('sumber', 'stok-awal')->delete();
 
         return back()->with('success', 'Stok Awal delete successfully');
     }
