@@ -10,33 +10,31 @@
                     Harga Jual {{ $kelompok->kelompok }}
                 </h2>
             </div>
-            @forelse (DiskonKelompok::where('id_kelompok', $loop->iteration)->where('satuan_dasar_beli','!=',null)->get() as $disc)
+            @forelse (DiskonKelompok::where('id_kelompok', $kelompok->id)->where('satuan_dasar_beli','!=',null)->where('id_obat_barang', $stok->id_obat_barang)->get() as $disc)
                 <div class="intro-y box">
                     <div class="flex gap-4 p-5">
                         <div class="col-span-12 intro-y sm:col-span-6">
                             <label for="input-wizard-6" class="form-label">Satuan Jual
                                 {{ $loop->iteration }}</label>
                             <input id="input-wizard-3" type="text" class="form-control" placeholder=""
-                                value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->satuan_dasar_beli }}"
-                                placeholder="Untuk satuan" readonly>
+                                value="{{ $disc->satuan_dasar_beli }}" placeholder="Untuk satuan" readonly>
                         </div>
                         <div class="col-span-12 intro-y sm:col-span-6">
                             <label for="input-wizard-3" class="form-label">Isi</label>
                             <div class="flex gap-2">
                                 <input id="input-wizard-3" type="text" class="form-control" readonly placeholder=""
-                                    value="{{ $kelompok->diskon($kelompok->id, $loop->iteration)->isi }}">
+                                    value="{{ $disc->isi }}">
                                 <p class="mt-2 font-bold text-primary">{{ $stok->produk->satuan_jual_terkecil }}</p>
                             </div>
                         </div>
                         @php
-                            $id_hpp_final = $kelompok->id . $kelompok->diskon($kelompok->id, $loop->iteration)->id_set_harga;
+                            $id_hpp_final = $kelompok->id . $disc->id_set_harga;
                         @endphp
                         <div class="col-span-12 intro-y ">
-                            <label for="input-wizard-3"
-                                class="form-label">Modal/{{ $kelompok->diskon($kelompok->id, $loop->iteration)->satuan_dasar_beli }}</label>
+                            <label for="input-wizard-3" class="form-label">Modal/{{ $disc->satuan_dasar_beli }}</label>
                             <input id="hpp_final{{ $id_hpp_final }}" type="text" class="form-control" readonly
                                 placeholder=""
-                                value="{{ $stok ? number_format((str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $kelompok->diskon($kelompok->id, $loop->iteration)->isi, 0, ',', '.') : '' }}">
+                                value="{{ $stok ? number_format((str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $disc->isi, 0, ',', '.') : '' }}">
                         </div>
                     </div>
                 </div>
@@ -44,11 +42,11 @@
                     <div class="w-full overflow-auto">
                         @for ($i = 1; $i <= 4; $i++)
                             @php
-                                $id_item = $kelompok->id . $kelompok->diskon($kelompok->id, $loop->iteration)->id_set_harga . $i;
-                                $hpp_final = (str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $kelompok->diskon($kelompok->id, $loop->iteration)->isi;
-                                $persentase = $kelompok->diskon($kelompok->id, $loop->iteration)->persentase;
-                                $disc_1 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_1;
-                                $disc_2 = $kelompok->diskon($kelompok->id, $loop->iteration)->disc_2;
+                                $id_item = $kelompok->id . $disc->id_set_harga . $i;
+                                $hpp_final = (str_replace('.', '', $stok->hpp) / $stok->produk->isi) * $disc->isi;
+                                $persentase = $disc->persentase;
+                                $disc_1 = $disc->disc_1;
+                                $disc_2 = $disc->disc_2;
                                 $hasil_laba = $hpp_final * (1 + $persentase / 100);
                                 $harga1 = $hasil_laba - ($hasil_laba * $disc_1) / 100;
                                 $harga_jual = round($harga1 - ($harga1 * $disc_2) / 100);
