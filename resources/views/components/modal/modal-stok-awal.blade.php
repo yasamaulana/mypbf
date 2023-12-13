@@ -152,17 +152,18 @@
     jQuery(document).ready(function($) {
         let id_dropdown = "{{ $id }}";
 
-        // Fungsi untuk mengambil dan mengisi data saat halaman dimuat
+        // Function to fetch and populate data when the page loads
         function fetchData(selectedOption) {
-            jQuery.ajax({
+            $.ajax({
                 url: '/get-nama-barang/' + selectedOption,
                 type: 'GET',
                 success: function(data) {
                     $("#satuan" + id_dropdown).val(data.satuan);
                     $("#isi" + id_dropdown).val(data.isi);
                     $("#satuan_terkecil" + id_dropdown).text(data.satuan_terkecil);
-                    $('#tipe{{ $id }}').val(data.tipe);
-                    $('#exp_date{{ $id }}').prop('disabled', data.exp_date === '0');
+                    $('#tipe' + id_dropdown).val(data.tipe);
+                    $('#exp_date' + id_dropdown).prop('disabled', data.exp_date === '0');
+
                     var selectOptions = data.satuan;
                     var selectElement = $('<select></select>').attr({
                         'id': "satuan" + id_dropdown,
@@ -183,23 +184,40 @@
                     $("#satuan" + id_dropdown).replaceWith(selectElement);
 
                     if (defaultSatuan !== '') {
-                        $("#satuan" + id_dropdown).val(defaultSatuan);
+                        selectElement.val(defaultSatuan);
                     }
-
                 },
-                error: function(err) {}
+                error: function(err) {
+                    console.log(err);
+                }
             });
         }
 
-        function handleDropdownChange() {
-            let selectedOption = selectedValue.value;
+        // Event handler for product change
+        $('#nama_barang' + id_dropdown).change(function() {
+            let selectedOption = $(this).val();
             fetchData(selectedOption);
-        }
+        });
 
-        let selectedValue = document.getElementById('nama_barang{{ $id }}');
+        // Event handler for unit change
+        $(document).on('change', '#satuan' + id_dropdown, function() {
+            let selectedOption = $(this).val();
+            let id_barang = $('#nama_barang' + id_dropdown).val();
 
-        selectedValue.addEventListener('change', handleDropdownChange);
+            $.ajax({
+                url: '/get-isi-barang/' + id_barang + '/' + selectedOption,
+                type: 'GET',
+                success: function(data) {
+                    $("#isi" + id_dropdown).val(data.isi);
+                    console.log(data.isi);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
 
-        fetchData(selectedValue.value);
+        // Fetch data on page load
+        fetchData($('#nama_barang' + id_dropdown).val());
     });
 </script>

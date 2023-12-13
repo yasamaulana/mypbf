@@ -57,5 +57,21 @@
                 '');
             $(this).val(sanitized);
         });
+
+        function checkPrices() {
+            $('input[name$="[harga_jual]"]').each(function() {
+                var hargaJualInput = $(this);
+                var idItem = hargaJualInput.attr('name').match(/\[(.*?)\]/)[1];
+                var hppFinal = parseFloat($('input[name="sets[' + idItem + '][hasil_laba]"]').val());
+                var hargaJual = parseFloat(hargaJualInput.val());
+
+                if (hppFinal > hargaJual) {
+                    console.log('kebanyakan');
+                }
+            });
+        }
+
+        // Call the function on page load
+        checkPrices();
     });
 </script>

@@ -61,7 +61,7 @@
                                     name="sets[{{ $id_hpp_final }},{{ $id_item }}][id]">
                                 {{-- end input hidden --}}
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="jumlah" class="w-32 mr-2">Jumlah 1</label>
+                                    <label for="jumlah" class="w-32 mr-2">Jumlah {{ $i }}</label>
                                     <input pattern="[0-9,.]*" inputmode="decimal" id="jumlah" type="text"
                                         name="sets[{{ $id_hpp_final }},{{ $id_item }}][jumlah]"
                                         value="{{ $setId->getItem($set->kelompok->id, $setId->id_set, $i)->jumlah }}"

@@ -218,6 +218,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambah-stok-awal', [StokAwalController::class, 'tambahStok'])->name('tambah.stok-awal');
     Route::post('/edit-stok-awal/{id}', [StokAwalController::class, 'editStok'])->name('edit.stok-awal');
     Route::post('/delete-stok-awal/{id}', [StokAwalController::class, 'deleteStok'])->name('delete.stok-awal');
+    Route::get('/get-isi-barang/{id}/{satuan}', [StokAwalController::class, 'getIsiBarang'])->name('getIsiBarang');
+
 
     //set awal
     Route::get('/hutang-awal', [HutangAwalController::class, 'index'])->name("hutang-awal");

@@ -65,14 +65,14 @@
                             {{-- end hidden input --}}
                             <div class="flex items-center w-full flex-nowrap">
                                 <div class="flex items-center mb-4 mr-4">
-                                    <label for="jumlah" class="w-32 mr-2">Jumlah 1</label>
-                                    <input pattern="[0-9,.]*" inputmode="decimal" id="jumlah" type="text"
+                                    <label for="jumlah" class="w-32 mr-2">Jumlah {{ $i }}</label>
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="jumlah" type="number"
                                         name="sets[{{ $id_hpp_final }},{{ $id_item }}][jumlah]"
                                         class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
                                 <div class="flex items-center mb-4 mr-4">
                                     <label for="sampai" class="w-32 mr-2">Sampai</label>
-                                    <input pattern="[0-9,.]*" inputmode="decimal" id="sampai" type="text"
+                                    <input pattern="[0-9,.]*" inputmode="decimal" id="sampai" type="number"
                                         name="sets[{{ $id_hpp_final }},{{ $id_item }}][sampai]"
                                         class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
                                 </div>
@@ -111,6 +111,7 @@
                                         type="text" readonly value="{{ $harga_jual }}"
                                         name="sets[{{ $id_hpp_final }},{{ $id_item }}][harga_jual]"
                                         class="w-full px-2 py-1 text-sm border border-gray-300 rounded-md number focus:border-blue-500 focus:outline-none">
+                                    <div id="hppFinalMessage{{ $id_item }}" class="text-sm text-red-500"></div>
                                 </div>
                             </div>
                         @endfor

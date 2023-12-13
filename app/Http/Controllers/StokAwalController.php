@@ -85,4 +85,12 @@ class StokAwalController extends Controller
             'exp_date' => $barang->exp_date,
         ]);
     }
+
+    public function getIsiBarang($id, $satuan)
+    {
+        $isi = DiskonKelompok::where('id_obat_barang', $id)->where('satuan_dasar_beli', $satuan)->pluck('isi')->first();
+        return response()->json([
+            'isi' => $isi,
+        ]);
+    }
 }
