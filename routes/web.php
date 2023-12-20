@@ -31,6 +31,7 @@ use App\Http\Controllers\SubGolonganController;
 use App\Http\Controllers\SubRakController;
 use App\Http\Controllers\SubRayonController;
 use App\Http\Controllers\SuplierController;
+use App\Http\Controllers\TambahPembelianController;
 use App\Http\Controllers\TargetProdukController;
 use App\Http\Controllers\TargetSalesController;
 use App\Http\Controllers\TargetSPVController;
@@ -343,11 +344,14 @@ Route::get('/pembelian', function () {
         'title' => 'transaksi'
     ]);
 })->middleware(['auth']);
-Route::get('/tambah-pembelian', function () {
-    return view('pages.transaksi.pembelian.pembelian.tambah-pembelian', [
-        'title' => 'transaksi'
-    ]);
-})->middleware(['auth']);
+
+
+Route::get('/tambah-pembelian', [TambahPembelianController::class, 'index'])->name('tambah-pembelian');
+Route::post('/tambah-pembelian', [TambahPembelianController::class, 'tambahProduk'])->name('tambah.tambah-pembelian');
+Route::delete('/delete-produk-pembelian/{id}', [TambahPembelianController::class, 'deleteProduk'])->name('delete.produk-pembelian');
+Route::post('/edit-pembelian-produk/{id}', [TambahPembelianController::class, 'editProduk'])->name('edit.produk-pembelian');
+
+
 Route::get('/terima-barang', function () {
     return view('pages.transaksi.pembelian.terima-barang.terima-barang', [
         'title' => 'transaksi'

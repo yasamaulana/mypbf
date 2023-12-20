@@ -1,11 +1,13 @@
 @extends('layout.main')
-
 @section('main')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Pembelian
         </h2>
     </div>
+    @if (session('success'))
+        @include('components.alert')
+    @endif
     <div class="sm:grid grid-cols-3 gap-4 mt-5">
         <div class="box p-5 drop-shadow">
             <div data-tw-merge class="block sm:flex items-center mt-3">
@@ -138,91 +140,13 @@
             </div>
             {{-- end modal surat pesanan --}}
             {{-- modal tambah produk --}}
-            <div id="tambah-produk" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div
-                            class="modal-header text-lg font-bold  bg-primary flex align-center justify-center text-white">
-                            Tambah Obat/Barang
-                        </div>
-                        <div class="modal-body p-5">
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Obat/Barang
-                                </label>
-                                <select data-tw-merge aria-label="Default select example" class="form-control">
-                                    <option>- Pilih -</option>
-                                    <option>Supri</option>
-                                    <option>Ahmad</option>
-                                </select>
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Satuan Beli
-                                </label>
-                                <select data-tw-merge aria-label="Default select example" class="form-control">
-                                    <option>- Pilih -</option>
-                                    <option>Supri</option>
-                                    <option>Ahmad</option>
-                                </select>
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Isi
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Sat Terkecil
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Qty Faktur
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder="Satuan Beli"
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Harga
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder="Satuan Beli"
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Disc 1
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Disc 2
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                            <div data-tw-merge class="block sm:flex items-center mt-3">
-                                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                                    Total
-                                </label>
-                                <input data-tw-merge id="horizontal-form-1" type="text" placeholder=""
-                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-tw-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('components.modal.modal-tambah-pembelian', [
+                'id_modal' => 'tambah-produk',
+                'route' => 'tambah.tambah-pembelian',
+                'id' => '',
+                'stok' => '',
+                'produk' => '',
+            ])
             {{-- end modal tambah produk --}}
 
             <div class="box">
@@ -247,51 +171,39 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="border border-slate-600">1</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border border-slate-600">2</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border border-slate-600">3</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600">Contoh Data</td>
-                    <td class="border border-slate-600 flex gap-2">
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
+                @forelse ($produks as $produk)
+                    <tr>
+                        <td class="border border-slate-600">{{ $loop->iteration }}</td>
+                        <td class="border border-slate-600">{{ $produk->produk->nama_obat_barang }}</td>
+                        <td class="border border-slate-600">{{ $produk->satuan }}</td>
+                        <td class="border border-slate-600">{{ $produk->satuan_terkecil }}</td>
+                        <td class="border border-slate-600">{{ $produk->qty_faktur }}</td>
+                        <td class="border border-slate-600">{{ number_format($produk->harga, 2, ',', '.') }}</td>
+                        <td class="border border-slate-600">{{ $produk->disc1 }}</td>
+                        <td class="border border-slate-600">{{ $produk->disc2 }}</td>
+                        <td class="border border-slate-600">{{ number_format($produk->total, 2, ',', '.') }} </td>
+                        <td class="border border-slate-600 flex">
+                            <button class="btn btn-warning btn-sm mr-1" data-tw-toggle="modal"
+                                data-tw-target="#edit-produk{{ $produk->id }}">Edit</button>
+                            {{-- @include('components.modal.modal-tambah-pembelian', [
+                                'id_modal' => 'edit-produk',
+                                'route' => 'edit.hutang-awal',
+                                'id' => $produk->id,
+                                'produk' => $produk,
+                                'stok' => '',
+                            ]) --}}
+                            <form action="/delete-produk-pembelian/{{ $produk->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr class="intro-x">
+                        <td colspan="13" class="font-bold text-center">Belum ada data tersedia</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
