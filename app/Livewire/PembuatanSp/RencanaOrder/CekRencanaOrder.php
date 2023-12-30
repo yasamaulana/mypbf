@@ -18,6 +18,6 @@ class CekRencanaOrder extends Component
 
     public function mount()
     {
-        $this->supliers = Suplier::where('id_perusahaan', Auth::user()->id_perusahaan)->where('nama_suplier', 'like', '%' . $this->search . '%')->get();
+        $this->supliers = Suplier::where('id_perusahaan', Auth::user()->id_perusahaan)->get();
     }
 }
