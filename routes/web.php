@@ -16,6 +16,7 @@ use App\Http\Controllers\ObatBarangController;
 use App\Http\Controllers\PajakController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PembuatanSPController;
 use App\Http\Controllers\PiutangAwalController;
 use App\Http\Controllers\ProdusenController;
 use App\Http\Controllers\ProfileController;
@@ -263,6 +264,14 @@ Route::middleware(['auth'])->group(function () {
 
     //--->buku besar
     Route::get('/buku-besar', [BukuBesarController::class, 'index'])->name('buku.besar');
+
+    //pembelian
+    Route::get('/tambah-pembelian', [TambahPembelianController::class, 'index'])->name('tambah-pembelian');
+    Route::post('/tambah-pembelian', [TambahPembelianController::class, 'tambahProduk'])->name('tambah.tambah-pembelian');
+    Route::delete('/delete-produk-pembelian/{id}', [TambahPembelianController::class, 'deleteProduk'])->name('delete.produk-pembelian');
+    Route::post('/edit-pembelian-produk/{id}', [TambahPembelianController::class, 'editProduk'])->name('edit.produk-pembelian');
+
+    Route::get('/pembuatan-sp', [PembuatanSPController::class, 'index'])->name('pembuatan-sp');
 });
 
 
@@ -327,11 +336,6 @@ Route::get('/histori-pembelian', function () {
     ]);
 })->middleware(['auth']);
 
-Route::get('/pembuatan-sp', function () {
-    return view('pages.transaksi.pengadaan.sp.surat-pesanan', [
-        'title' => 'transaksi'
-    ]);
-})->middleware(['auth']);
 Route::get('/cek-rencana-order', function () {
     return view('pages.transaksi.pengadaan.sp.rencana-order', [
         'title' => 'transaksi'
@@ -344,13 +348,6 @@ Route::get('/pembelian', function () {
         'title' => 'transaksi'
     ]);
 })->middleware(['auth']);
-
-
-Route::get('/tambah-pembelian', [TambahPembelianController::class, 'index'])->name('tambah-pembelian');
-Route::post('/tambah-pembelian', [TambahPembelianController::class, 'tambahProduk'])->name('tambah.tambah-pembelian');
-Route::delete('/delete-produk-pembelian/{id}', [TambahPembelianController::class, 'deleteProduk'])->name('delete.produk-pembelian');
-Route::post('/edit-pembelian-produk/{id}', [TambahPembelianController::class, 'editProduk'])->name('edit.produk-pembelian');
-
 
 Route::get('/terima-barang', function () {
     return view('pages.transaksi.pembelian.terima-barang.terima-barang', [

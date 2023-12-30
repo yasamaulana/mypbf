@@ -187,9 +187,6 @@
                         selectElement.val(defaultSatuan);
                     }
                 },
-                error: function(err) {
-                    console.log(err);
-                }
             });
         }
 
@@ -209,11 +206,7 @@
                 type: 'GET',
                 success: function(data) {
                     $("#isi" + id_dropdown).val(data.isi);
-                    console.log(data.isi);
                 },
-                error: function(err) {
-                    console.log(err);
-                }
             });
         });
 

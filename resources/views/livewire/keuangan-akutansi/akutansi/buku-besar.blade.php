@@ -20,14 +20,15 @@
                 </div>
                 <div class="relative w-56 text-slate-500 ">
                     <input type="text" class="w-56 pr-10 form-control cari box" placeholder="Search..."
-                        wire:model="search">
+                        wire:model.live="search">
                     <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
                 </div>
                 <div data-tw-merge class="flex items-center block gap-2">
                     <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 sm:w-28">
                         Tampilkan
                     </label>
-                    <select data-tw-merge aria-label="Default select example" class="form-control" wire:model="perPage">
+                    <select data-tw-merge aria-label="Default select example" class="form-control"
+                        wire:model.live="perPage">
                         <option>10</option>
                         <option>25</option>
                         <option>50</option>

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-lg font-bold  bg-primary flex align-center justify-center text-white">
-                Tambah Obat/Barang
+                Tambah Produk
             </div>
             <form action="{{ route($route, ['id' => $id]) }}" method="post">
                 @csrf
@@ -10,7 +10,7 @@
                     <div data-tw-merge class="block sm:flex items-center mt-3">
                         {{-- <input type="hidden" value="{{ auth()->user()->id }}" name="id_perusahaan"> --}}
                         <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
-                            Obat/Barang
+                            Produk
                         </label>
                         <select data-tw-merge aria-label="Default select example" name="id_obat_barang"
                             class="form-control tom-select" id="selectObatBarang{{ $id }}">
@@ -27,7 +27,8 @@
                         <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2  sm:w-60">
                             Satuan Beli
                         </label>
-                        <select data-tw-merge aria-label="Default select example" class="form-control"
+                        <select data-tw-merge aria-label="Default select example"
+                            class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&amp;[readonly]]:bg-slate-100 [&amp;[readonly]]:cursor-not-allowed [&amp;[readonly]]:dark:bg-darkmode-800/50 [&amp;[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80"
                             id="satuanBeli{{ $id }}" name="satuan">
                             <option>- Pilih -</option>
                         </select>
@@ -96,54 +97,66 @@
 
 
 <script>
-    document.getElementById('selectObatBarang{{ $id }}').addEventListener('change', function() {
-        var selectedValue = this.value;
+    jQuery(document).ready(function($) {
+        let id_dropdown = "{{ $id }}";
 
-        // Menggunakan Fetch API untuk mengambil data dari server
-        fetch('/get-nama-barang/' + selectedValue)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                updateSatuanBeli(data.satuan.length > 0 ? data.satuan : '');
-                updateIsi(data.isi);
-                updateSatuanTerkecil(data.satuan_terkecil)
-            })
-            .catch(error => console.error('Error:', error));
-    });
+        // Function to fetch and populate data when the page loads
+        function fetchData(selectedOption) {
+            $.ajax({
+                url: '/get-nama-barang/' + selectedOption,
+                type: 'GET',
+                success: function(data) {
+                    $("#satuanBeli{{ $id }}").val(data.satuan);
+                    $("#isi{{ $id }}").val(data.isi);
+                    $("#satuanTerkecil{{ $id }}").val(data.satuan_terkecil);
 
-    function updateSatuanBeli(newValue) {
-        var selectElement = document.getElementById('satuanBeli{{ $id }}');
+                    var selectOptions = data.satuan;
+                    var selectElement = $('<select></select>').attr({
+                        'id': "#satuanBeli{{ $id }}",
+                        'class': 'form-control',
+                        'name': 'satuan'
+                    });
 
-        selectElement.innerHTML = '';
-        var option = document.createElement('option');
-        option.text = '- Pilih -';
-        option.value = '';
-        selectElement.add(option);
+                    var defaultSatuan = "{{ $stok->satuan ?? '' }}";
+                    $.each(selectOptions, function(key, value) {
+                        var option = $('<option></option>').attr('value', value).text(
+                            value);
+                        if (defaultSatuan !== '' && value === defaultSatuan) {
+                            option.prop('selected', true);
+                        }
+                        selectElement.append(option);
+                    });
 
-        // Tambahkan opsi-opsi baru dari data yang diterima
-        if (Array.isArray(newValue) && newValue.length > 0) {
-            // Gabungkan elemen array menjadi satu opsi
-            newValue.forEach(function(value) {
-                var option = document.createElement('option');
-                option.text = value;
-                option.value = value;
+                    $("#satuanBeli{{ $id }}").replaceWith(selectElement);
 
-                if (value === value) {
-                    option.selected = true;
-                }
-
-                selectElement.add(option);
+                    if (defaultSatuan !== '') {
+                        selectElement.val(defaultSatuan);
+                    }
+                },
             });
         }
-    }
 
-    function updateIsi(newValue) {
-        document.getElementById('isi{{ $id }}').value = newValue;
-    }
+        // Event handler for product change
+        $('#selectObatBarang{{ $id }}').change(function() {
+            let selectedOption = $(this).val();
+            fetchData(selectedOption);
+        });
 
-    function updateSatuanTerkecil(newValue) {
-        document.getElementById('satuanTerkecil{{ $id }}').value = newValue;
-    }
+        // Event handler for unit change
+        $(document).on('change', '#satuanBeli{{ $id }}', function() {
+            let selectedOption = $(this).val();
+            let id_barang = $('#selectObatBarang{{ $id }}').val();
+
+            $.ajax({
+                url: '/get-isi-barang/' + id_barang + '/' + selectedOption,
+                type: 'GET',
+                success: function(data) {
+                    $("#isi{{ $id }}").val(data.isi);
+                },
+            });
+        });
+
+    });
 
     function formatRupiah(input) {
         let value = input.value;

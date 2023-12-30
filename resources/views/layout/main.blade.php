@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-<!-- BEGIN: Head -->
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -9,18 +8,17 @@
     <meta name="description" content="My PBf, sistem akutansi dan management PBF">
     <meta name="keywords" content="My PBF, member pbf, akutansi pbf, aplikasi pbf, web app">
     <meta name="author" content="Yasa Maulana">
+
     <title>MYPbf - {{ Str::title($title) }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- BEGIN: CSS Assets-->
-    <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <script src="{{ url('https://code.jquery.com/jquery-3.6.4.min.js') }}"></script>
-    @livewireStyles
-    <!-- END: CSS Assets-->
-</head>
-<!-- END: Head -->
 
-<body class="">
+    <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ url('https://code.jquery.com/jquery-3.6.4.min.js') }}"></script>
+</head>
+
+<body>
+    {{-- {{ $slot }} --}}
     @include('layout.mobile')
     @include('layout.topbar')
     @include('layout.navbar')
@@ -28,15 +26,11 @@
     <div class="content">
         @yield('main')
     </div>
-    {{-- @include('layout.darkmode') --}}
-    <!-- BEGIN: JS Assets-->
     <script
         src="{{ url('https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js') }}">
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api"]&libraries=places"></script>
     <script src="{{ asset('dist/js/app.js') }}"></script>
-    @livewireScripts
-    <!-- END: JS Assets-->
 </body>
 
 </html>

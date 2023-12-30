@@ -1,16 +1,16 @@
 @extends('layout.main')
 
 @section('main')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <div class="flex items-center mt-8 intro-y">
+        <h2 class="mr-auto text-lg font-medium">
             Data Pesanan Ke Suplier
         </h2>
     </div>
 
     <div class="grid grid-cols-12 gap-6 mt-5">
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 gap-3">
+        <div class="flex flex-wrap items-center col-span-12 gap-3 mt-2 intro-y sm:flex-nowrap">
             <div class="flex gap-2 overflow-auto">
-                <label data-tw-merge for="horizontal-form-1" class="inline-block mb-2 font-bold mt-2 sm:w-20">
+                <label data-tw-merge for="horizontal-form-1" class="inline-block mt-2 mb-2 font-bold sm:w-20">
                     Tanggal
                 </label>
                 <input data-tw-merge id="horizontal-form-1" type="date" placeholder="Stok dari master"
@@ -23,66 +23,28 @@
             <button class="btn btn-warning">Atur Ulang</button>
         </div>
         <!-- BEGIN: Data List -->
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <div class="flex gap-3 mb-3 justify-end">
-                <div class="w-56 relative text-slate-500 mr-auto">
-                    <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+        <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+            <div class="flex justify-end gap-3 mb-3">
+                <div class="relative w-56 mr-auto text-slate-500">
+                    <input type="text" class="w-56 pr-10 form-control box" placeholder="Search...">
+                    <i class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3" data-feather="search"></i>
                 </div>
-                <button class="btn btn-primary text-white" data-tw-target="#modal-setting-sp" data-tw-toggle="modal">Setting
+                <button class="text-white btn btn-primary" data-tw-target="#modal-setting-sp" data-tw-toggle="modal">Setting
                     No. SP</button>
-                <a href="/cek-rencana-order"><button class="btn btn-primary text-white">Cek Rencana Order</button></a>
+                <a href="/cek-rencana-order"><button class="text-white btn btn-primary">Cek Rencana Order</button></a>
             </div>
 
             {{-- modal start --}}
             <div id="modal-setting-sp" class="modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header text-lg font-bold  bg-primary flex align-center justify-center text-white">
-                            Setting No. SP
-                        </div>
-                        <div class="modal-body p-5">
-                            <div class="flex align-middle gap-5">
-                                <p class="mt-2">XXXX</p>
-                                <input type="text" class="form-control w-48">
-                                <p class="mt-2">-</p>
-                                <p class="mt-2">REG / MM-YY</p>
-                            </div>
-                            <div class="flex align-middle gap-5 mt-3">
-                                <p class="mt-2">XXXX</p>
-                                <input type="text" class="form-control w-48">
-                                <p class="mt-2">-</p>
-                                <p class="mt-2">OOT / MM-YY</p>
-                            </div>
-                            <div class="flex align-middle gap-5 mt-3">
-                                <p class="mt-2">XXXX</p>
-                                <input type="text" class="form-control w-48">
-                                <p class="mt-2">-</p>
-                                <p class="mt-2">Prek / MM-YY</p>
-                            </div>
-                            <div class="flex align-middle gap-5 mt-3">
-                                <p class="mt-2">XXXX</p>
-                                <input type="text" class="form-control w-48">
-                                <p class="mt-2">-</p>
-                                <p class="mt-2">Psiko / MM-YY</p>
-                            </div>
-                            <div class="flex align-middle gap-5 mt-3">
-                                <p class="mt-2">XXXX</p>
-                                <input type="text" class="form-control w-48">
-                                <p class="mt-2">-</p>
-                                <p class="mt-2">Narko / MM-YY</p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-tw-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary">Simpan</button>
-                        </div>
+                        @livewire('pembuatan-sp.set-no-sp')
                     </div>
                 </div>
             </div>
             {{-- modal end --}}
 
-            <table class="table table-report -mt-2">
+            <table class="table -mt-2 table-report">
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">No</th>
@@ -104,7 +66,7 @@
                         <td class="">Contoh Data</td>
                         <td class="">Contoh Data</td>
                         <td class="">Contoh Data</td>
-                        <td class="w-60 flex gap-2">
+                        <td class="flex gap-2 w-60">
                             <button class="btn btn-primary btn-sm">Edit</button>
                             <button class="btn btn-danger btn-sm">Hapus</button>
                             <button class="btn btn-success btn-sm">Lihat</button>
